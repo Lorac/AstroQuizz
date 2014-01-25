@@ -1,0 +1,104 @@
+Le graphique suivant représente des valeurs qui sont croissantes vers la droite. Quel paramètre peut être représenté par cette ligne?
+Longueur d'onde
+Fréquence
+Énergie
+Longueur d'onde et énergie
+Fréquence et énergie
+E
+UN-Lumiere et spectres-1.jpg
+Les orbites permises et leurs énergies pour un électron d'un atome fictif sont représentées sur la figure. Si l'électron est dans son état fondamental, quelle énergie de photon peut-il absorber?
+1
+2
+4
+6
+7
+E
+UN-Lumiere et spectres-2.jpg
+Un diagramme des niveaux d'énergie pour un atome d'hydrogène est représenté par la figure. Quelle lettre correspond à une transition qui correspond à une émission d'un photon alpha de Lyman ?
+A
+B
+C
+D
+E
+D
+UN-Lumiere et spectres-3.jpg
+Les spectres de quatre sources d'hydrogène sont montrés. Le spectre du dessus est le spectre de référence. Lequel de ces spectres a le plus grand décalage spectral?
+A
+B
+C
+D
+
+A
+UN-Lumiere et spectres-4.jpg
+Deux vaisseaux extra-terrestresse mènent une bataille ardue. Les deux vaisseaux se déplacent vers la droite alors qu'ils s'attaquent avec leurs lasers. Le vaisseau de gauche se déplace à 1500 km/s et celui de droite à 3000 km/s. Le vaisseau de gauche va détecter que les lasers de l'autre vaisseau sont :
+Décalés vers le rouge (redshift)
+Aucun décalage
+Décalés vers le bleu (blueshift)
+
+
+A
+UN-Lumiere et spectres-5.jpg
+Le graphique représente des courbes de corps noir d'étoiles ayant des températures de surface différentes. Laquelle de ces étoile a la plus petite température de surface?
+A
+B
+C
+D
+
+D
+UN-Lumiere et spectres-6.jpg
+Imaginez que des sphères concentriques sont placées autour du soleil à un rayon de 1,2 et 3 unités. Si le flux qui passe le carré rouge (sur la coquille 1) est 4, alors le flux qui va passer dans le bleu (sur la coquille 2) sera
+4
+0,25
+1
+16
+
+C
+UN-Lumiere et spectres-7.jpg
+Une lumière incandescente et un mince nuage de gaz sont dans l'espace. Un observateur regardant avec la perspective de la flèche verrait un spectre :
+continu
+d'émission
+d'absorption
+
+
+A
+UN-Lumiere et spectres-8.jpg
+Une lumière incandescente et un mince nuage de gaz sont dans l'espace. Un observateur regardant avec la perspective de la flèche verrait un spectre :
+continue
+d'émission
+d'absorption
+
+
+C
+UN-Lumiere et spectres-9.jpg
+Une lumière incandescente et un mince nuage de gaz sont dans l'espace. Un observateur regardant avec la perspective de la flèche verrait un spectre :
+Continue
+d'émission
+d'absorption
+
+
+B
+UN-Lumiere et spectres-10.jpg
+Une lumière incandescente et un mince nuage de gaz sont dans l'espace. De quel point de vue un observateur verrait-il un spectre qui serait le plus similaire à celui d'une étoile?
+A
+B
+C
+D
+
+A
+UN-Lumiere et spectres-11.jpg
+Une lumière incadescente et plusieurs nuages minces de gaz sont dans l'espace. Un des nuages se déplace à une vitesse V1.  Un observateur avec perspective A voit le spectre A. Quel spectre un observateur "?" verra-t-il?
+A
+B
+C
+D
+
+C
+UN-Lumiere et spectres-12.jpg
+Dr. Jones (gauche) et Dr. Singh (droite) apprennent comment se servir d'une chambre expérimentale pour chauffer les gaz. Cependant ils ne sont pas d'accord sur le type de spectre qui serait produit par le gaz. Quel type de spectre Dr. Jones observerait-il ?
+continue
+absorption
+émission
+
+
+C
+UN-Lumiere et spectres-13.jpg

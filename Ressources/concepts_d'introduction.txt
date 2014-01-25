@@ -1,0 +1,104 @@
+﻿Quelle séquences d'objets est dans le bon ordre croissant de la distance entre nous et l'objet?
+Lune, Polaris, Saturn, Galaxie d'Andromède, Vénus
+Polaris, Galaxie d'Andromède, Saturne, Lune, Vénus
+Lune, Vénus, Saturne, Polaris, Galaxie d'Andromède
+Saturne, Polaris, Lune, Galaxie d'Andromède, Vénus
+
+C
+NO PICTURE
+L'âge de l'univers est estimé à : 13 700 000 000 ans, et peut aussi être exprimé :
+1,37 x10^10
+1,37 x10^6
+1,37 x10^8
+1,37 x10^9
+1,37 x10^7
+A
+NO PICTURE
+La distance moyenne entre la Terre et le Soleil est de 1,5 x10^8 km, que l'on exprime aussi de 1 unité astronomique (UA). La distance moyenne qui sépare Pluton du Soleil est de 40 UA. Combien cela fait de km?
+4,00 x10^9
+4,00 x10^8
+6,00 x10^9
+2,70 x10^9
+6,00 x10^8
+C
+NO PICTURE
+Si Jupiter serait une grosse boule vide que l'on voudrait remplir avec des sphères de la grosseur de la Terre, elle pourrait contenir approximativement 1000 Terres. Alors, le rayon de Jupiter doit être environs ____ fois la largeur de celui de la Terre.
+1000
+1 (ils sont de la même taille)
+10
+100
+10 000
+C
+NO PICTURE
+Sirius - l'étoile la plus brillante dans notre ciel - est à peu près situé à 9 années-lumière de nous. Si la vitesse de la lumière était la moitié de la valeur présente, à quelle distance se trouverait Sirius?
+9 années-lumière
+36 années-lumière
+4,5 années-lumière
+18 années-lumière
+
+D
+NO PICTURE
+L'étoile brillante Bételgeuse est à environs 520 années-lumière de nous. Si la vitesse de la lumière était 2 fois plus rapide, quelle serait la distance qui nous sépare de Bételgeuse?
+2080 années-lumière
+260 années-lumière
+520 années-lumière
+130 années-lumière
+1040 années-lumière
+B
+NO PICTURE
+La galaxie d'Andromède est environs à 2/3 de Mpc (2 000 000 d'années-lumière) de nous. Donc, la lumière que l'on observe d'Andromède a été émise il y a :
+Il y a 2/3 d'une année
+Il y a une seconde
+Il y a un an
+Il y a 2 000 000 d'années
+On ne peut pas le savoir
+D
+UN-Concepts d introduction-6.jpg
+La nébuleuse du crabe est le restant d'une supernova observée par les astronomes chinois en l'an -1054. Sachant que la nébuleuse du crabe est située à environs 6500 années-lumière, l'année la plus près de la supernova est :
+1054
+-4550
+-6500
+-1054
+-5450
+E
+UN-Concepts d introduction-7.jpg
+Un astronome collecte des données de dirrérentes planètes, dont le rayon R et la circonférence C (où c = 2*Pi*R) pour chaque planète. Ces données sont représentées dans quel graphique?
+A
+B
+C
+D
+
+B
+UN-Concepts d introduction-8.jpg
+Qu'est ce qui a le plus grand volume entre :
+1 kg d'aluminium
+1 kg de styrofoam
+1 kg de feuilles
+1 kg de bois
+Ils sont tous égaux
+B
+NO PICTURE
+Laquelle de ces courbes montre la densité d'une poubelle pendant qu'elle est compressée par un compacteur?
+A
+B
+C
+D
+
+C
+UN-Concepts d introduction-10.jpg
+On possède deux cube de plomb de même taille et même masse, bref identique, que l'on joint ensemble pour former un rectangle. Quel énoncé est vrai?
+La masse a doublée
+Le volume a doublé
+La densité a doublée
+A et B
+A et C
+D
+NO PICTURE
+Un bloc d'aluminium, qui a une densité de 2,7 g/cm^3, est coupé de sorte que la partie de gauche fait le 2/3 du volume original. La densité de la plus petite partie est donc :
+0,9  g/cm^3
+1,8  g/cm^3
+2,7  g/cm^3
+3,6  g/cm^3
+4,5  g/cm^3
+C
+UN-Concepts d introduction-12.jpg
