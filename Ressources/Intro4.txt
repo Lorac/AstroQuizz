@@ -1,0 +1,23 @@
+﻿La vitesse d'échappée de la surface de la Lune est plus petite que la vitesse d'échappée de la Terre à cause de
+sa densité plus faible
+sa masse plus petite
+son rayon plus petit
+sa température plus élevée
+sa grande distance de la Terre
+REPONSE
+NO PICTURE
+Si la force de gravité du Soleil disparaissait magiquement, la Terre
+suivrait une trajectoire droite le long de sa vitesse actuelle
+quitterait le Système Solaire le long d'une droite parallèle à la ligne Soleil-Terre
+tomberait vers le Soleil le long d'une trajectoire spirale
+entrerait en collision avec la Lune
+REPONSE
+NO PICTURE
+Une boule de quille et un sac de papier s'échappent d'un vaisseau spatial en route vers la Lune. Le vaisseau est à mi-chemin et ses moteurs sont fermés. Après 10 minutes,
+les deux objets se déplacent toujours ensemble à côté du vaisseau spatial
+la boule de quille suit le vaisseau, mais le sac est loin derrière
+les deux objets sont loin derrière le vaisseau
+la boule de quille tombe vers la Terre et le sac suit toujours le vaisseau
+les deux objets tombent vers la Terre
+REPONSE
+NO PICTURE

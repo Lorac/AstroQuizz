@@ -1,0 +1,64 @@
+﻿Comment serait une étoile de magnitude 8 par rapport à une autre de magnitude 7?
+10 fois plus brillante
+10 fois moins brillante
+2.5 fois plus brilante
+2.5 fois moins brillante
+
+REPONSE
+NO PICTURE
+Quatre étoiles sont situées dans le même amas d'étoiles. Leurs magnitudes ABSOLUES sont 10, 7, -1, -10. Laquelle apparaît la plus brillante?
+la première
+la deuxième
+la troisième
+la quatrième
+
+REPONSE
+NO PICTURE
+La couleur d'une étoile est un paramètre représentant
+le rapport des luminosités absolues à 2 longueurs d'onde
+le rapport entre les flux (apparents) à 2 longueurs d'onde
+le rapport entre la surface de l'étoile et sa distance au carré
+Deux de ces choix sont corrects
+Aucun de ces choix n'est correct
+REPONSE
+NO PICTURE
+Deux étoiles font partie d'un système binaire, l'étoile A ayant 2 fois la masse de l'étoile B. Par rapport à l'étoile B, la période de l'étoile A est
+deux fois plus grande
+deux fois plus petite
+0.5 fois plus grande
+0.5 fois plus petite
+la même
+REPONSE
+NO PICTURE
+Dans une binaire spectroscopique, les raies de A varient 2 fois plus en longueur d'onde que celles de B. Par rapport à l'étoile B,
+la masse de A est 2 fois plus petite
+la masse de A est 2 fois plus grande
+l'étoile A est 2 fois plus loin
+l'étoile A est 2 fois plus lumineuse
+
+REPONSE
+NO PICTURE
+Deux étoiles absolument identiques sont situées à 10 et 1000 annéeslumière de la Terre. L'étoile la plus distante apparaît
+10 fois plus faible
+100 fois plus faible
+10 000 fois plus faible
+1 000 000 fois plus faible
+aussi brillante puisque les deux étoiles sont identiques
+REPONSE
+NO PICTURE
+Deux étoiles sont situées à la même distance. L'étoile A a un rayon R et température T, l'étoile B un rayon 4R et une température T/2. Laquelle apparaît la plus brillante?
+A
+B
+Les deux ont la même brillance
+Impossible de répondre à partir de l'information donnée
+
+REPONSE
+NO PICTURE
+Deux étoiles ont la même température. L'étoile B apparaît plus brillante.
+Une
+Deux
+Trois
+Quatre
+Toutes
+REPONSE
+General_Classification-8.jpg
