@@ -82,11 +82,13 @@ public class AppFrame extends JFrame implements ActionListener {
 
 			int question = this.QuestionArea.getCurrentQuestion() + 1;
 
-			this.QuestionArea.newQuestion(this.module, question);
-			this.QuestionArea.setCurrentQuestion(question);
 			if (question == numberOfQuestion) {
 				this.botToolBar.nextButton.setEnabled(false);
 			}
+
+			this.QuestionArea.newQuestion(this.module, question);
+			this.QuestionArea.setCurrentQuestion(question);
+
 			this.QuestionArea.setBackgroundColor();
 		} else if (evt.getSource() == this.mainToolBar.Module) {
 			initialModuleQuestion();
@@ -98,7 +100,7 @@ public class AppFrame extends JFrame implements ActionListener {
 			int question = this.QuestionArea.getCurrentQuestion() - 1;
 			this.QuestionArea.newQuestion(this.module, question);
 			this.QuestionArea.setCurrentQuestion(question);
-			if (question == 1) {
+			if (question == 0) {
 				this.botToolBar.previousButton.setEnabled(false);
 			}
 			this.QuestionArea.setBackgroundColor();

@@ -72,8 +72,9 @@ public class AppCenter extends JPanel {
 	}
 
 	public int getNumberOfQuestion(String module) {
-		setnumberOfQuestion(module);
-		return this.numberofQuestion;
+		module = module.trim().replace(' ', '_');
+		module = WordUtils.uncapitalize(module);
+		return this.Questionnaires.get(module).getSizeQuestionnaire() - 1;
 	}
 
 	public AppCenter(String Module, int currentQuestion) {
@@ -94,7 +95,9 @@ public class AppCenter extends JPanel {
 		this.reponse.setLayout(new GridLayout(5, 1));
 		creerQuestionaires();
 
-		afficherLesQuestions(WordUtils.uncapitalize(Module), currentQuestion);
+
+
+		afficherLesQuestions(Module, currentQuestion);
 	}
 
 	/**
@@ -107,6 +110,9 @@ public class AppCenter extends JPanel {
 		List<String> lesChoixPossible = new ArrayList<String>();
 		Questionnaire unQuestionnaire = null;
 
+		Module = Module.trim().replace(' ', '_');
+		Module = WordUtils.uncapitalize(Module);
+
 		try {
 			unQuestionnaire = this.Questionnaires.get(Module);
 			if (unQuestionnaire == null) {
@@ -117,6 +123,10 @@ public class AppCenter extends JPanel {
 		}
 
 		lesQuestions = unQuestionnaire.getQuestions();
+		if (lesQuestions == null) {
+			System.out.println("afficherLesQuestions: Choix de questions vide");
+			return;
+		}
 		Question laQuestion = lesQuestions.get(currentQuestion);
 
 		this.numberofQuestion = lesQuestions.size();
@@ -194,10 +204,6 @@ public class AppCenter extends JPanel {
 
 	public void setCurrentQuestion(int question) {
 		this.questionNumber = question;
-	}
-
-	public void setnumberOfQuestion(String module) {
-
 	}
 
 	public void mouseClicked(MouseEvent evt) {
