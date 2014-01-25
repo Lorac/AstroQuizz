@@ -116,8 +116,6 @@ public class AppCenter extends JPanel {
 			ex.printStackTrace();
 		}
 
-
-
 		lesQuestions = unQuestionnaire.getQuestions();
 		Question laQuestion = lesQuestions.get(currentQuestion);
 
@@ -151,7 +149,7 @@ public class AppCenter extends JPanel {
 		}
 
 		this.question.setContentType("text/html");
-		this.question.setText("<b> Question #" + this.questionNumber
+		this.question.setText("<b> Question #" + this.questionNumber + 1
 				+ ":  </b>" + this.Questionlabel);
 		this.question.setEditable(false);
 		this.question.setBackground(Color.LIGHT_GRAY);
