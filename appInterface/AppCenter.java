@@ -11,8 +11,10 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import javax.swing.ImageIcon;
@@ -62,7 +64,14 @@ public class AppCenter extends JPanel {
 			if (listOfFiles[i].isFile()) {
 				String fileName = listOfFiles[i].getName().substring(0, listOfFiles[i].getName().lastIndexOf("."));
 
-				this.Questionnaires.put(fileName, new Questionnaire(fileName));
+				this.Questionnaires.put(WordUtils.uncapitalize(fileName), new Questionnaire(fileName));
+				//TRACE
+				
+				Questionnaire q_aire_courant = Questionnaires.get(WordUtils.uncapitalize(fileName));
+				List<Question> q_ons_courant = q_aire_courant.getQuestions();
+				Question q_on_courant = q_ons_courant.get(0);
+				System.out.println(fileName + " : " + q_on_courant.getChoixReponse()[0]);
+				
 			}
 		}
 
@@ -115,8 +124,10 @@ public class AppCenter extends JPanel {
 	 * @param currentQuestion
 	 */
 	private void afficherLesQuestions(String Module, int currentQuestion) {
+		//TRACE
+		//System.out.println("IN : afficherLesQuestions");
 		this.questionNumber = currentQuestion;
-		List<Question> lesQuestions;
+		ArrayList<Question> lesQuestions;
 		String[] lesChoixPossible = new String[5];
 		Questionnaire unQuestionnaire = null;
 
@@ -125,8 +136,10 @@ public class AppCenter extends JPanel {
 
 		try {
 			unQuestionnaire = this.Questionnaires.get(Module);
+			
 			if (unQuestionnaire == null) {
 				System.out.println("Questionnaire vide");
+				System.out.println("Module : " + Module);
 			}
 		} catch (NullPointerException ex) {
 			ex.printStackTrace();
@@ -144,12 +157,12 @@ public class AppCenter extends JPanel {
 		this.numberofQuestion = lesQuestions.size();
 
 		if (this.numberofQuestion > 0) {
-			
-			
-
 			this.Questionlabel = laQuestion.getQuestionLabel();
 			lesChoixPossible = laQuestion.getChoixReponse();
-
+			//TRACE
+			System.out.println(lesChoixPossible[0]);
+			
+			Labels.clear();
 			for (int i = 0; i < lesChoixPossible.length - 1; i++) {
 				this.Labels.add(lesChoixPossible[i].trim());  
 			}

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Questionnaire {
 
-	private List<Question>	Questions;
+	private ArrayList<Question>	Questions;
 
 	public Questionnaire() {
 
@@ -23,7 +23,7 @@ public class Questionnaire {
 	/**
 	 * @return the list of questions
 	 */
-	public List<Question> getQuestions() {
+	public ArrayList<Question> getQuestions() {
 		return Questions;
 	}
 
@@ -31,7 +31,7 @@ public class Questionnaire {
 	 * @param questions
 	 *            the questions to set
 	 */
-	public void setQuestions(List<Question> questions) {
+	public void setQuestions(ArrayList<Question> questions) {
 		Questions = questions;
 	}
 
@@ -66,10 +66,10 @@ public class Questionnaire {
 					for (i = 0; i < 5; i++) {
 						LigneLue = fluxEntree.readLine();
 						choixReponse[i] = (LigneLue);
-
 					}
 					reponse = fluxEntree.readLine().charAt(0);
 					picturePath = fluxEntree.readLine();
+ 
 					Questions.add(new Question(questionLabel, choixReponse, choixReponse.length - 1, reponse, picturePath));
 
 					//choixReponse.clear();
