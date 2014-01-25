@@ -9,7 +9,7 @@ public class Question {
 	private String		picturePath;
 
 	public Question(String questionLabel, String[] choixReponse, int nbChoix, char reponse, String picturePath) {
-		
+
 		this.setQuestionLabel(questionLabel);
 		this.setNbChoix(nbChoix);
 		this.setChoixReponse(choixReponse);
@@ -44,9 +44,9 @@ public class Question {
 	 *            the choixReponse to set
 	 */
 	public void setChoixReponse(String[] choixReponse) {
-		
+
 		this.choixReponse = new String[choixReponse.length];
-		for(int i = 0; i<choixReponse.length;i++){
+		for (int i = 0; i < choixReponse.length; i++) {
 			this.choixReponse[i] = choixReponse[i];
 		}
 	}

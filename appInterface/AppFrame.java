@@ -18,7 +18,7 @@ public class AppFrame extends JFrame implements ActionListener {
 	private JPanel				container			= new JPanel();
 	private AppCenter			QuestionArea;
 	private JPanel				top					= new JPanel();
-	private AppBotToolBar		botToolBar			= new AppBotToolBar(); 
+	private AppBotToolBar		botToolBar			= new AppBotToolBar();
 
 	/**
 	 * 

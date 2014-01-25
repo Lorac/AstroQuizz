@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Questionnaire {
 
@@ -17,7 +16,7 @@ public class Questionnaire {
 
 	public Questionnaire(String module) {
 		this.Questions = new ArrayList<Question>();
-		construireQuestionnaire(module); 
+		construireQuestionnaire(module);
 	}
 
 	/**
@@ -47,7 +46,7 @@ public class Questionnaire {
 		BufferedReader fluxEntree = null;
 		String questionLabel;
 		String[] choixReponse = new String[5];
-		
+
 		char reponse;
 		String LigneLue;
 		String picturePath;
@@ -57,7 +56,6 @@ public class Questionnaire {
 			try {
 				fluxEntree = new BufferedReader(new InputStreamReader(new FileInputStream("./Ressources/" + module + ".txt"), "UTF-8"));
 				do {
-					
 
 					questionLabel = fluxEntree.readLine();
 					if (questionLabel == null) {
@@ -69,10 +67,10 @@ public class Questionnaire {
 					}
 					reponse = fluxEntree.readLine().charAt(0);
 					picturePath = fluxEntree.readLine();
- 
+
 					Questions.add(new Question(questionLabel, choixReponse, choixReponse.length - 1, reponse, picturePath));
 
-					//choixReponse.clear();
+					// choixReponse.clear();
 
 				}
 				while (questionLabel != null);

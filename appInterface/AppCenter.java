@@ -1,8 +1,5 @@
 package appInterface;
 
-import appStructure.Question;
-import appStructure.Questionnaire;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,10 +8,8 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 import javax.swing.ImageIcon;
@@ -24,6 +19,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import org.apache.commons.lang3.text.WordUtils;
+
+import appStructure.Question;
+import appStructure.Questionnaire;
 
 public class AppCenter extends JPanel {
 	/**
@@ -48,8 +46,6 @@ public class AppCenter extends JPanel {
 
 	private int							questionNumber		= 0;
 	private int							numberofQuestion	= 0;
-	private int							indice				= 0;
-
 	public JLabel						picture				= new JLabel();
 	public List<JButton>				Answers				= new ArrayList<JButton>();							;
 
@@ -65,13 +61,7 @@ public class AppCenter extends JPanel {
 				String fileName = listOfFiles[i].getName().substring(0, listOfFiles[i].getName().lastIndexOf("."));
 
 				this.Questionnaires.put(WordUtils.uncapitalize(fileName), new Questionnaire(fileName));
-				//TRACE
-				
-				Questionnaire q_aire_courant = Questionnaires.get(WordUtils.uncapitalize(fileName));
-				List<Question> q_ons_courant = q_aire_courant.getQuestions();
-				Question q_on_courant = q_ons_courant.get(0);
-				System.out.println(fileName + " : " + q_on_courant.getChoixReponse()[0]);
-				
+
 			}
 		}
 
@@ -124,8 +114,6 @@ public class AppCenter extends JPanel {
 	 * @param currentQuestion
 	 */
 	private void afficherLesQuestions(String Module, int currentQuestion) {
-		//TRACE
-		//System.out.println("IN : afficherLesQuestions");
 		this.questionNumber = currentQuestion;
 		ArrayList<Question> lesQuestions;
 		String[] lesChoixPossible = new String[5];
@@ -136,7 +124,7 @@ public class AppCenter extends JPanel {
 
 		try {
 			unQuestionnaire = this.Questionnaires.get(Module);
-			
+
 			if (unQuestionnaire == null) {
 				System.out.println("Questionnaire vide");
 				System.out.println("Module : " + Module);
@@ -146,7 +134,6 @@ public class AppCenter extends JPanel {
 		}
 
 		lesQuestions = unQuestionnaire.getQuestions();
-	
 
 		if (lesQuestions == null) {
 			System.out.println("afficherLesQuestions: Choix de questions vide");
@@ -159,17 +146,14 @@ public class AppCenter extends JPanel {
 		if (this.numberofQuestion > 0) {
 			this.Questionlabel = laQuestion.getQuestionLabel();
 			lesChoixPossible = laQuestion.getChoixReponse();
-			//TRACE
-			System.out.println(lesChoixPossible[0]);
-			
+
 			Labels.clear();
 			for (int i = 0; i < lesChoixPossible.length - 1; i++) {
-				this.Labels.add(lesChoixPossible[i].trim());  
+				this.Labels.add(lesChoixPossible[i].trim());
 			}
 			this.GoodAnswer = laQuestion.getReponse();
 			this.PicturePath = laQuestion.getPicturePath();
 		}
-	
 
 		for (int i = 0; i < this.Answers.size() - 1; i++) {
 			this.Answers.get(i).setText(this.possibleChoices.get(i) + this.Labels.get(i));

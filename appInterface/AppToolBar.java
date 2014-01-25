@@ -1,16 +1,16 @@
 package appInterface;
 
 import java.awt.Color;
-import java.util.Collections;
-import java.util.List;
 import java.io.File;
 import java.util.ArrayList;
-
-import org.apache.commons.lang3.text.WordUtils;
+import java.util.Collections;
+import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JToolBar;
+
+import org.apache.commons.lang3.text.WordUtils;
 
 public class AppToolBar extends JToolBar {
 	/**
