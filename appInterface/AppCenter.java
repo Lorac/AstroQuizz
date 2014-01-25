@@ -8,14 +8,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -32,38 +27,40 @@ public class AppCenter extends JPanel {
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 1L;
-	private static final String IMAGEPATH = "./Ressources/images/";
-	private static final String NOPICTURE = "NO PICTURE";
+	private static final long			serialVersionUID	= 1L;
+	private static final String			IMAGEPATH			= "./Ressources/images/";
+	private static final String			NOPICTURE			= "NO PICTURE";
 
-	private JEditorPane question = new JEditorPane();
-	private JPanel reponse = new JPanel();
+	private JEditorPane					question			= new JEditorPane();
+	private JPanel						reponse				= new JPanel();
 
-	private Map<String, Questionnaire> Questionnaires;
+	private Map<String, Questionnaire>	Questionnaires;
 
-	private List<String> Labels;
-	public List<JButton> Answers;
-	private List<String> possibleChoices = Arrays.asList("A. ", "B. ", "C. ",
-			"D. ", "E. ");
+	private List<String>				Labels;
 
-	private String Questionlabel = "";
-	private char GoodAnswer;
-	private String PicturePath = "";
+	private List<String>				possibleChoices		= Arrays.asList("A. ", "B. ", "C. ", "D. ", "E. ");
 
-	private int questionNumber = 0;
-	private int numberofQuestion = 0;
-	private int indice = 0;
+	private String						Questionlabel		= "";
+	private char						GoodAnswer;
+	private String						PicturePath			= "";
 
-	public JLabel picture = new JLabel();
+	private int							questionNumber		= 0;
+	private int							numberofQuestion	= 0;
+	private int							indice				= 0;
 
+	public JLabel						picture				= new JLabel();
+	public List<JButton>				Answers				= new ArrayList<JButton>();							;
+
+	/**
+	 * 
+	 */
 	private void creerQuestionaires() {
 
 		File folder = new File("./Ressources");
 		File[] listOfFiles = folder.listFiles();
 		for (int i = 0; i < listOfFiles.length; i++) {
 			if (listOfFiles[i].isFile()) {
-				String fileName = listOfFiles[i].getName().substring(0,
-						listOfFiles[i].getName().lastIndexOf("."));
+				String fileName = listOfFiles[i].getName().substring(0, listOfFiles[i].getName().lastIndexOf("."));
 
 				this.Questionnaires.put(fileName, new Questionnaire(fileName));
 			}
@@ -71,31 +68,44 @@ public class AppCenter extends JPanel {
 
 	}
 
+	/**
+	 * 
+	 * @param module
+	 * @return
+	 */
 	public int getNumberOfQuestion(String module) {
 		module = module.trim().replace(' ', '_');
 		module = WordUtils.uncapitalize(module);
 		return this.Questionnaires.get(module).getSizeQuestionnaire() - 1;
 	}
 
+	/**
+	 * 
+	 * @param Module
+	 * @param currentQuestion
+	 */
 	public AppCenter(String Module, int currentQuestion) {
 		this.Questionnaires = new TreeMap<String, Questionnaire>();
 		this.Labels = new ArrayList<String>();
-		this.Answers = new ArrayList<JButton>();
 
 		this.reponse.setBackground(Color.LIGHT_GRAY);
-
-		for (int i = 0; i < this.Answers.size(); i++) {
-			this.Answers.get(i).setBackground(Color.LIGHT_GRAY);
-			this.Answers.get(i).setBorderPainted(false);
-
-		}
 
 		setLayout(new BorderLayout());
 
 		this.reponse.setLayout(new GridLayout(5, 1));
+
 		creerQuestionaires();
 
+		for (int i = 0; i < 5; i++) {
+			this.Answers.add(new JButton());
+		}
 
+		for (int i = 0; i < this.Answers.size(); i++) {
+
+			this.Answers.get(i).setBackground(Color.LIGHT_GRAY);
+			this.Answers.get(i).setBorderPainted(false);
+
+		}
 
 		afficherLesQuestions(Module, currentQuestion);
 	}
@@ -106,8 +116,8 @@ public class AppCenter extends JPanel {
 	 */
 	private void afficherLesQuestions(String Module, int currentQuestion) {
 		this.questionNumber = currentQuestion;
-		List<Question> lesQuestions = new ArrayList<Question>();
-		List<String> lesChoixPossible = new ArrayList<String>();
+		List<Question> lesQuestions;
+		String[] lesChoixPossible = new String[5];
 		Questionnaire unQuestionnaire = null;
 
 		Module = Module.trim().replace(' ', '_');
@@ -123,6 +133,8 @@ public class AppCenter extends JPanel {
 		}
 
 		lesQuestions = unQuestionnaire.getQuestions();
+	
+
 		if (lesQuestions == null) {
 			System.out.println("afficherLesQuestions: Choix de questions vide");
 			return;
@@ -132,50 +144,57 @@ public class AppCenter extends JPanel {
 		this.numberofQuestion = lesQuestions.size();
 
 		if (this.numberofQuestion > 0) {
+			
+			
 
 			this.Questionlabel = laQuestion.getQuestionLabel();
 			lesChoixPossible = laQuestion.getChoixReponse();
 
-			for (int i = 0; i < lesChoixPossible.size(); i++) {
-				this.Labels.add(lesChoixPossible.get(i).trim());
-				this.Answers.add(new JButton());
+			for (int i = 0; i < lesChoixPossible.length - 1; i++) {
+				this.Labels.add(lesChoixPossible[i].trim());  
 			}
 			this.GoodAnswer = laQuestion.getReponse();
 			this.PicturePath = laQuestion.getPicturePath();
 		}
+	
 
-		for (int i = 0; i < this.Answers.size(); i++) {
-			this.Answers.get(i).setText(
-					this.possibleChoices.get(i) + this.Labels.get(i));
+		for (int i = 0; i < this.Answers.size() - 1; i++) {
+			this.Answers.get(i).setText(this.possibleChoices.get(i) + this.Labels.get(i));
 		}
+
 		for (int i = 0; i < this.Answers.size(); i++) {
 			this.reponse.add(this.Answers.get(i));
 		}
 
-		for (int i = 0; i < this.Answers.size(); i++) {
+		for (int i = 0; i < this.Answers.size() - 1; i++) {
 			if (this.Labels.get(i) == "") {
 				this.Answers.get(i).setVisible(false);
+			}
+			else {
+				this.Answers.get(i).setVisible(true);
 			}
 		}
 
 		this.question.setContentType("text/html");
-		this.question.setText("<b> Question #" + (this.questionNumber + 1)
-				+ ":  </b>" + this.Questionlabel);
+		this.question.setText("<b> Question #" + (this.questionNumber + 1) + ":  </b>" + this.Questionlabel);
 		this.question.setEditable(false);
 		this.question.setBackground(Color.LIGHT_GRAY);
+
 		add(this.question, "North");
 		add(this.reponse, "Center");
+
 		if (this.PicturePath.equals(NOPICTURE)) {
 			this.picture.setVisible(false);
-		} else {
+		}
+		else {
 			ImageIcon image = new ImageIcon(IMAGEPATH + this.PicturePath);
-			int Height = image.getIconHeight();
-			int Width = image.getIconWidth();
-			Dimension test = new Dimension(Width, Height);
+			Dimension imageSize = new Dimension(image.getIconWidth(), image.getIconHeight());
+
 			this.picture.setIcon(image);
-			this.picture.setPreferredSize(test);
+			this.picture.setPreferredSize(imageSize);
 			this.picture.setBackground(Color.LIGHT_GRAY);
 			this.picture.setOpaque(true);
+
 			add(this.picture, "East");
 			this.picture.setVisible(true);
 		}

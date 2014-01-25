@@ -1,6 +1,5 @@
 package appInterface;
 
-
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -9,9 +8,9 @@ public class AppBotToolBar extends JPanel {
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 1L;
-	public JButton nextButton = new JButton();
-	public JButton previousButton = new JButton();
+	private static final long	serialVersionUID	= 1L;
+	public JButton				nextButton			= new JButton();
+	public JButton				previousButton		= new JButton();
 
 	public AppBotToolBar() {
 		this.nextButton.setText("Question Suivante");
@@ -26,7 +25,8 @@ public class AppBotToolBar extends JPanel {
 	public void disableNextButton(boolean ver) {
 		if (ver) {
 			this.nextButton.setEnabled(false);
-		} else {
+		}
+		else {
 			this.nextButton.setEnabled(true);
 		}
 	}
@@ -34,7 +34,8 @@ public class AppBotToolBar extends JPanel {
 	public void disablePreviousButton(boolean ver) {
 		if (ver) {
 			this.previousButton.setEnabled(false);
-		} else {
+		}
+		else {
 			this.previousButton.setEnabled(true);
 		}
 	}

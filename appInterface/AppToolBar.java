@@ -16,10 +16,10 @@ public class AppToolBar extends JToolBar {
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 1L;
-	public JComboBox<String> Module = new JComboBox<String>();
-	private JLabel moduleLabel = new JLabel();
-	private File Ressources = new File("./Ressources");
+	private static final long	serialVersionUID	= 1L;
+	public JComboBox<String>	Module				= new JComboBox<String>();
+	private JLabel				moduleLabel			= new JLabel();
+	private File				Ressources			= new File("./Ressources");
 
 	public AppToolBar() {
 		setFloatable(false);
@@ -45,8 +45,7 @@ public class AppToolBar extends JToolBar {
 			if (list.size() != 0 && list != null) {
 				Collections.sort(list);
 				for (int i = 0; i < list.size(); i++) {
-					String moduleName = (String) list.get(i).getName().subSequence(0,
-							list.get(i).getName().length() - 4);
+					String moduleName = (String) list.get(i).getName().subSequence(0, list.get(i).getName().length() - 4);
 					moduleName = moduleName.trim().replace(' ', '_');
 					moduleName = WordUtils.capitalize(moduleName);
 					moduleName = moduleName.replace('_', ' ');
@@ -54,7 +53,8 @@ public class AppToolBar extends JToolBar {
 				}
 			}
 
-		} else {
+		}
+		else {
 			System.out.println("Répertoire non trouver");
 		}
 

@@ -1,18 +1,15 @@
 package appStructure;
 
-import java.util.List;
-
 public class Question {
 
-	private String questionLabel;
-	private List<String> choixReponse;
-	private int nbChoix;
-	private char reponse;
-	private String picturePath;
+	private String		questionLabel;
+	private String[]	choixReponse;
+	private int			nbChoix;
+	private char		reponse;
+	private String		picturePath;
 
-	public Question(String questionLabel, List<String> choixReponse,
-			int nbChoix, char reponse, String picturePath) {
-		
+	public Question(String questionLabel, String[] choixReponse, int nbChoix, char reponse, String picturePath) {
+
 		this.setQuestionLabel(questionLabel);
 		this.setNbChoix(nbChoix);
 		this.setChoixReponse(choixReponse);
@@ -28,7 +25,8 @@ public class Question {
 	}
 
 	/**
-	 * @param questionLabel the questionLabel to set
+	 * @param questionLabel
+	 *            the questionLabel to set
 	 */
 	public void setQuestionLabel(String questionLabel) {
 		this.questionLabel = questionLabel;
@@ -37,14 +35,15 @@ public class Question {
 	/**
 	 * @return the choixReponse
 	 */
-	public List<String> getChoixReponse() {
+	public String[] getChoixReponse() {
 		return choixReponse;
 	}
 
 	/**
-	 * @param choixReponse the choixReponse to set
+	 * @param choixReponse
+	 *            the choixReponse to set
 	 */
-	public void setChoixReponse(List<String> choixReponse) {
+	public void setChoixReponse(String[] choixReponse) {
 		this.choixReponse = choixReponse;
 	}
 
@@ -56,7 +55,8 @@ public class Question {
 	}
 
 	/**
-	 * @param nbChoix the nbChoix to set
+	 * @param nbChoix
+	 *            the nbChoix to set
 	 */
 	public void setNbChoix(int nbChoix) {
 		this.nbChoix = nbChoix;
@@ -70,7 +70,8 @@ public class Question {
 	}
 
 	/**
-	 * @param reponse the reponse to set
+	 * @param reponse
+	 *            the reponse to set
 	 */
 	public void setReponse(char reponse) {
 		this.reponse = reponse;
@@ -84,7 +85,8 @@ public class Question {
 	}
 
 	/**
-	 * @param picturePath the picturePath to set
+	 * @param picturePath
+	 *            the picturePath to set
 	 */
 	public void setPicturePath(String picturePath) {
 		this.picturePath = picturePath;

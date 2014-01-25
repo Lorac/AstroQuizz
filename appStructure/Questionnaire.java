@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Questionnaire {
 
-	private List<Question> Questions;
+	private List<Question>	Questions;
 
 	public Questionnaire() {
 
@@ -17,11 +17,11 @@ public class Questionnaire {
 
 	public Questionnaire(String module) {
 		this.Questions = new ArrayList<Question>();
-		construireQuestionnaire(module);
+		construireQuestionnaire(module); 
 	}
 
 	/**
-	 * @return the questions
+	 * @return the list of questions
 	 */
 	public List<Question> getQuestions() {
 		return Questions;
@@ -36,7 +36,7 @@ public class Questionnaire {
 	}
 
 	/**
-	 *
+	 * 
 	 * @return
 	 */
 	public int getSizeQuestionnaire() {
@@ -46,7 +46,8 @@ public class Questionnaire {
 	public void construireQuestionnaire(String module) {
 		BufferedReader fluxEntree = null;
 		String questionLabel;
-		List<String> choixReponse = new ArrayList<String>();
+		String[] choixReponse = new String[5];
+		
 		char reponse;
 		String LigneLue;
 		String picturePath;
@@ -54,10 +55,9 @@ public class Questionnaire {
 		int i = 0;
 		if (module != "") {
 			try {
-				fluxEntree = new BufferedReader(new InputStreamReader(
-						new FileInputStream("./Ressources/" + module + ".txt"),
-						"UTF-8"));
+				fluxEntree = new BufferedReader(new InputStreamReader(new FileInputStream("./Ressources/" + module + ".txt"), "UTF-8"));
 				do {
+					
 
 					questionLabel = fluxEntree.readLine();
 					if (questionLabel == null) {
@@ -65,17 +65,17 @@ public class Questionnaire {
 					}
 					for (i = 0; i < 5; i++) {
 						LigneLue = fluxEntree.readLine();
-						choixReponse.add(LigneLue);
+						choixReponse[i] = (LigneLue);
 
 					}
 					reponse = fluxEntree.readLine().charAt(0);
 					picturePath = fluxEntree.readLine();
-					Questions.add(new Question(questionLabel, choixReponse,
-							choixReponse.size(), reponse, picturePath));
+					Questions.add(new Question(questionLabel, choixReponse, choixReponse.length - 1, reponse, picturePath));
 
-					choixReponse.clear();
+					//choixReponse.clear();
 
-				} while (questionLabel != null);
+				}
+				while (questionLabel != null);
 
 			} catch (IOException exc) {
 				exc.printStackTrace();
