@@ -55,7 +55,7 @@ public class Question {
      * @return the nbChoix
      */
     public int getNbChoix() {
-        return nbChoix;
+        return this.nbChoix;
     }
 
     /**

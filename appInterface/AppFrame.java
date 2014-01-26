@@ -62,10 +62,6 @@ public class AppFrame extends JFrame implements ActionListener {
         this.botToolBar.nextButton.addActionListener(this);
         this.botToolBar.previousButton.addActionListener(this);
 
-        for (int i = 0; i < this.QuestionArea.Answers.size(); i++) {
-            this.QuestionArea.Answers.get(i).addActionListener(this);
-        }
-
     }
 
     /**
@@ -102,14 +98,19 @@ public class AppFrame extends JFrame implements ActionListener {
 	 */
     public void actionPerformed(ActionEvent evt) {
 
+        int numberOfQuestion = this.QuestionArea.getNumberOfQuestion(this.module);
+        
+        if (numberOfQuestion == 1) {
+            this.botToolBar.previousButton.setEnabled(false);
+            this.botToolBar.nextButton.setEnabled(false);
+        }
+
         if (evt.getSource() == this.botToolBar.nextButton) {
             if (!this.botToolBar.previousButton.isEnabled()) {
                 this.botToolBar.previousButton.setEnabled(true);
             }
 
             this.module = this.mainToolBar.Module.getSelectedItem().toString();
-
-            int numberOfQuestion = this.QuestionArea.getNumberOfQuestion(this.module);
 
             int question = this.QuestionArea.getCurrentQuestion() + 1;
 
@@ -119,7 +120,6 @@ public class AppFrame extends JFrame implements ActionListener {
 
             this.QuestionArea.newQuestion(this.module, question);
             this.QuestionArea.setCurrentQuestion(question);
-            this.QuestionArea.setBackgroundColor();
 
         }
         else if (evt.getSource() == this.mainToolBar.Module) {
@@ -145,8 +145,6 @@ public class AppFrame extends JFrame implements ActionListener {
                 this.botToolBar.previousButton.setEnabled(false);
             }
 
-            this.QuestionArea.setBackgroundColor();
-
             for (int j = 0; j < this.QuestionArea.Answers.size(); j++) {
                 if (this.QuestionArea.Answers.get(j) == evt.getSource()) {
                     char answer = this.QuestionArea.getGoodAnswer();
@@ -161,5 +159,6 @@ public class AppFrame extends JFrame implements ActionListener {
 
             }
         }
+        this.QuestionArea.setBackgroundColor();
     }
 }

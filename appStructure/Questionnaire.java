@@ -46,6 +46,7 @@ public class Questionnaire {
         BufferedReader fluxEntree = null;
         String questionLabel;
         String[] choixReponse = new String[5];
+        int nbChoix = 0;
 
         char reponse;
         String LigneLue;
@@ -63,14 +64,16 @@ public class Questionnaire {
                     }
                     for (i = 0; i < 5; i++) {
                         LigneLue = fluxEntree.readLine();
-                        choixReponse[i] = (LigneLue);
+                        if (!LigneLue.isEmpty()) {
+                            choixReponse[i] = (LigneLue);
+                            nbChoix++;
+                        }
                     }
                     reponse = fluxEntree.readLine().charAt(0);
                     picturePath = fluxEntree.readLine();
 
-                    Questions.add(new Question(questionLabel, choixReponse, choixReponse.length - 1, reponse, picturePath));
-
-                    // choixReponse.clear();
+                    Questions.add(new Question(questionLabel, choixReponse, nbChoix, reponse, picturePath));
+                    nbChoix = 0;
 
                 }
                 while (questionLabel != null);
