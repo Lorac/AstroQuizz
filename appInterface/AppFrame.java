@@ -4,17 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import org.apache.commons.lang3.text.WordUtils;
 
 import appStructure.Module;
-import appStructure.Question;
 
 public class AppFrame extends JFrame implements ActionListener {
     /**

@@ -38,8 +38,6 @@ public class AppCenter extends JPanel {
     private char                GoodAnswer;
 
     private int                 questionNumber   = 0;
-    private int                 numberofQuestion = 0;
-
     public List<JButton>        Answers          = new ArrayList<JButton>();
 
     /**
@@ -47,7 +45,7 @@ public class AppCenter extends JPanel {
      * @param Module
      * @param currentQuestion
      */
-    public AppCenter(Module module, int currentQuestion, int numberOfChoices) {
+    public AppCenter(final Module module, final int currentQuestion, int numberOfChoices) {
 
         this.questionNumber = currentQuestion;
 
@@ -56,38 +54,65 @@ public class AppCenter extends JPanel {
 
         for (int i = 0; i < numberOfChoices; i++) {
             this.Answers.add(new JButton());
+            this.Answers.get(i).setFocusable(false);
+            this.Answers.get(i).setFocusPainted(false);
+            this.Answers.get(i).setBorderPainted(false);
+            this.Answers.get(i).setFocusCycleRoot(false);
+
         }
 
         this.reponse.setBackground(Color.LIGHT_GRAY);
         for (int i = 0; i < numberOfChoices; i++) {
+            this.Answers.get(i).setName(possibleChoices.get(i));
             this.Answers.get(i).addMouseListener(new java.awt.event.MouseAdapter() {
 
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    ((JComponent) e.getSource()).setBackground(Color.LIGHT_GRAY);
+                    if (module.getQuestions().get(currentQuestion).getReponse() == e.getComponent().getName().charAt(0)) {
+                        e.getComponent().setBackground(Color.GREEN);
+
+                    } else {
+                        e.getComponent().setBackground(Color.RED);
+                    }
+
 
                 }
 
                 @Override
                 public void mouseEntered(MouseEvent e) {
-                    ((JComponent) e.getSource()).setBackground(Color.GRAY);
+                    if (!(e.getComponent().getBackground() != Color.GREEN
+                            || e.getComponent().getBackground() != Color.RED)) {
+                        e.getComponent().setBackground(Color.LIGHT_GRAY);
+                    }
                 }
 
                 @Override
                 public void mouseExited(MouseEvent e) {
-                    ((JComponent) e.getSource()).setBackground(Color.LIGHT_GRAY);
+                    if (!(e.getComponent().getBackground() == Color.GREEN
+                            || e.getComponent().getBackground() == Color.RED)) {
+                        e.getComponent().setBackground(Color.LIGHT_GRAY);
+                    }
 
                 }
 
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    ((JComponent) e.getSource()).setBackground(Color.LIGHT_GRAY);
+                    e.getComponent().setEnabled(false);
+                    if (module.getQuestions().get(currentQuestion).getReponse() == e.getComponent().getName().charAt(0)) {
+                        e.getComponent().setBackground(Color.GREEN);
+                    } else {
+                        e.getComponent().setBackground(Color.RED);
+                    }
 
                 }
 
                 @Override
                 public void mouseReleased(MouseEvent e) {
-                    // TODO Auto-generated method stub
+                    if (module.getQuestions().get(currentQuestion).getReponse() == e.getComponent().getName().charAt(0)) {
+                        e.getComponent().setBackground(Color.GREEN);
+                    } else {
+                        e.getComponent().setBackground(Color.RED);
+                    }
 
                 }
             });
@@ -124,7 +149,7 @@ public class AppCenter extends JPanel {
         Question laQuestion = lesQuestions.get(currentQuestion);
         int nbDeChoixPossible = laQuestion.getNbChoix();
 
-        this.numberofQuestion = lesQuestions.size();
+        lesQuestions.size();
 
         this.Questionlabel = laQuestion.getQuestionLabel();
         lesChoixPossible = laQuestion.getChoixReponse();
