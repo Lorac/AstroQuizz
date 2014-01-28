@@ -4,13 +4,17 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import org.apache.commons.lang3.text.WordUtils;
 
 import appStructure.Module;
+import appStructure.Question;
 
 public class AppFrame extends JFrame implements ActionListener {
     /**
@@ -33,7 +37,7 @@ public class AppFrame extends JFrame implements ActionListener {
         this.Questionnaires = questionnaires;
         this.module = this.mainToolBar.Module.getSelectedItem().toString();
         setWindowsProperty();
-        initialModuleQuestion();
+        initModule();
         setActionListener();
 
     }
@@ -91,15 +95,12 @@ public class AppFrame extends JFrame implements ActionListener {
     /**
 	 *
 	 */
-    private void initialModuleQuestion() {
+    private void initModule() {
 
         String moduleChanged = getModuleAsKey();
 
         this.QuestionArea = new AppCenter(this.Questionnaires.get(moduleChanged), 0,
                 getNumberOfPossibleChoicesOfAQuestion(moduleChanged, 0));
-
-        this.top.setLayout(new BorderLayout());
-        this.top.add(this.mainToolBar, "East");
 
         int numberOfQuestion = getNumberOfQuestion(moduleChanged);
 
@@ -131,8 +132,9 @@ public class AppFrame extends JFrame implements ActionListener {
     }
 
     private void initQuestion() {
-        // this.QuestionArea;
-
+    	this.container.add(this.QuestionArea, "Center");
+    	this.QuestionArea.setVisible(true);
+    	setContentPane(this.container);
     }
 
     /**
@@ -150,6 +152,8 @@ public class AppFrame extends JFrame implements ActionListener {
         Module leModule = this.Questionnaires.get(moduleChanged);
 
         int numberOfQuestion = getNumberOfQuestion(moduleChanged) - 1;
+        //TRACE
+        System.out.println(numberOfQuestion);
 
         if (numberOfQuestion == 1) {
             this.botToolBar.previousButton.setEnabled(false);
@@ -169,35 +173,28 @@ public class AppFrame extends JFrame implements ActionListener {
 
             this.QuestionArea = new AppCenter(leModule, question, getNumberOfPossibleChoicesOfAQuestion(moduleChanged,
                     question));
-            this.repaint();
 
             initQuestion();
 
-            // this.QuestionArea.newQuestion(this.module, question);
-            this.QuestionArea.setCurrentQuestion(question);
-
         } else if (evt.getSource() == this.mainToolBar.Module) {
 
-            initialModuleQuestion();
+            initModule();
 
         } else if (evt.getSource() == this.botToolBar.previousButton) {
-
             if (!this.botToolBar.nextButton.isEnabled()) {
-
                 this.botToolBar.nextButton.setEnabled(true);
-
             }
 
             int question = this.QuestionArea.getCurrentQuestion() - 1;
 
-            this.QuestionArea = new AppCenter(this.Questionnaires.get(moduleChanged), question,
-                    getNumberOfPossibleChoicesOfAQuestion(moduleChanged, question));
-            this.QuestionArea.setCurrentQuestion(question);
-
             if (question == 0) {
                 this.botToolBar.previousButton.setEnabled(false);
             }
-
+            
+            this.QuestionArea = new AppCenter(this.Questionnaires.get(moduleChanged), question,
+                    getNumberOfPossibleChoicesOfAQuestion(moduleChanged, question));
+            initQuestion();
+            /*
             for (int j = 0; j < this.QuestionArea.Answers.size(); j++) {
                 if (this.QuestionArea.Answers.get(j) == evt.getSource()) {
                     char answer = this.QuestionArea.getGoodAnswer();
@@ -209,7 +206,7 @@ public class AppFrame extends JFrame implements ActionListener {
 
                 }
 
-            }
+            }*/
         }
         this.QuestionArea.setBackgroundColor();
 

@@ -7,6 +7,8 @@ import java.util.TreeMap;
 import appInterface.AppFrame;
 import appStructure.Module;
 
+import org.apache.commons.lang3.text.WordUtils;
+
 public class MainApp {
     public static void main(String[] args) {
     	Map<String, Module> questionnaires = new TreeMap<String, Module>();
@@ -25,8 +27,8 @@ public class MainApp {
         for (int i = 0; i < listOfFiles.length; i++) {
             if (listOfFiles[i].isFile()) {
                 String fileName = listOfFiles[i].getName().substring(0, listOfFiles[i].getName().lastIndexOf("."));
-
-                questionnaires.put(fileName, new Module(fileName));
+                
+                questionnaires.put(WordUtils.uncapitalize(fileName), new Module(fileName));
 
             }
         }
