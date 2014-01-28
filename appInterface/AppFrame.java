@@ -4,36 +4,66 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import org.apache.commons.lang3.text.WordUtils;
+
+import appStructure.Module;
 
 public class AppFrame extends JFrame implements ActionListener {
     /**
 	 *
 	 */
-    private static final long serialVersionUID = 1L;
-    private String            module           = "";
-    private AppToolBar        mainToolBar      = new AppToolBar();
-    private JPanel            container        = new JPanel();
-    private AppCenter         QuestionArea;
-    private JPanel            top              = new JPanel();
-    private AppBotToolBar     botToolBar       = new AppBotToolBar();
+    private static final long  serialVersionUID = 1L;
+    private String             module           = "";
+    private AppToolBar         mainToolBar      = new AppToolBar();
+    private AppBotToolBar      botToolBar       = new AppBotToolBar();
+    private JPanel             container        = new JPanel();
+    private JPanel             top              = new JPanel();
+    private AppCenter          QuestionArea;
+
+    public Map<String, Module> Questionnaires;
 
     /**
-	 * 
+	 *
 	 */
-    public AppFrame() {
+    public AppFrame(Map<String, Module> questionnaires) {
+        this.Questionnaires = questionnaires;
+        this.module = this.mainToolBar.Module.getSelectedItem().toString();
         setWindowsProperty();
+        initialModuleQuestion();
+        setActionListener();
+
     }
 
     /**
-	 * 
+     *
+     * @param module
+     * @return
+     */
+    private int getNumberOfQuestion(String module) {
+        return this.Questionnaires.get(module).getSize();
+    }
+
+    /**
+     *
+     * @param module
+     * @return
+     */
+    private int getNumberOfPossibleChoicesOfAQuestion(String module, int currentQuestion) {
+        return this.Questionnaires.get(module).getQuestions().get(currentQuestion).getNbChoix();
+    }
+
+    /**
+	 *
 	 */
     private void setWindowsProperty() {
+
         setSize(1024, 600);
         setTitle("Astro Quizz");
-        setDefaultCloseOperation(3);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         this.container.setBackground(Color.LIGHT_GRAY);
         this.container.setLayout(new BorderLayout());
@@ -42,20 +72,14 @@ public class AppFrame extends JFrame implements ActionListener {
         this.top.setLayout(new BorderLayout());
         this.top.add(this.mainToolBar, "East");
 
-        this.module = this.mainToolBar.Module.getSelectedItem().toString();
-
-        this.QuestionArea = new AppCenter(this.module, 0);
-
-        initialModuleQuestion();
-
         this.container.add(this.botToolBar, "South");
 
         setContentPane(this.container);
-        setActionListener();
+
     }
 
     /**
-	 * 
+	 *
 	 */
     private void setActionListener() {
         this.mainToolBar.Module.addActionListener(this);
@@ -65,17 +89,19 @@ public class AppFrame extends JFrame implements ActionListener {
     }
 
     /**
-	 * 
+	 *
 	 */
     private void initialModuleQuestion() {
+
+        String moduleChanged = getModuleAsKey();
+
+        this.QuestionArea = new AppCenter(this.Questionnaires.get(moduleChanged), 0,
+                getNumberOfPossibleChoicesOfAQuestion(moduleChanged, 0));
+
         this.top.setLayout(new BorderLayout());
         this.top.add(this.mainToolBar, "East");
 
-        this.module = this.mainToolBar.Module.getSelectedItem().toString();
-
-        this.QuestionArea.newQuestion(this.module, 0);
-
-        int numberOfQuestion = this.QuestionArea.getNumberOfQuestion(this.module);
+        int numberOfQuestion = getNumberOfQuestion(moduleChanged);
 
         this.botToolBar.disablePreviousButton(true);
         this.botToolBar.disableNextButton(false);
@@ -94,12 +120,37 @@ public class AppFrame extends JFrame implements ActionListener {
     }
 
     /**
-	 * 
+     * @return
+     */
+    private String getModuleAsKey() {
+        this.module = this.mainToolBar.Module.getSelectedItem().toString();
+        String moduleChanged = WordUtils.uncapitalize(this.module);
+        moduleChanged = moduleChanged.trim().replace(' ', '_');
+
+        return moduleChanged;
+    }
+
+    private void initQuestion() {
+        // this.QuestionArea;
+
+    }
+
+    /**
+	 *
 	 */
     public void actionPerformed(ActionEvent evt) {
 
-        int numberOfQuestion = this.QuestionArea.getNumberOfQuestion(this.module);
-        
+        this.QuestionArea.picture.removeAll();
+        this.QuestionArea.question.removeAll();
+        this.QuestionArea.reponse.removeAll();
+        this.QuestionArea.Answers.clear();
+        this.QuestionArea.Labels.clear();
+
+        String moduleChanged = getModuleAsKey();
+        Module leModule = this.Questionnaires.get(moduleChanged);
+
+        int numberOfQuestion = getNumberOfQuestion(moduleChanged) - 1;
+
         if (numberOfQuestion == 1) {
             this.botToolBar.previousButton.setEnabled(false);
             this.botToolBar.nextButton.setEnabled(false);
@@ -110,35 +161,37 @@ public class AppFrame extends JFrame implements ActionListener {
                 this.botToolBar.previousButton.setEnabled(true);
             }
 
-            this.module = this.mainToolBar.Module.getSelectedItem().toString();
-
             int question = this.QuestionArea.getCurrentQuestion() + 1;
 
             if (question == numberOfQuestion) {
                 this.botToolBar.nextButton.setEnabled(false);
             }
 
-            this.QuestionArea.newQuestion(this.module, question);
+            this.QuestionArea = new AppCenter(leModule, question, getNumberOfPossibleChoicesOfAQuestion(moduleChanged,
+                    question));
+            this.repaint();
+
+            initQuestion();
+
+            // this.QuestionArea.newQuestion(this.module, question);
             this.QuestionArea.setCurrentQuestion(question);
 
-        }
-        else if (evt.getSource() == this.mainToolBar.Module) {
+        } else if (evt.getSource() == this.mainToolBar.Module) {
 
             initialModuleQuestion();
 
-        }
-        else if (evt.getSource() == this.botToolBar.previousButton) {
+        } else if (evt.getSource() == this.botToolBar.previousButton) {
 
             if (!this.botToolBar.nextButton.isEnabled()) {
 
                 this.botToolBar.nextButton.setEnabled(true);
 
             }
-            this.module = this.mainToolBar.Module.getSelectedItem().toString();
 
             int question = this.QuestionArea.getCurrentQuestion() - 1;
 
-            this.QuestionArea.newQuestion(this.module, question);
+            this.QuestionArea = new AppCenter(this.Questionnaires.get(moduleChanged), question,
+                    getNumberOfPossibleChoicesOfAQuestion(moduleChanged, question));
             this.QuestionArea.setCurrentQuestion(question);
 
             if (question == 0) {
@@ -150,8 +203,7 @@ public class AppFrame extends JFrame implements ActionListener {
                     char answer = this.QuestionArea.getGoodAnswer();
                     if (true) {
                         this.QuestionArea.Answers.get(j).setBackground(Color.green);
-                    }
-                    else {
+                    } else {
                         this.QuestionArea.Answers.get(j).setBackground(Color.red);
                     }
 
@@ -160,5 +212,6 @@ public class AppFrame extends JFrame implements ActionListener {
             }
         }
         this.QuestionArea.setBackgroundColor();
+
     }
 }

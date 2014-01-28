@@ -1,12 +1,12 @@
-À partir de ce ratio, on peut déduire que lorsque des galaxies entrent en collision, ...
-Les étoiles généralement entrent en collision entre elles.
-Des étoiles distinctes forment parfois des systèmes binaires
-Les étoiles entrent rarement en collision entre elles.
+Ã€ partir de ce ratio, on peut dÃ©duire que lorsque des galaxies entrent en collision, ...
+Les Ã©toiles gÃ©nÃ©ralement entrent en collision entre elles.
+Des Ã©toiles distinctes forment parfois des systÃ¨mes binaires
+Les Ã©toiles entrent rarement en collision entre elles.
 
 
 C
 UN-Galaxies-1.jpg
-Les astronomes utilisent des amas globulaires pour déterminer la distance des galaxies. Selon une étude des galaxies proches, ils savent que l'amas le plus brillant a une magnitude absolue de -10. Si un amas globulaire très brillant est observé dans une galaxie distante avec une magnitude apparente de 18, la galaxie est donc à une distance de :
+Les astronomes utilisent des amas globulaires pour dÃ©terminer la distance des galaxies. Selon une Ã©tude des galaxies proches, ils savent que l'amas le plus brillant a une magnitude absolue de -10. Si un amas globulaire trÃ¨s brillant est observÃ© dans une galaxie distante avec une magnitude apparente de 18, la galaxie est donc Ã  une distance de :
 2,5 Mpc
 4,0 Mpc
 6,3 Mpc

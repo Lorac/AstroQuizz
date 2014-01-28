@@ -4,16 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -21,91 +15,46 @@ import javax.swing.JEditorPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import org.apache.commons.lang3.text.WordUtils;
-
 import appStructure.Question;
-import appStructure.Questionnaire;
+import appStructure.Module;
 
 public class AppCenter extends JPanel {
     /**
 	 *
 	 */
-    private static final long          serialVersionUID = 1L;
-    private static final String        IMAGEPATH        = "./Ressources/images/";
-    private static final String        NOPICTURE        = "NO PICTURE";
+    private static final long   serialVersionUID = 1L;
+    private static final String IMAGEPATH        = "./Ressources/images/";
+    private static final String NOPICTURE        = "NO PICTURE";
 
-    private JEditorPane                question         = new JEditorPane();
-    private JPanel                     reponse          = new JPanel();
+    public JEditorPane         question         = new JEditorPane();
+    public JPanel              reponse          = new JPanel();
+    public JLabel              picture          = new JLabel();
 
-    private Map<String, Questionnaire> Questionnaires;
+    public List<String>        Labels           = new ArrayList<String>();
+    private List<String>        possibleChoices  = Arrays.asList("A. ", "B. ", "C. ", "D. ", "E. ");
 
-    private List<String>               Labels;
+    private String              Questionlabel    = "";
+    private String              PicturePath      = "";
+    private char                GoodAnswer;
 
-    private List<String>               possibleChoices  = Arrays.asList("A. ", "B. ", "C. ", "D. ", "E. ");
+    private int                 questionNumber   = 0;
+    private int                 numberofQuestion = 0;
 
-    private String                     Questionlabel    = "";
-    private char                       GoodAnswer;
-    private String                     PicturePath      = "";
-
-    private int                        questionNumber   = 0;
-    private int                        numberofQuestion = 0;
-    public JLabel                      picture          = new JLabel();
-    public List<JButton>               Answers          = new ArrayList<JButton>();
+    public List<JButton>        Answers          = new ArrayList<JButton>();
 
     /**
-	 * 
-	 */
-    private void creerQuestionaires() {
-
-        File folder = new File("./Ressources");
-        File[] listOfFiles = folder.listFiles();
-        for (int i = 0; i < listOfFiles.length; i++) {
-            if (listOfFiles[i].isFile()) {
-                String fileName = listOfFiles[i].getName().substring(0, listOfFiles[i].getName().lastIndexOf("."));
-
-                this.Questionnaires.put(WordUtils.uncapitalize(fileName), new Questionnaire(fileName));
-
-            }
-        }
-
-    }
-
-    /**
-     * 
-     * @param module
-     * @return
-     */
-    public int getNumberOfQuestion(String module) {
-        module = module.trim().replace(' ', '_');
-        module = WordUtils.uncapitalize(module);
-        return this.Questionnaires.get(module).getSizeQuestionnaire() - 1;
-    }
-
-    /**
-     * 
-     * @param module
-     * @return
-     */
-    public int getNumberOfPossibleChoicesOfAQuestion(String module, int currentQuestion) {
-        module = module.trim().replace(' ', '_');
-        module = WordUtils.uncapitalize(module);
-        return this.Questionnaires.get(module).getQuestions().get(currentQuestion).getNbChoix();
-    }
-
-    /**
-     * 
+     *
      * @param Module
      * @param currentQuestion
      */
-    public AppCenter(String Module, int currentQuestion) {
-        this.Questionnaires = new TreeMap<String, Questionnaire>();
-        this.Labels = new ArrayList<String>();
-        creerQuestionaires();
+    public AppCenter(Module module, int currentQuestion, int numberOfChoices) {
+
+
         this.questionNumber = currentQuestion;
 
-        int numberOfChoices = getNumberOfPossibleChoicesOfAQuestion(Module, currentQuestion);
-
         this.Answers.clear();
+
+
         for (int i = 0; i < numberOfChoices; i++) {
             this.Answers.add(new JButton());
         }
@@ -156,19 +105,17 @@ public class AppCenter extends JPanel {
 
         }
 
-        afficherLesQuestions(Module, currentQuestion);
+        afficherLaQuestion(module, currentQuestion);
     }
 
     /**
      * @param Module
      * @param currentQuestion
      */
-    private void afficherLesQuestions(String Module, int currentQuestion) {
+    private void afficherLaQuestion(Module module, int currentQuestion) {
         this.questionNumber = currentQuestion;
-        ArrayList<Question> lesQuestions;
         String[] lesChoixPossible = null;
-
-        lesQuestions = getQuestionsFromModule(Module);
+        ArrayList<Question> lesQuestions = module.getQuestions();
 
         if (lesQuestions == null) {
             System.out.println("afficherLesQuestions: Choix de questions vide");
@@ -196,8 +143,7 @@ public class AppCenter extends JPanel {
 
             if (this.Labels.get(i).isEmpty()) {
                 this.Answers.get(i).setVisible(false);
-            }
-            else {
+            } else {
                 this.Answers.get(i).setVisible(true);
             }
 
@@ -215,8 +161,7 @@ public class AppCenter extends JPanel {
 
         if (this.PicturePath.equals(NOPICTURE)) {
             this.picture.setVisible(false);
-        }
-        else {
+        } else {
             ImageIcon image = new ImageIcon(IMAGEPATH + this.PicturePath);
             Dimension imageSize = new Dimension(image.getIconWidth(), image.getIconHeight());
 
@@ -231,31 +176,13 @@ public class AppCenter extends JPanel {
         setVisible(true);
     }
 
-    private ArrayList<Question> getQuestionsFromModule(String Module) {
-        ArrayList<Question> lesQuestions;
-        Questionnaire unQuestionnaire = null;
-
-        Module = Module.trim().replace(' ', '_');
-        Module = WordUtils.uncapitalize(Module);
-
-        unQuestionnaire = this.Questionnaires.get(Module);
-
-        if (unQuestionnaire == null) {
-            System.out.println("Questionnaire vide");
-            System.out.println("Module : " + Module);
-            return null;
-        }
-
-        lesQuestions = unQuestionnaire.getQuestions();
-        return lesQuestions;
-    }
-
     public char getGoodAnswer() {
         return this.GoodAnswer;
     }
 
-    public void newQuestion(String Module, int currentQuestion) {
-        afficherLesQuestions(WordUtils.uncapitalize(Module), currentQuestion);
+    public void newQuestion(Module module, int currentQuestion) {
+
+        afficherLaQuestion(module, currentQuestion);
     }
 
     public void setBackgroundColor() {
