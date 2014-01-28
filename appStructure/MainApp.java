@@ -27,7 +27,7 @@ public class MainApp {
         for (int i = 0; i < listOfFiles.length; i++) {
             if (listOfFiles[i].isFile()) {
                 String fileName = listOfFiles[i].getName().substring(0, listOfFiles[i].getName().lastIndexOf("."));
-                
+
                 questionnaires.put(WordUtils.uncapitalize(fileName), new Module(fileName));
 
             }

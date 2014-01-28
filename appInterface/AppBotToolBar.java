@@ -19,7 +19,6 @@ public class AppBotToolBar extends JPanel {
         setBackground(Color.LIGHT_GRAY);
 
         add(this.previousButton);
-
         add(this.nextButton);
     }
 

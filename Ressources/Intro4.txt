@@ -11,6 +11,7 @@ suivrait une trajectoire droite le long de sa vitesse actuelle
 quitterait le Système Solaire le long d'une droite parallèle à la ligne Soleil-Terre
 tomberait vers le Soleil le long d'une trajectoire spirale
 entrerait en collision avec la Lune
+
 REPONSE
 NO PICTURE
 Une boule de quille et un sac de papier s'échappent d'un vaisseau spatial en route vers la Lune. Le vaisseau est à mi-chemin et ses moteurs sont fermés. Après 10 minutes,

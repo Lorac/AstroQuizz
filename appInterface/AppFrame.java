@@ -36,8 +36,13 @@ public class AppFrame extends JFrame implements ActionListener {
     public AppFrame(Map<String, Module> questionnaires) {
         this.Questionnaires = questionnaires;
         this.module = this.mainToolBar.Module.getSelectedItem().toString();
+
+        String moduleAsKey = getModuleAsKey();
+
+        this.QuestionArea = new AppCenter(this.Questionnaires.get(moduleAsKey), 0,
+                getNumberOfPossibleChoicesOfAQuestion(moduleAsKey, 0));
+
         setWindowsProperty();
-        initModule();
         setActionListener();
 
     }
@@ -76,8 +81,10 @@ public class AppFrame extends JFrame implements ActionListener {
         this.top.setLayout(new BorderLayout());
         this.top.add(this.mainToolBar, "East");
 
+        this.container.add(this.top, "North");
         this.container.add(this.botToolBar, "South");
-
+        this.container.add(this.QuestionArea, "Center");
+        this.botToolBar.previousButton.setEnabled(false);
         setContentPane(this.container);
 
     }
@@ -89,35 +96,6 @@ public class AppFrame extends JFrame implements ActionListener {
         this.mainToolBar.Module.addActionListener(this);
         this.botToolBar.nextButton.addActionListener(this);
         this.botToolBar.previousButton.addActionListener(this);
-
-    }
-
-    /**
-	 *
-	 */
-    private void initModule() {
-
-        String moduleChanged = getModuleAsKey();
-
-        this.QuestionArea = new AppCenter(this.Questionnaires.get(moduleChanged), 0,
-                getNumberOfPossibleChoicesOfAQuestion(moduleChanged, 0));
-
-        int numberOfQuestion = getNumberOfQuestion(moduleChanged);
-
-        this.botToolBar.disablePreviousButton(true);
-        this.botToolBar.disableNextButton(false);
-
-        if (numberOfQuestion == 1) {
-            this.botToolBar.disableNextButton(true);
-        }
-
-        this.container.add(this.top, "North");
-        this.container.add(this.QuestionArea, "Center");
-
-        this.QuestionArea.setBackgroundColor();
-        this.QuestionArea.setVisible(true);
-
-        setContentPane(this.container);
     }
 
     /**
@@ -131,10 +109,21 @@ public class AppFrame extends JFrame implements ActionListener {
         return moduleChanged;
     }
 
-    private void initQuestion() {
-    	this.container.add(this.QuestionArea, "Center");
-    	this.QuestionArea.setVisible(true);
-    	setContentPane(this.container);
+    private void initQuestion(String module, int question) {
+        this.container.remove(this.QuestionArea);
+        int nbQuestion = getNumberOfQuestion(module);
+
+        botToolBar.previousButton.setEnabled(question > 0);
+        botToolBar.nextButton.setEnabled(nbQuestion - question - 1 > 0);
+
+        this.QuestionArea = new AppCenter(this.Questionnaires.get(module), question,
+                getNumberOfPossibleChoicesOfAQuestion(module, question));
+
+        this.container.add(this.QuestionArea, "Center");
+        this.container.add(this.top, "North");
+        this.QuestionArea.setVisible(true);
+
+        setContentPane(this.container);
     }
 
     /**
@@ -142,73 +131,22 @@ public class AppFrame extends JFrame implements ActionListener {
 	 */
     public void actionPerformed(ActionEvent evt) {
 
-        this.QuestionArea.picture.removeAll();
-        this.QuestionArea.question.removeAll();
-        this.QuestionArea.reponse.removeAll();
-        this.QuestionArea.Answers.clear();
-        this.QuestionArea.Labels.clear();
-
         String moduleChanged = getModuleAsKey();
-        Module leModule = this.Questionnaires.get(moduleChanged);
 
-        int numberOfQuestion = getNumberOfQuestion(moduleChanged) - 1;
-        //TRACE
-        System.out.println(numberOfQuestion);
-
-        if (numberOfQuestion == 1) {
-            this.botToolBar.previousButton.setEnabled(false);
-            this.botToolBar.nextButton.setEnabled(false);
-        }
+        int nextQuestion = this.QuestionArea.getCurrentQuestion() + 1;
+        int previousQuestion = this.QuestionArea.getCurrentQuestion() - 1;
 
         if (evt.getSource() == this.botToolBar.nextButton) {
-            if (!this.botToolBar.previousButton.isEnabled()) {
-                this.botToolBar.previousButton.setEnabled(true);
-            }
 
-            int question = this.QuestionArea.getCurrentQuestion() + 1;
-
-            if (question == numberOfQuestion) {
-                this.botToolBar.nextButton.setEnabled(false);
-            }
-
-            this.QuestionArea = new AppCenter(leModule, question, getNumberOfPossibleChoicesOfAQuestion(moduleChanged,
-                    question));
-
-            initQuestion();
-
-        } else if (evt.getSource() == this.mainToolBar.Module) {
-
-            initModule();
+            initQuestion(moduleChanged, nextQuestion);
 
         } else if (evt.getSource() == this.botToolBar.previousButton) {
-            if (!this.botToolBar.nextButton.isEnabled()) {
-                this.botToolBar.nextButton.setEnabled(true);
-            }
 
-            int question = this.QuestionArea.getCurrentQuestion() - 1;
+            initQuestion(moduleChanged, previousQuestion);
+        } else if (evt.getSource() == this.mainToolBar.Module) {
 
-            if (question == 0) {
-                this.botToolBar.previousButton.setEnabled(false);
-            }
-            
-            this.QuestionArea = new AppCenter(this.Questionnaires.get(moduleChanged), question,
-                    getNumberOfPossibleChoicesOfAQuestion(moduleChanged, question));
-            initQuestion();
-            /*
-            for (int j = 0; j < this.QuestionArea.Answers.size(); j++) {
-                if (this.QuestionArea.Answers.get(j) == evt.getSource()) {
-                    char answer = this.QuestionArea.getGoodAnswer();
-                    if (true) {
-                        this.QuestionArea.Answers.get(j).setBackground(Color.green);
-                    } else {
-                        this.QuestionArea.Answers.get(j).setBackground(Color.red);
-                    }
+            initQuestion(moduleChanged, 0);
 
-                }
-
-            }*/
         }
-        this.QuestionArea.setBackgroundColor();
-
     }
 }

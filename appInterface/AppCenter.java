@@ -26,11 +26,11 @@ public class AppCenter extends JPanel {
     private static final String IMAGEPATH        = "./Ressources/images/";
     private static final String NOPICTURE        = "NO PICTURE";
 
-    public JEditorPane         question         = new JEditorPane();
-    public JPanel              reponse          = new JPanel();
-    public JLabel              picture          = new JLabel();
+    public JEditorPane          question         = new JEditorPane();
+    public JPanel               reponse          = new JPanel();
+    public JLabel               picture          = new JLabel();
 
-    public List<String>        Labels           = new ArrayList<String>();
+    public List<String>         Labels           = new ArrayList<String>();
     private List<String>        possibleChoices  = Arrays.asList("A. ", "B. ", "C. ", "D. ", "E. ");
 
     private String              Questionlabel    = "";
@@ -49,11 +49,10 @@ public class AppCenter extends JPanel {
      */
     public AppCenter(Module module, int currentQuestion, int numberOfChoices) {
 
-
         this.questionNumber = currentQuestion;
 
         this.Answers.clear();
-
+        this.picture.removeAll();
 
         for (int i = 0; i < numberOfChoices; i++) {
             this.Answers.add(new JButton());
