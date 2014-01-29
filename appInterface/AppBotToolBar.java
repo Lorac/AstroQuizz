@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (c) 2014
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     Unknown - initial API and implementation
+ *     Maxime Roussin-Bélanger - Huge refactor
+ *     Simon Gamache-Poirer - Helped the huge refactor
+ *******************************************************************************/
 package appInterface;
 
 import java.awt.Color;
@@ -14,29 +26,12 @@ public class AppBotToolBar extends JPanel {
     public JButton            previousButton   = new JButton();
 
     public AppBotToolBar() {
-        this.nextButton.setText("Question Suivante");
-        this.previousButton.setText("Question Précédente");
+        nextButton.setText("Question Suivante");
+        previousButton.setText("Question Précédente");
         setBackground(Color.LIGHT_GRAY);
 
-        add(this.previousButton);
-        add(this.nextButton);
+        add(previousButton);
+        add(nextButton);
     }
 
-    public void disableNextButton(boolean ver) {
-        if (ver) {
-            this.nextButton.setEnabled(false);
-        }
-        else {
-            this.nextButton.setEnabled(true);
-        }
-    }
-
-    public void disablePreviousButton(boolean ver) {
-        if (ver) {
-            this.previousButton.setEnabled(false);
-        }
-        else {
-            this.previousButton.setEnabled(true);
-        }
-    }
 }

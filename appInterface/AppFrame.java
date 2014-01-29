@@ -1,15 +1,31 @@
+/*******************************************************************************
+ * Copyright (c) 2014
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     Unknown - initial API and implementation
+ *     Maxime Roussin-Bélanger - Huge refactor
+ *     Simon Gamache-Poirer - Helped the huge refactor
+ *******************************************************************************/
+
 package appInterface;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import org.apache.commons.lang3.text.WordUtils;
-
 import appStructure.Module;
 
 public class AppFrame extends JFrame implements ActionListener {
@@ -27,15 +43,16 @@ public class AppFrame extends JFrame implements ActionListener {
     public Map<String, Module> Questionnaires;
 
     /**
-	 *
-	 */
+     *
+     * @param questionnaires
+     */
     public AppFrame(Map<String, Module> questionnaires) {
-        this.Questionnaires = questionnaires;
-        this.module = this.mainToolBar.Module.getSelectedItem().toString();
+        Questionnaires = questionnaires;
+        module = mainToolBar.moduleComboBox.getSelectedItem().toString();
 
         String moduleAsKey = getModuleAsKey();
 
-        this.QuestionArea = new AppCenter(this.Questionnaires.get(moduleAsKey), 0,
+        QuestionArea = new AppCenter(Questionnaires.get(moduleAsKey), 0,
                 getNumberOfPossibleChoicesOfAQuestion(moduleAsKey, 0));
 
         setWindowsProperty();
@@ -46,19 +63,19 @@ public class AppFrame extends JFrame implements ActionListener {
     /**
      *
      * @param module
-     * @return
+     * @return int Number of questions for a Module
      */
     private int getNumberOfQuestion(String module) {
-        return this.Questionnaires.get(module).getSize();
+        return Questionnaires.get(module).getSize();
     }
 
     /**
      *
      * @param module
-     * @return
+     * @return int number of Possible Choices in a question
      */
     private int getNumberOfPossibleChoicesOfAQuestion(String module, int currentQuestion) {
-        return this.Questionnaires.get(module).getQuestions().get(currentQuestion).getNbChoix();
+        return Questionnaires.get(module).getQuestions().get(currentQuestion).getNbChoix();
     }
 
     /**
@@ -70,18 +87,19 @@ public class AppFrame extends JFrame implements ActionListener {
         setTitle("Astro Quizz");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        this.container.setBackground(Color.LIGHT_GRAY);
-        this.container.setLayout(new BorderLayout());
+        container.setBackground(Color.LIGHT_GRAY);
+        container.setLayout(new BorderLayout());
 
-        this.top.setBackground(Color.LIGHT_GRAY);
-        this.top.setLayout(new BorderLayout());
-        this.top.add(this.mainToolBar, "East");
+        top.setBackground(Color.LIGHT_GRAY);
+        top.setLayout(new BorderLayout());
+        top.add(mainToolBar, "East");
+        top.add(mainToolBar.randomButton, "West");
 
-        this.container.add(this.top, "North");
-        this.container.add(this.botToolBar, "South");
-        this.container.add(this.QuestionArea, "Center");
-        this.botToolBar.previousButton.setEnabled(false);
-        setContentPane(this.container);
+        container.add(top, "North");
+        container.add(botToolBar, "South");
+        container.add(QuestionArea, "Center");
+        botToolBar.previousButton.setEnabled(false);
+        setContentPane(container);
 
     }
 
@@ -89,37 +107,66 @@ public class AppFrame extends JFrame implements ActionListener {
 	 *
 	 */
     private void setActionListener() {
-        this.mainToolBar.Module.addActionListener(this);
-        this.botToolBar.nextButton.addActionListener(this);
-        this.botToolBar.previousButton.addActionListener(this);
+        mainToolBar.moduleComboBox.addActionListener(this);
+        mainToolBar.randomButton.addActionListener(this);
+        botToolBar.nextButton.addActionListener(this);
+        botToolBar.previousButton.addActionListener(this);
+
     }
 
     /**
-     * @return
+     * @return string as key for the map
      */
     private String getModuleAsKey() {
-        this.module = this.mainToolBar.Module.getSelectedItem().toString();
-        String moduleChanged = WordUtils.uncapitalize(this.module);
+        module = mainToolBar.moduleComboBox.getSelectedItem().toString();
+        String moduleChanged = WordUtils.uncapitalize(module);
         moduleChanged = moduleChanged.trim().replace(' ', '_');
 
         return moduleChanged;
     }
 
-    private void initQuestion(String module, int question) {
-        this.container.remove(this.QuestionArea);
+    public void chooseRandomQuestion() {
+
+        Module module = getRandomModule();
+        Random random = new Random();
+        int randomQuestionNumber = random.nextInt(module.getSize());
+
+        initQuestion(module.getName(), randomQuestionNumber);
+
+    }
+
+    /**
+     * @return
+     */
+    public Module getRandomModule() {
+        Random random = new Random();
+        List<String> keys = new ArrayList<String>(Questionnaires.keySet());
+        String randomKey = keys.get(random.nextInt(keys.size()));
+
+        mainToolBar.moduleComboBox.setSelectedIndex(keys.indexOf(randomKey));
+
+        Module module = Questionnaires.get(randomKey);
+
+        return module;
+    }
+
+    public void initQuestion(String module, int question) {
+        container.remove(QuestionArea);
         int nbQuestion = getNumberOfQuestion(module);
 
         botToolBar.previousButton.setEnabled(question > 0);
         botToolBar.nextButton.setEnabled(nbQuestion - question - 1 > 0);
 
-        this.QuestionArea = new AppCenter(this.Questionnaires.get(module), question,
+        QuestionArea = new AppCenter(Questionnaires.get(module), question,
                 getNumberOfPossibleChoicesOfAQuestion(module, question));
 
-        this.container.add(this.QuestionArea, "Center");
-        this.container.add(this.top, "North");
-        this.QuestionArea.setVisible(true);
+        container.add(QuestionArea, "Center");
+        top.add(mainToolBar, "East");
+        container.add(top, "North");
 
-        setContentPane(this.container);
+        QuestionArea.setVisible(true);
+
+        setContentPane(container);
     }
 
     /**
@@ -129,17 +176,22 @@ public class AppFrame extends JFrame implements ActionListener {
 
         String moduleChanged = getModuleAsKey();
 
-        int nextQuestion = this.QuestionArea.getCurrentQuestion() + 1;
-        int previousQuestion = this.QuestionArea.getCurrentQuestion() - 1;
+        int nextQuestion = QuestionArea.getCurrentQuestion() + 1;
+        int previousQuestion = QuestionArea.getCurrentQuestion() - 1;
 
-        if (evt.getSource() == this.botToolBar.nextButton) {
+        if (evt.getSource() == mainToolBar.randomButton) {
+            chooseRandomQuestion();
+        }
+
+        if (evt.getSource() == botToolBar.nextButton) {
 
             initQuestion(moduleChanged, nextQuestion);
 
-        } else if (evt.getSource() == this.botToolBar.previousButton) {
+        } else if (evt.getSource() == botToolBar.previousButton) {
 
             initQuestion(moduleChanged, previousQuestion);
-        } else if (evt.getSource() == this.mainToolBar.Module) {
+
+        } else if (evt.getSource() == mainToolBar.moduleComboBox) {
 
             initQuestion(moduleChanged, 0);
 

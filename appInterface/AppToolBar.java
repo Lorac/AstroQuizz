@@ -1,3 +1,16 @@
+/*******************************************************************************
+ * Copyright (c) 2014
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     Unknown - initial API and implementation
+ *     Maxime Roussin-Bélanger - Huge refactor
+ *     Simon Gamache-Poirer - Helped the huge refactor
+ *******************************************************************************/
+
 package appInterface;
 
 import java.awt.Color;
@@ -6,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JToolBar;
@@ -17,19 +31,26 @@ public class AppToolBar extends JToolBar {
 	 *
 	 */
     private static final long serialVersionUID = 1L;
-    public JComboBox<String>  Module           = new JComboBox<String>();
+    public JComboBox          moduleComboBox   = new JComboBox();
+    public JButton            randomButton     = new JButton();
     private JLabel            moduleLabel      = new JLabel();
     private File              Ressources       = new File("./Ressources");
 
     public AppToolBar() {
         setFloatable(false);
-        setListFiles(this.Ressources);
+        setListFiles(Ressources);
         setBackground(Color.LIGHT_GRAY);
+        setBorderPainted(false);
 
-        this.moduleLabel.setText("Module :  ");
-        add(this.moduleLabel);
+        randomButton.setFocusable(false);
 
-        add(this.Module);
+        moduleLabel.setText("Module :  ");
+        randomButton.setText("Choisir une question aléatoirement");
+
+
+        add(moduleLabel);
+        add(moduleComboBox);
+
     }
 
     private void setListFiles(File Ressources) {
@@ -45,16 +66,16 @@ public class AppToolBar extends JToolBar {
             if (list.size() != 0 && list != null) {
                 Collections.sort(list);
                 for (int i = 0; i < list.size(); i++) {
-                    String moduleName = (String) list.get(i).getName().subSequence(0, list.get(i).getName().length() - 4);
+                    String moduleName = (String) list.get(i).getName()
+                            .subSequence(0, list.get(i).getName().length() - 4);
                     moduleName = moduleName.trim().replace(' ', '_');
                     moduleName = WordUtils.capitalize(moduleName);
                     moduleName = moduleName.replace('_', ' ');
-                    Module.addItem(moduleName);
+                    moduleComboBox.addItem(moduleName);
                 }
             }
 
-        }
-        else {
+        } else {
             System.out.println("Répertoire non trouver");
         }
 

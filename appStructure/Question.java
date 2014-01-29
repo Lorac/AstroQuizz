@@ -1,3 +1,16 @@
+/*******************************************************************************
+ * Copyright (c) 2014
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     Unknown - initial API and implementation
+ *     Maxime Roussin-Bélanger - Huge refactor
+ *     Simon Gamache-Poirer - Helped the huge refactor
+ *******************************************************************************/
+
 package appStructure;
 
 public class Question {
@@ -10,11 +23,11 @@ public class Question {
 
     public Question(String questionLabel, String[] choixReponse, int nbChoix, char reponse, String picturePath) {
 
-        this.setQuestionLabel(questionLabel);
-        this.setNbChoix(nbChoix);
-        this.setChoixReponse(choixReponse);
-        this.setReponse(reponse);
-        this.setPicturePath(picturePath);
+        setQuestionLabel(questionLabel);
+        setNbChoix(nbChoix);
+        setChoixReponse(choixReponse);
+        setReponse(reponse);
+        setPicturePath(picturePath);
     }
 
     /**
@@ -45,9 +58,9 @@ public class Question {
      */
     public void setChoixReponse(String[] choixReponse) {
 
-        this.choixReponse = new String[choixReponse.length];
+        choixReponse = new String[choixReponse.length];
         for (int i = 0; i < choixReponse.length; i++) {
-            this.choixReponse[i] = choixReponse[i];
+            choixReponse[i] = choixReponse[i];
         }
     }
 
@@ -55,7 +68,7 @@ public class Question {
      * @return the nbChoix
      */
     public int getNbChoix() {
-        return this.nbChoix;
+        return nbChoix;
     }
 
     /**

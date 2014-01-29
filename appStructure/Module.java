@@ -1,3 +1,16 @@
+/*******************************************************************************
+ * Copyright (c) 2014
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     Unknown - initial API and implementation
+ *     Maxime Roussin-Bélanger - Huge refactor
+ *     Simon Gamache-Poirer - Helped the huge refactor
+ *******************************************************************************/
+
 package appStructure;
 
 import java.io.BufferedReader;
@@ -13,7 +26,7 @@ public class Module {
 	private int _size;
 
 	public Module(String module) {
-		this.Questions = new ArrayList<Question>();
+		Questions = new ArrayList<Question>();
 		construireQuestionnaire(module);
 	}
 
@@ -62,8 +75,8 @@ public class Module {
 					nbChoix = 0;
 
 				} while (questionLabel != null);
-				this.setName(module);
-				this.setSize(Questions.size());
+				setName(module);
+				setSize(Questions.size());
 
 			} catch (IOException exc) {
 				exc.printStackTrace();
@@ -87,7 +100,7 @@ public class Module {
 	 *            the _name to set
 	 */
 	public void setName(String _name) {
-		this._name = _name;
+		_name = _name;
 	}
 
     /**
@@ -101,6 +114,6 @@ public class Module {
      * @param _size the _size to set
      */
     public void setSize(int _size) {
-        this._size = _size;
+        _size = _size;
     }
 }
