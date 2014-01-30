@@ -33,22 +33,22 @@ public class AppToolBar extends JToolBar {
     private static final long serialVersionUID = 1L;
     public JComboBox          moduleComboBox   = new JComboBox();
     public JButton            randomButton     = new JButton();
-    private JLabel            moduleLabel      = new JLabel();
-    private File              Ressources       = new File("./Ressources");
+    private JLabel            _moduleLabel      = new JLabel();
+    private File              _ressources       = new File("./Ressources");
 
     public AppToolBar() {
         setFloatable(false);
-        setListFiles(Ressources);
+        setListFiles(_ressources);
         setBackground(Color.LIGHT_GRAY);
         setBorderPainted(false);
 
         randomButton.setFocusable(false);
 
-        moduleLabel.setText("Module :  ");
+        _moduleLabel.setText("Module :  ");
         randomButton.setText("Choisir une question aléatoirement");
 
 
-        add(moduleLabel);
+        add(_moduleLabel);
         add(moduleComboBox);
 
     }
