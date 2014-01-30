@@ -26,30 +26,33 @@ import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import appStructure.Module;
 import appStructure.Question;
 
 public class AppCenter extends JPanel {
+    private static final String IMAGEPATH        = "./Ressources/images/";
+
+    private static final String NOPICTURE        = "NO PICTURE";
     /**
 	 *
 	 */
-    private static final long         serialVersionUID = 1L;
-    private static final String       IMAGEPATH        = "./Ressources/images/";
-    private static final String       NOPICTURE        = "NO PICTURE";
+    private static final long   serialVersionUID = 1L;
 
-    public JEditorPane                question         = new JEditorPane();
-    public JPanel                     reponse          = new JPanel();
-    public JLabel                     picture          = new JLabel();
+    public JLabel               _picture         = new JLabel();
 
-    public List<String>               Labels           = new ArrayList<String>();
-    public List<JButton>              Answers          = new ArrayList<JButton>();
+    public JEditorPane          _question        = new JEditorPane();
+    public JPanel               _reponse         = new JPanel();
 
-    private final List<String> possibleChoices  = Arrays.asList("A. ", "B. ", "C. ", "D. ", "E. ");
+    public List<JButton>        answers          = new ArrayList<JButton>();
 
-    private String                    Questionlabel    = "";
-    private String                    PicturePath      = "";
-    private char                      GoodAnswer;
-    private int                       questionNumber   = 0;
+    public List<String>         labels           = new ArrayList<String>();
+
+    private String              _picturePath     = "";
+    private final List<String>  _possibleChoices = Arrays.asList("A. ", "B. ", "C. ", "D. ", "E. ");
+
+    private String              _questionlabel   = "";
+    private int                 _questionNumber  = 0;
 
     /**
      *
@@ -60,34 +63,90 @@ public class AppCenter extends JPanel {
      */
     public AppCenter(final Module module, final int currentQuestion, int numberOfChoices) {
 
-        questionNumber = currentQuestion;
+        _questionNumber = currentQuestion;
 
-        Answers.clear();
-        Labels.clear();
+        answers.clear();
+        labels.clear();
 
-        if (picture.getComponentCount() > 0) {
-            picture.removeAll();
-        }
-        reponse.setBackground(Color.LIGHT_GRAY);
+        _reponse.setBackground(Color.LIGHT_GRAY);
 
         for (int i = 0; i < numberOfChoices; i++) {
-            Answers.add(new JButton());
-            Answers.get(i).setFocusable(false);
+            answers.add(new JButton());
+            answers.get(i).setFocusable(false);
         }
 
         setListenerOnJButton(module, currentQuestion, numberOfChoices);
         setLayout(new BorderLayout());
 
-        reponse.setLayout(new GridLayout(numberOfChoices, 1));
+        _reponse.setLayout(new GridLayout(numberOfChoices, 1));
 
         for (int i = 0; i < numberOfChoices; i++) {
 
-            Answers.get(i).setBackground(Color.LIGHT_GRAY);
-            Answers.get(i).setBorderPainted(false);
+            answers.get(i).setBackground(Color.LIGHT_GRAY);
+            answers.get(i).setBorderPainted(false);
 
         }
 
-        afficherLaQuestion(module, module.getQuestions().get(questionNumber), numberOfChoices);
+        afficherLaQuestion(module, module.getQuestions().get(_questionNumber), numberOfChoices);
+    }
+
+    public int getCurrentQuestion() {
+        return _questionNumber;
+    }
+
+    /**
+     * afficherLaQuestion
+     *
+     * @param moduleComboBox
+     * @param currentQuestion
+     */
+    private void afficherLaQuestion(Module module, Question theQuestion, int numberOfChoices) {
+        String[] lesChoixPossible = null;
+
+        _questionlabel = theQuestion.getQuestionLabel();
+        lesChoixPossible = theQuestion.getChoixReponse();
+
+        for (int i = 0; i < numberOfChoices; i++) {
+
+            labels.add(lesChoixPossible[i].trim());
+            answers.get(i).setText(_possibleChoices.get(i) + labels.get(i));
+            _reponse.add(answers.get(i));
+
+            if (labels.get(i).isEmpty()) {
+                answers.get(i).setVisible(false);
+            } else {
+                answers.get(i).setVisible(true);
+            }
+
+        }
+        theQuestion.getReponse();
+        _picturePath = theQuestion.getPicturePath();
+
+        setQuestionLabelOnFrame();
+        setImageOnFrame();
+
+        setVisible(true);
+
+    }
+
+    /**
+     *
+     */
+    private void setImageOnFrame() {
+        if (_picturePath.equals(NOPICTURE)) {
+            _picture.setVisible(false);
+        } else {
+            ImageIcon image = new ImageIcon(IMAGEPATH + _picturePath);
+            Dimension imageSize = new Dimension(image.getIconWidth(), image.getIconHeight());
+
+            _picture.setIcon(image);
+            _picture.setPreferredSize(imageSize);
+            _picture.setBackground(Color.LIGHT_GRAY);
+            _picture.setOpaque(true);
+
+            add(_picture, "East");
+            _picture.setVisible(true);
+        }
     }
 
     /**
@@ -102,8 +161,8 @@ public class AppCenter extends JPanel {
      */
     private void setListenerOnJButton(final Module module, final int currentQuestion, int numberOfChoices) {
         for (int i = 0; i < numberOfChoices; i++) {
-            Answers.get(i).setName(possibleChoices.get(i));
-            Answers.get(i).addMouseListener(new java.awt.event.MouseAdapter() {
+            answers.get(i).setName(_possibleChoices.get(i));
+            answers.get(i).addMouseListener(new java.awt.event.MouseAdapter() {
 
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -156,91 +215,16 @@ public class AppCenter extends JPanel {
     }
 
     /**
-     * afficherLaQuestion
-     *
-     * @param moduleComboBox
-     * @param currentQuestion
-     */
-    private void afficherLaQuestion(Module module, Question theQuestion, int numberOfChoices) {
-        String[] lesChoixPossible = null;
-
-        Questionlabel = theQuestion.getQuestionLabel();
-        lesChoixPossible = theQuestion.getChoixReponse();
-
-        for (int i = 0; i < numberOfChoices; i++) {
-
-            Labels.add(lesChoixPossible[i].trim());
-            Answers.get(i).setText(possibleChoices.get(i) + Labels.get(i));
-            reponse.add(Answers.get(i));
-
-            if (Labels.get(i).isEmpty()) {
-                Answers.get(i).setVisible(false);
-            } else {
-                Answers.get(i).setVisible(true);
-            }
-
-        }
-        GoodAnswer = theQuestion.getReponse();
-        PicturePath = theQuestion.getPicturePath();
-
-        setQuestionLabelOnFrame();
-        setImageOnFrame();
-
-        setVisible(true);
-
-    }
-
-    /**
-     *
-     */
-    private void setImageOnFrame() {
-        if (PicturePath.equals(NOPICTURE)) {
-            picture.setVisible(false);
-        } else {
-            ImageIcon image = new ImageIcon(IMAGEPATH + PicturePath);
-            Dimension imageSize = new Dimension(image.getIconWidth(), image.getIconHeight());
-
-            picture.setIcon(image);
-            picture.setPreferredSize(imageSize);
-            picture.setBackground(Color.LIGHT_GRAY);
-            picture.setOpaque(true);
-
-            add(picture, "East");
-            picture.setVisible(true);
-        }
-    }
-
-    /**
      *
      */
     private void setQuestionLabelOnFrame() {
-        question.setContentType("text/html");
-        question.setText("<b>Question #" + (questionNumber + 1) + "</b>:  " + Questionlabel);
-        question.setEditable(false);
-        question.setBackground(Color.LIGHT_GRAY);
+        _question.setContentType("text/html");
+        _question.setText("<b>Question #" + (_questionNumber + 1) + "</b>:  " + _questionlabel);
+        _question.setEditable(false);
+        _question.setBackground(Color.LIGHT_GRAY);
 
-        add(question, "North");
-        add(reponse, "Center");
-    }
-
-    public char getGoodAnswer() {
-        return GoodAnswer;
-    }
-
-    public void setBackgroundColor() {
-
-        for (int i = 0; i < Answers.size(); i++) {
-            Answers.get(i).setBackground(Color.LIGHT_GRAY);
-        }
-
-    }
-
-    public int getCurrentQuestion() {
-        return questionNumber;
-    }
-
-    public void setCurrentQuestion(int question) {
-        questionNumber = question;
+        add(_question, "North");
+        add(_reponse, "Center");
     }
 
 }

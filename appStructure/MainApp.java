@@ -16,7 +16,6 @@ package appStructure;
 import java.io.File;
 import java.util.Map;
 import java.util.TreeMap;
-
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -25,33 +24,34 @@ import appStructure.Module;
 
 import org.apache.commons.lang3.text.WordUtils;
 
-public class MainApp {
+public abstract class MainApp {
     public static void main(String[] args) {
-    	Map<String, Module> questionnaires = new TreeMap<String, Module>();
-    	creerQuestionaires(questionnaires);
+        Map<String, Module> questionnaires = new TreeMap<String, Module>();
+        creerQuestionaires(questionnaires);
 
-		AppFrame AstroQuizz = new AppFrame(questionnaires);
-	      try {
-	            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-	        } catch (ClassNotFoundException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	        } catch (InstantiationException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	        } catch (IllegalAccessException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	        } catch (UnsupportedLookAndFeelException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	        }
+        AppFrame AstroQuizz = new AppFrame(questionnaires);
+        try {
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         AstroQuizz.setVisible(true);
     }
 
     /**
-	 *
-	 */
+     *
+     * @param questionnaires
+     */
     private static void creerQuestionaires(Map<String, Module> questionnaires) {
 
         File folder = new File("./Ressources");

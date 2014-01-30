@@ -26,6 +26,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import org.apache.commons.lang3.text.WordUtils;
+
 import appStructure.Module;
 
 public class AppFrame extends JFrame implements ActionListener {
@@ -33,26 +34,30 @@ public class AppFrame extends JFrame implements ActionListener {
 	 *
 	 */
     private static final long  serialVersionUID = 1L;
-    private String             module           = "";
-    private AppToolBar         mainToolBar      = new AppToolBar();
-    private AppBotToolBar      botToolBar       = new AppBotToolBar();
-    private JPanel             container        = new JPanel();
-    private JPanel             top              = new JPanel();
-    private AppCenter          QuestionArea;
+    public Map<String, Module> modules;
 
-    public Map<String, Module> Questionnaires;
+    private AppBotToolBar      _botToolBar      = new AppBotToolBar();
+
+    private JPanel             _container       = new JPanel();
+
+    private AppToolBar         _mainToolBar     = new AppToolBar();
+    private String             _moduleName      = "";
+
+    private AppCenter          _questionArea;
+
+    private JPanel             _top             = new JPanel();
 
     /**
      *
      * @param questionnaires
      */
     public AppFrame(Map<String, Module> questionnaires) {
-        Questionnaires = questionnaires;
-        module = mainToolBar.moduleComboBox.getSelectedItem().toString();
+        modules = questionnaires;
+        _moduleName = _mainToolBar.moduleComboBox.getSelectedItem().toString();
 
         String moduleAsKey = getModuleAsKey();
 
-        QuestionArea = new AppCenter(Questionnaires.get(moduleAsKey), 0,
+        _questionArea = new AppCenter(modules.get(moduleAsKey), 0,
                 getNumberOfPossibleChoicesOfAQuestion(moduleAsKey, 0));
 
         setWindowsProperty();
@@ -61,68 +66,33 @@ public class AppFrame extends JFrame implements ActionListener {
     }
 
     /**
-     *
-     * @param module
-     * @return int Number of questions for a Module
-     */
-    private int getNumberOfQuestion(String module) {
-        return Questionnaires.get(module).getSize();
-    }
-
-    /**
-     *
-     * @param module
-     * @return int number of Possible Choices in a question
-     */
-    private int getNumberOfPossibleChoicesOfAQuestion(String module, int currentQuestion) {
-        return Questionnaires.get(module).getQuestions().get(currentQuestion).getNbChoix();
-    }
-
-    /**
 	 *
 	 */
-    private void setWindowsProperty() {
+    @Override
+    public void actionPerformed(ActionEvent evt) {
 
-        setSize(1024, 600);
-        setTitle("Astro Quizz");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        String moduleChanged = getModuleAsKey();
 
-        container.setBackground(Color.LIGHT_GRAY);
-        container.setLayout(new BorderLayout());
+        int nextQuestion = _questionArea.getCurrentQuestion() + 1;
+        int previousQuestion = _questionArea.getCurrentQuestion() - 1;
 
-        top.setBackground(Color.LIGHT_GRAY);
-        top.setLayout(new BorderLayout());
-        top.add(mainToolBar, "East");
-        top.add(mainToolBar.randomButton, "West");
+        if (evt.getSource() == _mainToolBar.randomButton) {
+            // Need to disable to not call initQuestion twice
+            this._mainToolBar.moduleComboBox.removeActionListener(this);
+            chooseRandomQuestion();
+            this._mainToolBar.moduleComboBox.addActionListener(this);
+        } else if (evt.getSource() == _botToolBar.nextButton) {
 
-        container.add(top, "North");
-        container.add(botToolBar, "South");
-        container.add(QuestionArea, "Center");
-        botToolBar.previousButton.setEnabled(false);
-        setContentPane(container);
+            initQuestion(moduleChanged, nextQuestion);
 
-    }
+        } else if (evt.getSource() == _botToolBar.previousButton) {
 
-    /**
-	 *
-	 */
-    private void setActionListener() {
-        mainToolBar.moduleComboBox.addActionListener(this);
-        mainToolBar.randomButton.addActionListener(this);
-        botToolBar.nextButton.addActionListener(this);
-        botToolBar.previousButton.addActionListener(this);
+            initQuestion(moduleChanged, previousQuestion);
 
-    }
+        } else if (evt.getSource() == _mainToolBar.moduleComboBox) {
+            initQuestion(moduleChanged, 0);
 
-    /**
-     * @return string as key for the map
-     */
-    private String getModuleAsKey() {
-        module = mainToolBar.moduleComboBox.getSelectedItem().toString();
-        String moduleChanged = WordUtils.uncapitalize(module);
-        moduleChanged = moduleChanged.trim().replace(' ', '_');
-
-        return moduleChanged;
+        }
     }
 
     public void chooseRandomQuestion() {
@@ -140,61 +110,96 @@ public class AppFrame extends JFrame implements ActionListener {
      */
     public Module getRandomModule() {
         Random random = new Random();
-        List<String> keys = new ArrayList<String>(Questionnaires.keySet());
+        List<String> keys = new ArrayList<String>(modules.keySet());
         String randomKey = keys.get(random.nextInt(keys.size()));
 
-        mainToolBar.moduleComboBox.setSelectedIndex(keys.indexOf(randomKey));
+        _mainToolBar.moduleComboBox.setSelectedIndex(keys.indexOf(randomKey));
 
-        Module module = Questionnaires.get(randomKey);
+        Module module = modules.get(randomKey);
 
         return module;
     }
 
     public void initQuestion(String module, int question) {
-        container.remove(QuestionArea);
+        _container.remove(_questionArea);
         int nbQuestion = getNumberOfQuestion(module);
 
-        botToolBar.previousButton.setEnabled(question > 0);
-        botToolBar.nextButton.setEnabled(nbQuestion - question - 1 > 0);
+        _botToolBar.previousButton.setEnabled(question > 0);
+        _botToolBar.nextButton.setEnabled(nbQuestion - question - 1 > 0);
 
-        QuestionArea = new AppCenter(Questionnaires.get(module), question,
-                getNumberOfPossibleChoicesOfAQuestion(module, question));
+        _questionArea = new AppCenter(modules.get(module), question, getNumberOfPossibleChoicesOfAQuestion(module,
+                question));
 
-        container.add(QuestionArea, "Center");
-        top.add(mainToolBar, "East");
-        container.add(top, "North");
+        _container.add(_questionArea, "Center");
+        _top.add(_mainToolBar, "East");
+        _container.add(_top, "North");
 
-        QuestionArea.setVisible(true);
+        _questionArea.setVisible(true);
 
-        setContentPane(container);
+        setContentPane(_container);
+    }
+
+    /**
+     * @return string as key for the map
+     */
+    private String getModuleAsKey() {
+        _moduleName = _mainToolBar.moduleComboBox.getSelectedItem().toString();
+        String moduleChanged = WordUtils.uncapitalize(_moduleName);
+        moduleChanged = moduleChanged.trim().replace(' ', '_');
+
+        return moduleChanged;
+    }
+
+    /**
+     *
+     * @param module
+     * @return int number of Possible Choices in a question
+     */
+    private int getNumberOfPossibleChoicesOfAQuestion(String module, int currentQuestion) {
+        return modules.get(module).getQuestions().get(currentQuestion).getNbChoix();
+    }
+
+    /**
+     *
+     * @param module
+     * @return int Number of questions for a Module
+     */
+    private int getNumberOfQuestion(String module) {
+        return modules.get(module).getSize();
     }
 
     /**
 	 *
 	 */
-    public void actionPerformed(ActionEvent evt) {
+    private void setActionListener() {
+        _mainToolBar.moduleComboBox.addActionListener(this);
+        _mainToolBar.randomButton.addActionListener(this);
+        _botToolBar.nextButton.addActionListener(this);
+        _botToolBar.previousButton.addActionListener(this);
+    }
 
-        String moduleChanged = getModuleAsKey();
+    /**
+	 *
+	 */
+    private void setWindowsProperty() {
 
-        int nextQuestion = QuestionArea.getCurrentQuestion() + 1;
-        int previousQuestion = QuestionArea.getCurrentQuestion() - 1;
+        setSize(1024, 600);
+        setTitle("Astro Quizz");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        if (evt.getSource() == mainToolBar.randomButton) {
-            chooseRandomQuestion();
-        }
+        _container.setBackground(Color.LIGHT_GRAY);
+        _container.setLayout(new BorderLayout());
 
-        if (evt.getSource() == botToolBar.nextButton) {
+        _top.setBackground(Color.LIGHT_GRAY);
+        _top.setLayout(new BorderLayout());
+        _top.add(_mainToolBar, "East");
+        _top.add(_mainToolBar.randomButton, "West");
 
-            initQuestion(moduleChanged, nextQuestion);
+        _container.add(_top, "North");
+        _container.add(_botToolBar, "South");
+        _container.add(_questionArea, "Center");
+        _botToolBar.previousButton.setEnabled(false);
+        setContentPane(_container);
 
-        } else if (evt.getSource() == botToolBar.previousButton) {
-
-            initQuestion(moduleChanged, previousQuestion);
-
-        } else if (evt.getSource() == mainToolBar.moduleComboBox) {
-
-            initQuestion(moduleChanged, 0);
-
-        }
     }
 }

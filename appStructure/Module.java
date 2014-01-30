@@ -21,87 +21,73 @@ import java.util.ArrayList;
 
 public class Module {
 
-	private ArrayList<Question> Questions;
-	private String _name;
-	private int _size;
+    private String              _name;
+    private ArrayList<Question> _questions;
+    private int                 _size;
 
-	public Module(String module) {
-		Questions = new ArrayList<Question>();
-		construireQuestionnaire(module);
-	}
+    public Module(String module) {
+        _questions = new ArrayList<Question>();
+        construireQuestionnaire(module);
+    }
 
-	public ArrayList<Question> getQuestions() {
-		return Questions;
-	}
+    public void construireQuestionnaire(String module) {
+        BufferedReader fluxEntree = null;
+        String questionLabel;
+        String[] choixReponse = new String[5];
+        int nbChoix = 0;
 
-	public void setQuestions(ArrayList<Question> questions) {
-		Questions = questions;
-	}
+        char reponse;
+        String LigneLue;
+        String picturePath;
 
-	public void construireQuestionnaire(String module) {
-		BufferedReader fluxEntree = null;
-		String questionLabel;
-		String[] choixReponse = new String[5];
-		int nbChoix = 0;
+        int i = 0;
+        if (module != "") {
+            try {
+                fluxEntree = new BufferedReader(new InputStreamReader(new FileInputStream("./Ressources/" + module
+                        + ".txt"), "UTF-8"));
+                do {
 
-		char reponse;
-		String LigneLue;
-		String picturePath;
+                    questionLabel = fluxEntree.readLine();
+                    if (questionLabel == null) {
+                        break;
+                    }
+                    for (i = 0; i < 5; i++) {
+                        LigneLue = fluxEntree.readLine();
+                        if (!LigneLue.isEmpty()) {
+                            choixReponse[i] = (LigneLue);
+                            nbChoix++;
+                        }
+                    }
+                    reponse = fluxEntree.readLine().charAt(0);
+                    picturePath = fluxEntree.readLine();
 
-		int i = 0;
-		if (module != "") {
-			try {
-				fluxEntree = new BufferedReader(new InputStreamReader(
-						new FileInputStream("./Ressources/" + module + ".txt"),
-						"UTF-8"));
-				do {
+                    _questions.add(new Question(questionLabel, choixReponse, nbChoix, reponse, picturePath));
+                    nbChoix = 0;
 
-					questionLabel = fluxEntree.readLine();
-					if (questionLabel == null) {
-						break;
-					}
-					for (i = 0; i < 5; i++) {
-						LigneLue = fluxEntree.readLine();
-						if (!LigneLue.isEmpty()) {
-							choixReponse[i] = (LigneLue);
-							nbChoix++;
-						}
-					}
-					reponse = fluxEntree.readLine().charAt(0);
-					picturePath = fluxEntree.readLine();
+                } while (questionLabel != null);
+                setName(module);
+                setSize(_questions.size());
 
-					Questions.add(new Question(questionLabel, choixReponse,
-							nbChoix, reponse, picturePath));
-					nbChoix = 0;
+            } catch (IOException exc) {
+                exc.printStackTrace();
+            }
+            try {
+                fluxEntree.close();
+            } catch (IOException localIOException1) {
+            }
+        }
+    }
 
-				} while (questionLabel != null);
-				setName(module);
-				setSize(Questions.size());
+    /**
+     * @return the _name
+     */
+    public String getName() {
+        return _name;
+    }
 
-			} catch (IOException exc) {
-				exc.printStackTrace();
-			}
-			try {
-				fluxEntree.close();
-			} catch (IOException localIOException1) {
-			}
-		}
-	}
-
-	/**
-	 * @return the _name
-	 */
-	public String getName() {
-		return _name;
-	}
-
-	/**
-	 * @param _name
-	 *            the _name to set
-	 */
-	public void setName(String _name) {
-		_name = _name;
-	}
+    public ArrayList<Question> getQuestions() {
+        return _questions;
+    }
 
     /**
      * @return the _size
@@ -111,9 +97,18 @@ public class Module {
     }
 
     /**
-     * @param _size the _size to set
+     * @param _name
+     *            the _name to set
+     */
+    public void setName(String _name) {
+        this._name = _name;
+    }
+
+    /**
+     * @param _size
+     *            the _size to set
      */
     public void setSize(int _size) {
-        _size = _size;
+        this._size = _size;
     }
 }
