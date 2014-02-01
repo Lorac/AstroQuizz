@@ -1,12 +1,12 @@
-La courbe de lumière est pour un système binaire (i=90 degrés) où les deux étoiles ont un orbite circulaire. Les étoiles sont le mieux décrites comme ayant :
-la même température de surface et le même rayon
-la même température de surface et des rayons différents
-différentes températures de surface et le même rayon
-différentes températures de surface et des rayons différents
+La courbe de lumiÃ¨re est pour un systÃ¨me binaire (i=90 degrÃ©s) oÃ¹ les deux Ã©toiles ont un orbite circulaire. Les Ã©toiles sont le mieux dÃ©crites comme ayant :
+la mÃªme tempÃ©rature de surface et le mÃªme rayon
+la mÃªme tempÃ©rature de surface et des rayons diffÃ©rents
+diffÃ©rentes tempÃ©ratures de surface et le mÃªme rayon
+diffÃ©rentes tempÃ©ratures de surface et des rayons diffÃ©rents
 
 C
 UN-etoiles binaire-1.jpg
-Les courbes de la vitesse radiale sont celles d'une binaire spectroscopique avec des orbites circulaires. Quelle est la période orbitale du système?
+Les courbes de la vitesse radiale sont celles d'une binaire spectroscopique avec des orbites circulaires. Quelle est la pÃ©riode orbitale du systÃ¨me?
 6 jours
 12 jours
 18 jours

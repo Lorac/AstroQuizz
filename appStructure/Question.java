@@ -1,42 +1,70 @@
+/*******************************************************************************
+ * Copyright (c) 2014
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     Unknown - initial API and implementation
+ *     Maxime Roussin-Bélanger - Huge refactor
+ *     Simon Gamache-Poirer - Helped the huge refactor
+ *******************************************************************************/
+
 package appStructure;
 
 public class Question {
 
-    private String   questionLabel;
-    private String[] choixReponse;
-    private int      nbChoix;
-    private char     reponse;
-    private String   picturePath;
+    private String[] _choixReponse;
+    private String   _picturePath;
+    private String   _questionLabel;
+
+    private int      _nbChoix;
+
+    private char     _reponse;
 
     public Question(String questionLabel, String[] choixReponse, int nbChoix, char reponse, String picturePath) {
 
-        this.setQuestionLabel(questionLabel);
-        this.setNbChoix(nbChoix);
-        this.setChoixReponse(choixReponse);
-        this.setReponse(reponse);
-        this.setPicturePath(picturePath);
-    }
-
-    /**
-     * @return the questionLabel
-     */
-    public String getQuestionLabel() {
-        return questionLabel;
-    }
-
-    /**
-     * @param questionLabel
-     *            the questionLabel to set
-     */
-    public void setQuestionLabel(String questionLabel) {
-        this.questionLabel = questionLabel;
+        setQuestionLabel(questionLabel);
+        setNbChoix(nbChoix);
+        setChoixReponse(choixReponse);
+        setReponse(reponse);
+        setPicturePath(picturePath);
     }
 
     /**
      * @return the choixReponse
      */
     public String[] getChoixReponse() {
-        return choixReponse;
+        return _choixReponse;
+    }
+
+    /**
+     * @return the nbChoix
+     */
+    public int getNbChoix() {
+        return _nbChoix;
+    }
+
+    /**
+     * @return the picturePath
+     */
+    public String getPicturePath() {
+        return _picturePath;
+    }
+
+    /**
+     * @return the questionLabel
+     */
+    public String getQuestionLabel() {
+        return _questionLabel;
+    }
+
+    /**
+     * @return the reponse
+     */
+    public char getReponse() {
+        return _reponse;
     }
 
     /**
@@ -45,17 +73,10 @@ public class Question {
      */
     public void setChoixReponse(String[] choixReponse) {
 
-        this.choixReponse = new String[choixReponse.length];
+        this._choixReponse = new String[choixReponse.length];
         for (int i = 0; i < choixReponse.length; i++) {
-            this.choixReponse[i] = choixReponse[i];
+            this._choixReponse[i] = choixReponse[i];
         }
-    }
-
-    /**
-     * @return the nbChoix
-     */
-    public int getNbChoix() {
-        return this.nbChoix;
     }
 
     /**
@@ -63,29 +84,7 @@ public class Question {
      *            the nbChoix to set
      */
     public void setNbChoix(int nbChoix) {
-        this.nbChoix = nbChoix;
-    }
-
-    /**
-     * @return the reponse
-     */
-    public char getReponse() {
-        return reponse;
-    }
-
-    /**
-     * @param reponse
-     *            the reponse to set
-     */
-    public void setReponse(char reponse) {
-        this.reponse = reponse;
-    }
-
-    /**
-     * @return the picturePath
-     */
-    public String getPicturePath() {
-        return picturePath;
+        this._nbChoix = nbChoix;
     }
 
     /**
@@ -93,6 +92,22 @@ public class Question {
      *            the picturePath to set
      */
     public void setPicturePath(String picturePath) {
-        this.picturePath = picturePath;
+        this._picturePath = picturePath;
+    }
+
+    /**
+     * @param questionLabel
+     *            the questionLabel to set
+     */
+    public void setQuestionLabel(String questionLabel) {
+        this._questionLabel = questionLabel;
+    }
+
+    /**
+     * @param reponse
+     *            the reponse to set
+     */
+    public void setReponse(char reponse) {
+        this._reponse = reponse;
     }
 }
