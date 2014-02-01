@@ -73,8 +73,6 @@ public class AppFrame extends JFrame implements ActionListener {
 
         this.module = this.mainToolBar.Module.getSelectedItem().toString();
 
-        this.QuestionArea.newQuestion(this.module, 0);
-
         int numberOfQuestion = this.QuestionArea.getNumberOfQuestion(this.module);
 
         this.botToolBar.disablePreviousButton(true);
