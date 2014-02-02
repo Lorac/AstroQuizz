@@ -61,6 +61,7 @@ public class AppFrame extends JFrame implements ActionListener {
 
         setWindowsProperty();
         setActionListener();
+        setUndecorated(false);
 
     }
 

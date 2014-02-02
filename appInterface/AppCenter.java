@@ -23,6 +23,7 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -176,6 +177,8 @@ public class AppCenter extends JPanel {
                     else {
                         e.getComponent().setBackground(Color.RED);
                     }
+                    ((JComponent) e.getComponent()).setOpaque(true);
+                    
 
                 }
 
@@ -184,6 +187,7 @@ public class AppCenter extends JPanel {
                     if (!(e.getComponent().getBackground() != Color.GREEN || e.getComponent().getBackground() != Color.RED)) {
                         e.getComponent().setBackground(Color.LIGHT_GRAY);
                     }
+                    ((JComponent) e.getComponent()).setOpaque(true);
                 }
 
                 @Override
@@ -191,6 +195,7 @@ public class AppCenter extends JPanel {
                     if (!(e.getComponent().getBackground() == Color.GREEN || e.getComponent().getBackground() == Color.RED)) {
                         e.getComponent().setBackground(Color.LIGHT_GRAY);
                     }
+                    ((JComponent) e.getComponent()).setOpaque(true);
 
                 }
 
@@ -203,6 +208,7 @@ public class AppCenter extends JPanel {
                     else {
                         e.getComponent().setBackground(Color.RED);
                     }
+                    ((JComponent) e.getComponent()).setOpaque(true);
 
                 }
 
@@ -222,6 +228,8 @@ public class AppCenter extends JPanel {
         _question.setText("<b>Question #" + (_questionNumber + 1) + "</b>:  " + _questionlabel);
         _question.setEditable(false);
         _question.setBackground(Color.LIGHT_GRAY);
+        _question.setOpaque(true);
+        _question.setVisible(true);
 
         add(_question, "North");
         add(_reponse, "Center");

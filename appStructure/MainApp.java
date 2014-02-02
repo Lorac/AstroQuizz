@@ -13,6 +13,7 @@
 
 package appStructure;
 
+import java.awt.Toolkit;
 import java.io.File;
 import java.util.Map;
 import java.util.TreeMap;
@@ -27,6 +28,8 @@ import appInterface.AppFrame;
 public abstract class MainApp {
     public static void main(String[] args) {
 
+        
+        Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
         setLookAndFeel();
 
         Map<String, Module> questionnaires = new TreeMap<String, Module>();
@@ -43,7 +46,7 @@ public abstract class MainApp {
      */
     private static void setLookAndFeel() {
         try {
-            UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException e) {
             System.err.println("Couldn't find class for specified look and feel:" + "javax.swing.plaf.metal.MetalLookAndFeel");
             System.err.println("Did you include the L&F library in the class path?");
