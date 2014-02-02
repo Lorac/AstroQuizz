@@ -48,7 +48,7 @@ public abstract class MainApp {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException e) {
-            System.err.println("Couldn't find class for specified look and feel:" + "javax.swing.plaf.metal.MetalLookAndFeel");
+            System.err.println("Couldn't find class for specified look and feel:" + UIManager.getSystemLookAndFeelClassName());
             System.err.println("Did you include the L&F library in the class path?");
             System.err.println("Using the default look and feel.");
             e.printStackTrace();
@@ -59,11 +59,11 @@ public abstract class MainApp {
             // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (UnsupportedLookAndFeelException e) {
-            System.err.println("Can't use the specified look and feel (" + "javax.swing.plaf.metal.MetalLookAndFeel" + ") on this platform.");
+            System.err.println("Can't use the specified look and feel (" + UIManager.getSystemLookAndFeelClassName() + ") on this platform.");
             System.err.println("Using the default look and feel.");
             e.printStackTrace();
         } catch (Exception e) {
-            System.err.println("Couldn't get specified look and feel (" + "javax.swing.plaf.metal.MetalLookAndFeel" + "), for some reason.");
+            System.err.println("Couldn't get specified look and feel (" + UIManager.getSystemLookAndFeelClassName() + "), for some reason.");
             System.err.println("Using the default look and feel.");
             e.printStackTrace();
         }
