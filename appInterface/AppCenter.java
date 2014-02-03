@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -104,7 +105,6 @@ public class AppCenter extends JPanel {
     private void afficherLaQuestion(Question theQuestion, int numberOfChoices) {
         String[] lesChoixPossible = null;
 
-        _questionlabel = theQuestion.getQuestionLabel();
         lesChoixPossible = theQuestion.getChoixReponse();
 
         for (int i = 0; i < numberOfChoices; i++) {
@@ -122,8 +122,9 @@ public class AppCenter extends JPanel {
 
         }
         theQuestion.getReponse();
-        _picturePath = theQuestion.getPicturePath();
 
+        _picturePath = theQuestion.getPicturePath();
+        _questionlabel = theQuestion.getQuestionLabel();
         setQuestionLabelOnFrame();
         setImageOnFrame();
 
@@ -147,7 +148,7 @@ public class AppCenter extends JPanel {
             _picture.setBackground(Color.LIGHT_GRAY);
             _picture.setOpaque(true);
 
-            add(_picture, "East");
+            add(_picture, BorderLayout.EAST);
             _picture.setVisible(true);
         }
     }
@@ -178,7 +179,6 @@ public class AppCenter extends JPanel {
                         e.getComponent().setBackground(Color.RED);
                     }
                     ((JComponent) e.getComponent()).setOpaque(true);
-                    
 
                 }
 
@@ -230,10 +230,10 @@ public class AppCenter extends JPanel {
         _question.setBackground(Color.LIGHT_GRAY);
         _question.setOpaque(true);
         _question.setVisible(true);
+        _question.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 
-        add(_question, "North");
-        add(_reponse, "Center");
-        repaint();
+        add(_question, BorderLayout.NORTH);
+        add(_reponse, BorderLayout.CENTER);
     }
 
 }

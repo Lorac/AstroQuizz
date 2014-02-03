@@ -28,7 +28,6 @@ import appInterface.AppFrame;
 public abstract class MainApp {
     public static void main(String[] args) {
 
-        
         Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
         setLookAndFeel();
 
