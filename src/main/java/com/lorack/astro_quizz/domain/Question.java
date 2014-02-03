@@ -11,7 +11,7 @@
  *     Simon Gamache-Poirer - Helped the huge refactor
  *******************************************************************************/
 
-package appStructure;
+package com.lorack.astro_quizz.domain;
 
 public class Question {
 
