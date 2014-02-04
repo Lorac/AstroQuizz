@@ -9,6 +9,7 @@
  *     Unknown - initial API and implementation
  *     Maxime Roussin-Bélanger - Huge refactor
  *     Simon Gamache-Poirer - Helped the huge refactor
+ *     Jean Lalande - Helped on the MAC Integretion
  *******************************************************************************/
 package com.lorack.astro_quizz.ui;
 
@@ -54,9 +55,9 @@ public class AppCenter extends JPanel {
     private int                 _questionNumber  = 0;
 
     /**
-     * 
+     *
      * Create the AppCenter
-     * 
+     *
      * @param moduleComboBox
      * @param currentQuestion
      */
@@ -97,7 +98,7 @@ public class AppCenter extends JPanel {
 
     /**
      * afficherLaQuestion
-     * 
+     *
      * @param moduleComboBox
      * @param currentQuestion
      */
@@ -153,7 +154,7 @@ public class AppCenter extends JPanel {
 
     /**
      * Set Listener on each JButton of possible answers
-     * 
+     *
      * @param module
      *            The current module
      * @param currentQuestion

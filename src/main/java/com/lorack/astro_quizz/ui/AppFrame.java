@@ -9,6 +9,7 @@
  *     Unknown - initial API and implementation
  *     Maxime Roussin-Bélanger - Huge refactor
  *     Simon Gamache-Poirer - Helped the huge refactor
+ *     Jean Lalande - Helped on the MAC Integretion
  *******************************************************************************/
 
 package com.lorack.astro_quizz.ui;
@@ -46,7 +47,7 @@ public class AppFrame extends JFrame implements ActionListener {
     private JPanel             _top             = new JPanel();
 
     /**
-     * 
+     *
      * @param questionnaires
      */
     public AppFrame(Map<String, Module> questionnaires) {
@@ -104,7 +105,7 @@ public class AppFrame extends JFrame implements ActionListener {
 
     /**
      * It chooses a random Module from all the modules
-     * 
+     *
      * @return the choosen Module
      */
     public Module getRandomModule() {
@@ -120,7 +121,7 @@ public class AppFrame extends JFrame implements ActionListener {
     }
 
     /**
-     * 
+     *
      * @param module
      * @param question
      */
@@ -165,7 +166,7 @@ public class AppFrame extends JFrame implements ActionListener {
     }
 
     /**
-     * 
+     *
      * @param module
      * @return int number of Possible Choices in a question
      */
@@ -188,7 +189,7 @@ public class AppFrame extends JFrame implements ActionListener {
     }
 
     /**
-     * 
+     *
      * @param module
      * @return int Number of questions for a Module
      */
