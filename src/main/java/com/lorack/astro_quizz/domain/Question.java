@@ -23,7 +23,8 @@ public class Question {
 
     private char     _reponse;
 
-    public Question(String questionLabel, String[] choixReponse, int nbChoix, char reponse, String picturePath) {
+    public Question(String questionLabel, String[] choixReponse, int nbChoix,
+            char reponse, String picturePath) {
 
         setQuestionLabel(questionLabel);
         setNbChoix(nbChoix);

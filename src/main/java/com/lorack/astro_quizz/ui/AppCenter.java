@@ -31,206 +31,205 @@ import com.lorack.astro_quizz.domain.Module;
 import com.lorack.astro_quizz.domain.Question;
 
 public class AppCenter extends JPanel {
-  private static final String IMAGEPATH = "./Ressources/images/";
+    private static final String IMAGEPATH        = "./Ressources/images/";
 
-  private static final String NOPICTURE = "NO PICTURE";
+    private static final String NOPICTURE        = "NO PICTURE";
 
-  private static final long serialVersionUID = 1L;
+    private static final long   serialVersionUID = 1L;
 
-  public JLabel _picture = new JLabel();
+    public JLabel               _picture         = new JLabel();
 
-  public JEditorPane _question = new JEditorPane();
-  public JPanel _reponse = new JPanel();
+    public JEditorPane          _question        = new JEditorPane();
+    public JPanel               _reponse         = new JPanel();
 
-  public List<JButton> answers = new ArrayList<JButton>();
+    public List<JButton>        answers          = new ArrayList<JButton>();
 
-  public List<String> labels = new ArrayList<String>();
+    public List<String>         labels           = new ArrayList<String>();
 
-  private String _picturePath = "";
-  private final List<String> _possibleChoices = Arrays.asList("A. ", "B. ", "C. ", "D. ", "E. ");
+    private String              _picturePath     = "";
+    private final List<String>  _possibleChoices = Arrays.asList("A. ", "B. ",
+                                                         "C. ", "D. ", "E. ");
 
-  private String _questionlabel = "";
-  private int _questionNumber = 0;
+    private String              _questionlabel   = "";
+    private int                 _questionNumber  = 0;
 
-  /**
-   * 
-   * Create the AppCenter
-   * 
-   * @param moduleComboBox
-   * @param currentQuestion
-   */
-  public AppCenter(final Module module, final int currentQuestion, int numberOfChoices) {
+    /**
+     * 
+     * Create the AppCenter
+     * 
+     * @param moduleComboBox
+     * @param currentQuestion
+     */
+    public AppCenter(final Module module, final int currentQuestion,
+            int numberOfChoices) {
 
-    _questionNumber = currentQuestion;
+        _questionNumber = currentQuestion;
 
-    answers.clear();
-    labels.clear();
+        answers.clear();
+        labels.clear();
 
-    _reponse.setBackground(Color.LIGHT_GRAY);
+        _reponse.setBackground(Color.LIGHT_GRAY);
 
-    for (int i = 0; i < numberOfChoices; i++) {
-      answers.add(new JButton());
-      answers.get(i).setFocusable(false);
+        for (int i = 0; i < numberOfChoices; i++) {
+            answers.add(new JButton());
+            answers.get(i).setFocusable(false);
+        }
+
+        setListenerOnJButton(module, currentQuestion, numberOfChoices);
+        setLayout(new BorderLayout());
+
+        _reponse.setLayout(new GridLayout(numberOfChoices, 1));
+
+        for (int i = 0; i < numberOfChoices; i++) {
+
+            answers.get(i).setBackground(Color.LIGHT_GRAY);
+            answers.get(i).setBorderPainted(false);
+
+        }
+
+        afficherLaQuestion(module.getQuestions().get(_questionNumber),
+                numberOfChoices);
     }
 
-    setListenerOnJButton(module, currentQuestion, numberOfChoices);
-    setLayout(new BorderLayout());
+    public int getCurrentQuestion() {
+        return _questionNumber;
+    }
 
-    _reponse.setLayout(new GridLayout(numberOfChoices, 1));
+    /**
+     * afficherLaQuestion
+     * 
+     * @param moduleComboBox
+     * @param currentQuestion
+     */
+    private void afficherLaQuestion(Question theQuestion, int numberOfChoices) {
+        String[] lesChoixPossible = null;
 
-    for (int i = 0; i < numberOfChoices; i++) {
+        _questionlabel = theQuestion.getQuestionLabel();
+        lesChoixPossible = theQuestion.getChoixReponse();
 
-      answers.get(i).setBackground(Color.LIGHT_GRAY);
-      answers.get(i).setBorderPainted(false);
+        for (int i = 0; i < numberOfChoices; i++) {
+
+            labels.add(lesChoixPossible[i].trim());
+            answers.get(i).setText(_possibleChoices.get(i) + labels.get(i));
+            _reponse.add(answers.get(i));
+
+            if (labels.get(i).isEmpty()) {
+                answers.get(i).setVisible(false);
+            } else {
+                answers.get(i).setVisible(true);
+            }
+
+        }
+        theQuestion.getReponse();
+        _picturePath = theQuestion.getPicturePath();
+
+        setQuestionLabelOnFrame();
+        setImageOnFrame();
+
+        setVisible(true);
 
     }
 
-    afficherLaQuestion(module.getQuestions().get(_questionNumber), numberOfChoices);
-  }
-
-  public int getCurrentQuestion() {
-    return _questionNumber;
-  }
-
-  /**
-   * afficherLaQuestion
-   * 
-   * @param moduleComboBox
-   * @param currentQuestion
-   */
-  private void afficherLaQuestion(Question theQuestion, int numberOfChoices) {
-    String[] lesChoixPossible = null;
-
-    _questionlabel = theQuestion.getQuestionLabel();
-    lesChoixPossible = theQuestion.getChoixReponse();
-
-    for (int i = 0; i < numberOfChoices; i++) {
-
-      labels.add(lesChoixPossible[i].trim());
-      answers.get(i).setText(_possibleChoices.get(i) + labels.get(i));
-      _reponse.add(answers.get(i));
-
-      if (labels.get(i).isEmpty()) {
-        answers.get(i).setVisible(false);
-      } else {
-        answers.get(i).setVisible(true);
-      }
-
-    }
-    theQuestion.getReponse();
-    _picturePath = theQuestion.getPicturePath();
-
-    setQuestionLabelOnFrame();
-    setImageOnFrame();
-
-    setVisible(true);
-
-  }
-
-  /**
+    /**
      *
      */
-  private void setImageOnFrame() {
-    if (_picturePath.equals(NOPICTURE)) {
-      _picture.setVisible(false);
-    } else {
-      ImageIcon image = new ImageIcon(IMAGEPATH + _picturePath);
-      Dimension imageSize = new Dimension(image.getIconWidth(), image.getIconHeight());
+    private void setImageOnFrame() {
+        if (_picturePath.equals(NOPICTURE)) {
+            _picture.setVisible(false);
+        } else {
+            ImageIcon image = new ImageIcon(IMAGEPATH + _picturePath);
+            Dimension imageSize = new Dimension(image.getIconWidth(),
+                    image.getIconHeight());
 
-      _picture.setIcon(image);
-      _picture.setPreferredSize(imageSize);
-      _picture.setBackground(Color.LIGHT_GRAY);
-      _picture.setOpaque(true);
+            _picture.setIcon(image);
+            _picture.setPreferredSize(imageSize);
+            _picture.setBackground(Color.LIGHT_GRAY);
+            _picture.setOpaque(true);
 
-      add(_picture, "East");
-      _picture.setVisible(true);
+            add(_picture, "East");
+            _picture.setVisible(true);
+        }
     }
-  }
 
-  /**
-   * Set Listener on each JButton of possible answers
-   * 
-   * @param module
-   *          The current module
-   * @param currentQuestion
-   *          The current question
-   * @param numberOfChoices
-   *          The number of Choices for that question
-   */
-  private void setListenerOnJButton(final Module module,
-                                    final int currentQuestion,
-                                    int numberOfChoices)
-  {
-    for (int i = 0; i < numberOfChoices; i++) {
-      answers.get(i).setName(_possibleChoices.get(i));
-      answers.get(i).addMouseListener(new java.awt.event.MouseAdapter() {
+    /**
+     * Set Listener on each JButton of possible answers
+     * 
+     * @param module
+     *            The current module
+     * @param currentQuestion
+     *            The current question
+     * @param numberOfChoices
+     *            The number of Choices for that question
+     */
+    private void setListenerOnJButton(final Module module,
+            final int currentQuestion, int numberOfChoices) {
+        for (int i = 0; i < numberOfChoices; i++) {
+            answers.get(i).setName(_possibleChoices.get(i));
+            answers.get(i).addMouseListener(new java.awt.event.MouseAdapter() {
 
-        @Override
-        public void mouseClicked(MouseEvent e) {
-          e.getComponent().setEnabled(false);
-          if (module.getQuestions().get(currentQuestion).getReponse() == e.getComponent()
-                                                                          .getName()
-                                                                          .charAt(0))
-          {
-            e.getComponent().setBackground(Color.GREEN);
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    e.getComponent().setEnabled(false);
+                    if (module.getQuestions().get(currentQuestion).getReponse() == e
+                            .getComponent().getName().charAt(0)) {
+                        e.getComponent().setBackground(Color.GREEN);
 
-          } else {
-            e.getComponent().setBackground(Color.RED);
-          }
+                    } else {
+                        e.getComponent().setBackground(Color.RED);
+                    }
 
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    if (!(e.getComponent().getBackground() != Color.GREEN || e
+                            .getComponent().getBackground() != Color.RED)) {
+                        e.getComponent().setBackground(Color.LIGHT_GRAY);
+                    }
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    if (!(e.getComponent().getBackground() == Color.GREEN || e
+                            .getComponent().getBackground() == Color.RED)) {
+                        e.getComponent().setBackground(Color.LIGHT_GRAY);
+                    }
+
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    e.getComponent().setEnabled(false);
+                    if (module.getQuestions().get(currentQuestion).getReponse() == e
+                            .getComponent().getName().charAt(0)) {
+                        e.getComponent().setBackground(Color.GREEN);
+                    } else {
+                        e.getComponent().setBackground(Color.RED);
+                    }
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+            });
         }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-          if (!(e.getComponent().getBackground() != Color.GREEN || e.getComponent().getBackground() != Color.RED))
-          {
-            e.getComponent().setBackground(Color.LIGHT_GRAY);
-          }
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-          if (!(e.getComponent().getBackground() == Color.GREEN || e.getComponent().getBackground() == Color.RED))
-          {
-            e.getComponent().setBackground(Color.LIGHT_GRAY);
-          }
-
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-          e.getComponent().setEnabled(false);
-          if (module.getQuestions().get(currentQuestion).getReponse() == e.getComponent()
-                                                                          .getName()
-                                                                          .charAt(0))
-          {
-            e.getComponent().setBackground(Color.GREEN);
-          } else {
-            e.getComponent().setBackground(Color.RED);
-          }
-
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-
-        }
-      });
     }
-  }
 
-  /**
+    /**
      *
      */
-  private void setQuestionLabelOnFrame() {
-    _question.setContentType("text/html");
-    _question.setText("<b>Question #" + (_questionNumber + 1) + "</b>:  " + _questionlabel);
-    _question.setEditable(false);
-    _question.setBackground(Color.LIGHT_GRAY);
+    private void setQuestionLabelOnFrame() {
+        _question.setContentType("text/html");
+        _question.setText("<b>Question #" + (_questionNumber + 1) + "</b>:  "
+                + _questionlabel);
+        _question.setEditable(false);
+        _question.setBackground(Color.LIGHT_GRAY);
 
-    add(_question, "North");
-    add(_reponse, "Center");
-    repaint();
-  }
+        add(_question, "North");
+        add(_reponse, "Center");
+        repaint();
+    }
 
 }

@@ -34,5 +34,4 @@ public class AppBotToolBar extends JPanel {
         add(nextButton);
     }
 
-
 }
