@@ -54,17 +54,17 @@ public class AppToolBar extends JToolBar {
 
     }
 
-    private void setListFiles(File Ressources) {
-        if (Ressources.exists() && Ressources.isDirectory()) {
+    private void setListFiles( File Ressources ) {
+        if ( Ressources.exists() && Ressources.isDirectory() ) {
             List<File> list = new ArrayList<File>();
 
             for (File file : Ressources.listFiles()) {
-                if (file.getName().endsWith(".txt")) {
+                if ( file.getName().endsWith(".txt") ) {
                     list.add(file);
                 }
             }
 
-            if (list.size() != 0) {
+            if ( list.size() != 0 ) {
                 Collections.sort(list);
                 for (int i = 0; i < list.size(); i++) {
                     String moduleName = (String) list.get(i).getName()

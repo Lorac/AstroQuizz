@@ -24,8 +24,7 @@ public class Question {
 
     private char     _reponse;
 
-    public Question(String questionLabel, String[] choixReponse, int nbChoix,
-            char reponse, String picturePath) {
+    public Question( String questionLabel, String[] choixReponse, int nbChoix, char reponse, String picturePath ) {
 
         setQuestionLabel(questionLabel);
         setNbChoix(nbChoix);
@@ -73,7 +72,7 @@ public class Question {
      * @param choixReponse
      *            the choixReponse to set
      */
-    public void setChoixReponse(String[] choixReponse) {
+    public void setChoixReponse( String[] choixReponse ) {
 
         this._choixReponse = new String[choixReponse.length];
         for (int i = 0; i < choixReponse.length; i++) {
@@ -85,7 +84,7 @@ public class Question {
      * @param nbChoix
      *            the nbChoix to set
      */
-    public void setNbChoix(int nbChoix) {
+    public void setNbChoix( int nbChoix ) {
         this._nbChoix = nbChoix;
     }
 
@@ -93,7 +92,7 @@ public class Question {
      * @param picturePath
      *            the picturePath to set
      */
-    public void setPicturePath(String picturePath) {
+    public void setPicturePath( String picturePath ) {
         this._picturePath = picturePath;
     }
 
@@ -101,7 +100,7 @@ public class Question {
      * @param questionLabel
      *            the questionLabel to set
      */
-    public void setQuestionLabel(String questionLabel) {
+    public void setQuestionLabel( String questionLabel ) {
         this._questionLabel = questionLabel;
     }
 
@@ -109,7 +108,7 @@ public class Question {
      * @param reponse
      *            the reponse to set
      */
-    public void setReponse(char reponse) {
+    public void setReponse( char reponse ) {
         this._reponse = reponse;
     }
 }

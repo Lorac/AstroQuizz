@@ -48,21 +48,22 @@ public class AppCenter extends JPanel {
     public List<String>         labels           = new ArrayList<String>();
 
     private String              _picturePath     = "";
-    private final List<String>  _possibleChoices = Arrays.asList("A. ", "B. ",
-                                                         "C. ", "D. ", "E. ");
+    private final List<String>  _possibleChoices = Arrays.asList("A. ", "B. ", "C. ", "D. ", "E. ");
 
     private String              _questionlabel   = "";
     private int                 _questionNumber  = 0;
 
     /**
      * Create the app Center
-     *
-     * @param module The module to create with
-     * @param currentQuestion the question to get
-     * @param numberOfChoices Number of possible choices for that question
+     * 
+     * @param module
+     *            The module to create with
+     * @param currentQuestion
+     *            the question to get
+     * @param numberOfChoices
+     *            Number of possible choices for that question
      */
-    public AppCenter(final Module module, final int currentQuestion,
-            int numberOfChoices) {
+    public AppCenter( final Module module, final int currentQuestion, int numberOfChoices ) {
 
         _questionNumber = currentQuestion;
 
@@ -88,12 +89,11 @@ public class AppCenter extends JPanel {
 
         }
 
-        printQuestion(module.getQuestions().get(_questionNumber),
-                numberOfChoices);
+        printQuestion(module.getQuestions().get(_questionNumber), numberOfChoices);
     }
 
     /**
-     *
+     * 
      * @return int number of question
      */
     public int getCurrentQuestion() {
@@ -102,11 +102,13 @@ public class AppCenter extends JPanel {
 
     /**
      * Make the question appear on the frame
-     *
-     * @param theQuestion The question to make appear
-     * @param numberOfChoices Number of choices of that question
+     * 
+     * @param theQuestion
+     *            The question to make appear
+     * @param numberOfChoices
+     *            Number of choices of that question
      */
-    private void printQuestion(Question theQuestion, int numberOfChoices) {
+    private void printQuestion( Question theQuestion, int numberOfChoices ) {
         String[] lesChoixPossible = null;
 
         _questionlabel = theQuestion.getQuestionLabel();
@@ -118,7 +120,7 @@ public class AppCenter extends JPanel {
             answers.get(i).setText(_possibleChoices.get(i) + labels.get(i));
             _reponse.add(answers.get(i));
 
-            if (labels.get(i).isEmpty()) {
+            if ( labels.get(i).isEmpty() ) {
                 answers.get(i).setVisible(false);
             } else {
                 answers.get(i).setVisible(true);
@@ -137,15 +139,14 @@ public class AppCenter extends JPanel {
 
     /**
      * Set the picture on the frame
-     *
+     * 
      */
     private void setImageOnFrame() {
-        if (_picturePath.equals(NOPICTURE)) {
+        if ( _picturePath.equals(NOPICTURE) ) {
             _picture.setVisible(false);
         } else {
             ImageIcon image = new ImageIcon(IMAGEPATH + _picturePath);
-            Dimension imageSize = new Dimension(image.getIconWidth(),
-                    image.getIconHeight());
+            Dimension imageSize = new Dimension(image.getIconWidth(), image.getIconHeight());
 
             _picture.setIcon(image);
             _picture.setPreferredSize(imageSize);
@@ -159,7 +160,7 @@ public class AppCenter extends JPanel {
 
     /**
      * Set Listener on each JButton of possible answers
-     *
+     * 
      * @param module
      *            The current module
      * @param currentQuestion
@@ -167,17 +168,16 @@ public class AppCenter extends JPanel {
      * @param numberOfChoices
      *            The number of Choices for that question
      */
-    private void setListenerOnJButton(final Module module,
-            final int currentQuestion, int numberOfChoices) {
+    private void setListenerOnJButton( final Module module, final int currentQuestion, int numberOfChoices ) {
         for (int i = 0; i < numberOfChoices; i++) {
             answers.get(i).setName(_possibleChoices.get(i));
             answers.get(i).addMouseListener(new java.awt.event.MouseAdapter() {
 
                 @Override
-                public void mouseClicked(MouseEvent e) {
+                public void mouseClicked( MouseEvent e ) {
                     e.getComponent().setEnabled(false);
-                    if (module.getQuestions().get(currentQuestion).getReponse() == e
-                            .getComponent().getName().charAt(0)) {
+                    if ( module.getQuestions().get(currentQuestion).getReponse() == e.getComponent().getName()
+                            .charAt(0) ) {
                         e.getComponent().setBackground(Color.GREEN);
 
                     } else {
@@ -187,27 +187,25 @@ public class AppCenter extends JPanel {
                 }
 
                 @Override
-                public void mouseEntered(MouseEvent e) {
-                    if (!(e.getComponent().getBackground() != Color.GREEN || e
-                            .getComponent().getBackground() != Color.RED)) {
+                public void mouseEntered( MouseEvent e ) {
+                    if ( !(e.getComponent().getBackground() != Color.GREEN || e.getComponent().getBackground() != Color.RED) ) {
                         e.getComponent().setBackground(Color.LIGHT_GRAY);
                     }
                 }
 
                 @Override
-                public void mouseExited(MouseEvent e) {
-                    if (!(e.getComponent().getBackground() == Color.GREEN || e
-                            .getComponent().getBackground() == Color.RED)) {
+                public void mouseExited( MouseEvent e ) {
+                    if ( !(e.getComponent().getBackground() == Color.GREEN || e.getComponent().getBackground() == Color.RED) ) {
                         e.getComponent().setBackground(Color.LIGHT_GRAY);
                     }
 
                 }
 
                 @Override
-                public void mousePressed(MouseEvent e) {
+                public void mousePressed( MouseEvent e ) {
                     e.getComponent().setEnabled(false);
-                    if (module.getQuestions().get(currentQuestion).getReponse() == e
-                            .getComponent().getName().charAt(0)) {
+                    if ( module.getQuestions().get(currentQuestion).getReponse() == e.getComponent().getName()
+                            .charAt(0) ) {
                         e.getComponent().setBackground(Color.GREEN);
                     } else {
                         e.getComponent().setBackground(Color.RED);
@@ -216,7 +214,7 @@ public class AppCenter extends JPanel {
                 }
 
                 @Override
-                public void mouseReleased(MouseEvent e) {
+                public void mouseReleased( MouseEvent e ) {
 
                 }
             });
@@ -225,12 +223,11 @@ public class AppCenter extends JPanel {
 
     /**
      * \brief Set the question label on the frame
-     *
+     * 
      */
     private void setQuestionLabelOnFrame() {
         _question.setContentType("text/html");
-        _question.setText("<b>Question #" + (_questionNumber + 1) + "</b>:  "
-                + _questionlabel);
+        _question.setText("<b>Question #" + (_questionNumber + 1) + "</b>:  " + _questionlabel);
         _question.setEditable(false);
         _question.setBackground(Color.LIGHT_GRAY);
 

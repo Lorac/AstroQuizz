@@ -27,19 +27,19 @@ public class Module {
     private int                 _size;
 
     /**
-     *
+     * 
      * @param module
      */
-    public Module(String module) {
+    public Module( String module ) {
         _questions = new ArrayList<Question>();
         construireQuestionnaire(module);
     }
 
     /**
-     *
+     * 
      * @param module
      */
-    public void construireQuestionnaire(String module) {
+    public void construireQuestionnaire( String module ) {
         BufferedReader fluxEntree = null;
         String questionLabel;
         String[] choixReponse = new String[5];
@@ -50,21 +50,20 @@ public class Module {
         String picturePath;
 
         int i = 0;
-        if (module != "") {
+        if ( module != "" ) {
             try {
-                fluxEntree = new BufferedReader(new InputStreamReader(
-                        new FileInputStream("./Ressources/" + module + ".txt"),
-                        "UTF-8"));
+                fluxEntree = new BufferedReader(new InputStreamReader(new FileInputStream("./Ressources/" + module
+                        + ".txt"), "UTF-8"));
 
                 do {
 
                     questionLabel = fluxEntree.readLine();
-                    if (questionLabel == null) {
+                    if ( questionLabel == null ) {
                         break;
                     }
                     for (i = 0; i < 5; i++) {
                         LigneLue = fluxEntree.readLine();
-                        if (!LigneLue.isEmpty()) {
+                        if ( !LigneLue.isEmpty() ) {
                             choixReponse[i] = (LigneLue);
                             nbChoix++;
                         }
@@ -72,24 +71,23 @@ public class Module {
                     reponse = fluxEntree.readLine().charAt(0);
                     picturePath = fluxEntree.readLine();
 
-                    _questions.add(new Question(questionLabel, choixReponse,
-                            nbChoix, reponse, picturePath));
+                    _questions.add(new Question(questionLabel, choixReponse, nbChoix, reponse, picturePath));
                     nbChoix = 0;
 
                 } while (questionLabel != "");
                 setName(module);
                 setSize(_questions.size());
 
-            } catch (IOException exc) {
+            } catch ( IOException exc ) {
                 exc.printStackTrace();
-            } catch (NullPointerException ex) {
+            } catch ( NullPointerException ex ) {
 
             }
 
-            if (fluxEntree != null) {
+            if ( fluxEntree != null ) {
                 try {
                     fluxEntree.close();
-                } catch (IOException e) {
+                } catch ( IOException e ) {
                     System.err.println("Error can't close the ressource file");
                     e.printStackTrace();
                 }
@@ -106,7 +104,7 @@ public class Module {
     }
 
     /**
-     *
+     * 
      * @return
      */
     public ArrayList<Question> getQuestions() {
@@ -124,7 +122,7 @@ public class Module {
      * @param _name
      *            the _name to set
      */
-    public void setName(String _name) {
+    public void setName( String _name ) {
         this._name = _name;
     }
 
@@ -132,7 +130,7 @@ public class Module {
      * @param _size
      *            the _size to set
      */
-    public void setSize(int _size) {
+    public void setSize( int _size ) {
         this._size = _size;
     }
 }
