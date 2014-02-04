@@ -10,7 +10,7 @@
  *     Maxime Roussin-Bélanger - Huge refactor
  *     Simon Gamache-Poirer - Helped the huge refactor
  *******************************************************************************/
-package appInterface;
+package com.lorack.astro_quizz.ui;
 
 import java.awt.Color;
 
