@@ -55,11 +55,11 @@ public class AppCenter extends JPanel {
     private int                 _questionNumber  = 0;
 
     /**
+     * Create the app Center
      *
-     * Create the AppCenter
-     *
-     * @param moduleComboBox
-     * @param currentQuestion
+     * @param module The module to create with
+     * @param currentQuestion the question to get
+     * @param numberOfChoices Number of possible choices for that question
      */
     public AppCenter(final Module module, final int currentQuestion,
             int numberOfChoices) {
@@ -88,21 +88,25 @@ public class AppCenter extends JPanel {
 
         }
 
-        afficherLaQuestion(module.getQuestions().get(_questionNumber),
+        printQuestion(module.getQuestions().get(_questionNumber),
                 numberOfChoices);
     }
 
+    /**
+     *
+     * @return int number of question
+     */
     public int getCurrentQuestion() {
         return _questionNumber;
     }
 
     /**
-     * afficherLaQuestion
+     * Make the question appear on the frame
      *
-     * @param moduleComboBox
-     * @param currentQuestion
+     * @param theQuestion The question to make appear
+     * @param numberOfChoices Number of choices of that question
      */
-    private void afficherLaQuestion(Question theQuestion, int numberOfChoices) {
+    private void printQuestion(Question theQuestion, int numberOfChoices) {
         String[] lesChoixPossible = null;
 
         _questionlabel = theQuestion.getQuestionLabel();
@@ -132,6 +136,7 @@ public class AppCenter extends JPanel {
     }
 
     /**
+     * Set the picture on the frame
      *
      */
     private void setImageOnFrame() {
@@ -147,7 +152,7 @@ public class AppCenter extends JPanel {
             _picture.setBackground(Color.LIGHT_GRAY);
             _picture.setOpaque(true);
 
-            add(_picture, "East");
+            add(_picture, BorderLayout.NORTH);
             _picture.setVisible(true);
         }
     }
@@ -219,6 +224,7 @@ public class AppCenter extends JPanel {
     }
 
     /**
+     * \brief Set the question label on the frame
      *
      */
     private void setQuestionLabelOnFrame() {

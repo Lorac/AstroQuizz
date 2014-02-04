@@ -30,6 +30,11 @@ import org.apache.commons.lang3.text.WordUtils;
 
 import com.lorack.astro_quizz.domain.Module;
 
+/**
+ *
+ * @author Maxime
+ *
+ */
 public class AppFrame extends JFrame implements ActionListener {
 
     private static final long  serialVersionUID = 1L;
@@ -47,6 +52,7 @@ public class AppFrame extends JFrame implements ActionListener {
     private JPanel             _top             = new JPanel();
 
     /**
+     * Makes the whole frame
      *
      * @param questionnaires
      */
@@ -64,6 +70,9 @@ public class AppFrame extends JFrame implements ActionListener {
 
     }
 
+    /**
+     * Any action performed on any button is here
+     */
     public void actionPerformed(ActionEvent evt) {
 
         String moduleChanged = getModuleAsKey();
@@ -121,6 +130,7 @@ public class AppFrame extends JFrame implements ActionListener {
     }
 
     /**
+     * Initialiase a question
      *
      * @param module
      * @param question
@@ -155,6 +165,8 @@ public class AppFrame extends JFrame implements ActionListener {
     }
 
     /**
+     * Get a module as a Key for the Map
+     *
      * @return string as key for the map
      */
     private String getModuleAsKey() {
@@ -168,7 +180,8 @@ public class AppFrame extends JFrame implements ActionListener {
     /**
      *
      * @param module
-     * @return int number of Possible Choices in a question
+     * @param currentQuestion
+     * @return the number of possible choices for a question
      */
     private int getNumberOfPossibleChoicesOfAQuestion(String module,
             int currentQuestion) {
@@ -208,9 +221,6 @@ public class AppFrame extends JFrame implements ActionListener {
         return size;
     }
 
-    /**
-	 *
-	 */
     private void setActionListener() {
         _mainToolBar.moduleComboBox.addActionListener(this);
         _mainToolBar.randomButton.addActionListener(this);
@@ -218,9 +228,6 @@ public class AppFrame extends JFrame implements ActionListener {
         _botToolBar.previousButton.addActionListener(this);
     }
 
-    /**
-	 *
-	 */
     private void setWindowsProperty() {
 
         setSize(1024, 600);
@@ -232,12 +239,12 @@ public class AppFrame extends JFrame implements ActionListener {
 
         _top.setBackground(Color.LIGHT_GRAY);
         _top.setLayout(new BorderLayout());
-        _top.add(_mainToolBar, "East");
-        _top.add(_mainToolBar.randomButton, "West");
+        _top.add(_mainToolBar, BorderLayout.EAST);
+        _top.add(_mainToolBar.randomButton, BorderLayout.WEST);
 
-        _container.add(_top, "North");
-        _container.add(_botToolBar, "South");
-        _container.add(_questionArea, "Center");
+        _container.add(_top, BorderLayout.NORTH);
+        _container.add(_botToolBar, BorderLayout.SOUTH);
+        _container.add(_questionArea, BorderLayout.CENTER);
         _botToolBar.previousButton.setEnabled(false);
         setContentPane(_container);
 

@@ -40,6 +40,9 @@ public abstract class MainApp {
 
     }
 
+    /**
+     *
+     */
     private static void setLookAndFeel() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -73,6 +76,7 @@ public abstract class MainApp {
     }
 
     /**
+     * It creates all the questionnaires
      *
      * @param questionnaires
      */

@@ -26,11 +26,19 @@ public class Module {
     private ArrayList<Question> _questions;
     private int                 _size;
 
+    /**
+     *
+     * @param module
+     */
     public Module(String module) {
         _questions = new ArrayList<Question>();
         construireQuestionnaire(module);
     }
 
+    /**
+     *
+     * @param module
+     */
     public void construireQuestionnaire(String module) {
         BufferedReader fluxEntree = null;
         String questionLabel;
@@ -97,6 +105,10 @@ public class Module {
         return _name;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Question> getQuestions() {
         return _questions;
     }

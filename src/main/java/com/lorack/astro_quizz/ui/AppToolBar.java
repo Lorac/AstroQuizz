@@ -9,6 +9,7 @@
  *     Unknown - initial API and implementation
  *     Maxime Roussin-Bélanger - Huge refactor
  *     Simon Gamache-Poirer - Helped the huge refactor
+ *     Jean Lalande - Helped on the MAC Integretion
  *******************************************************************************/
 
 package com.lorack.astro_quizz.ui;
