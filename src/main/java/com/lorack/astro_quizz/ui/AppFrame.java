@@ -152,9 +152,9 @@ public class AppFrame extends JFrame implements ActionListener {
             System.err.println("initQuestion : The specified key is null and this map does not permit null keys");
         }
 
-        _container.add(_questionArea, "Center");
-        _top.add(_mainToolBar, "East");
-        _container.add(_top, "North");
+        _container.add(_questionArea, BorderLayout.CENTER);
+        _top.add(_mainToolBar, BorderLayout.EAST);
+        _container.add(_top, BorderLayout.NORTH);
 
         _questionArea.setVisible(true);
 

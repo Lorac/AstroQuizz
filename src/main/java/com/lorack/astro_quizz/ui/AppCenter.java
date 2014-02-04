@@ -153,7 +153,7 @@ public class AppCenter extends JPanel {
             _picture.setBackground(Color.LIGHT_GRAY);
             _picture.setOpaque(true);
 
-            add(_picture, BorderLayout.NORTH);
+            add(_picture, BorderLayout.EAST);
             _picture.setVisible(true);
         }
     }
@@ -231,8 +231,8 @@ public class AppCenter extends JPanel {
         _question.setEditable(false);
         _question.setBackground(Color.LIGHT_GRAY);
 
-        add(_question, "North");
-        add(_reponse, "Center");
+        add(_question, BorderLayout.NORTH);
+        add(_reponse, BorderLayout.CENTER);
         repaint();
     }
 
