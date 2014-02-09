@@ -1,0 +1,64 @@
+﻿Une trajectoire évolutive est représentée dans un graphique HR. Une telle trajectoire correspond à :
+Le déplacement de l'étoile dans l'espace
+L'évolution des caractéristiques de différentes générations d'étoiles
+Les caractéristiques d'une étoile changeant avec le temps
+Les caractéristiques d'un groupe d'étoile à un temps donné
+Aucune de ces réponses
+C
+UN-Evolution stellaire-1.jpg
+Voici la trajectoire évolutive d'une étoile moyennement massive. Quelle position sur la trajectoire correspond au diagramme de coupe du noyau?
+A
+B
+C
+D
+
+C
+UN-Evolution stellaire-2.jpg
+Les points de virage pour 4 amas d'étoiles sont représentés sur la séquence principale d'un diagramme HR. Quel est l'amas le plus jeune?
+A
+B
+C
+D
+
+A
+UN-Evolution stellaire-3.jpg
+Laquelle de ces étoiles à neutron sera observée comme étant un pulsar?
+A
+B
+C
+D
+
+B
+UN-Evolution stellaire-4.jpg
+Le rayon de Schwarzchild Rsch d'un trou noir de 1 masse solaire est 3km. Donc, le rayon de Schwarzchild pour un trou noir de 2 masses solaires doit être...
+0,75 km
+1,5 km
+3,0 km
+6,0 km
+9,0 km
+D
+NO PICTURE
+Quel graphique montre correctement la relation entre le rayon de Schwarzchild d'un trou noir et sa masse?
+A
+B
+C
+D
+
+C
+UN-Evolution stellaire-6.jpg
+Comparée aux premières étapes de la chaine p-p, la barrière de Coulomb pour cette réaction de fusion est _____ plus large.
+12
+4
+36
+6
+48
+B
+UN-Evolution stellaire-7.jpg
+Le tableau suivant montre les types d'étoiles dans 4 systèmes binaires. Lequel de ces systèmes montre une évidence d'un transfert de masse? Note. M.S. = Séquence principale, R.G = Géante Rouge)
+A
+B
+C
+D
+
+C
+UN-Evolution stellaire-8.jpg
