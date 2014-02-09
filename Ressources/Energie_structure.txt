@@ -1,10 +1,10 @@
-Pourquoi deux protons se combinent-ils pour former un noyau de deutérieum dans une étoile comme le Soleil?
+﻿Pourquoi deux protons se combinent-ils pour former un noyau de deutérium dans une étoile comme le Soleil?
 La force électromagnétique les attire fortement
 La force gravitationnelle les attire fortement
 Leur vitesse est très grande
 Il n'y a pas de combinaison entre protons dans le coeur du Soleil
 A la fois a) et c)
-REPONSE
+C
 NO PICTURE
 Juste après l'épuisement de l'hydrogène dans le coeur du Soleil, le coeur consiste surtout de
 carbone
@@ -12,7 +12,7 @@ deutérium
 hélium
 oxygène
 
-REPONSE
+C
 NO PICTURE
 Qu'est-ce qui augmenterait le temps qu'une étoile passe à fusionner de l'hydrogène en hélium?
 Une augmentation de la température du coeur
@@ -20,5 +20,5 @@ Un enrichissement du coeur en hydrogène
 Une augmentation de la masse de l'étoile
 Aucune de ces options
 
-REPONSE
+B
 NO PICTURE

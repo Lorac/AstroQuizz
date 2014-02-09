@@ -21,8 +21,6 @@ import java.util.TreeMap;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import org.apache.commons.lang3.text.WordUtils;
-
 import com.lorack.astro_quizz.domain.Module;
 import com.lorack.astro_quizz.ui.AppFrame;
 
@@ -83,7 +81,7 @@ public abstract class MainApp {
             if ( listOfFiles[i].isFile() ) {
                 String fileName = listOfFiles[i].getName().substring(0, listOfFiles[i].getName().lastIndexOf("."));
 
-                questionnaires.put(WordUtils.uncapitalize(fileName), new Module(fileName));
+                questionnaires.put(fileName.toLowerCase(), new Module(fileName));
 
             }
         }

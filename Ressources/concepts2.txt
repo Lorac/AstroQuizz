@@ -1,4 +1,4 @@
-Vous observez une étoile avec un télescope de 10 cm. Votre jumelle observe la même étoile, mais d'une distance 3 fois plus grande. Quelle grandeur de télescope votre jumelle doit-elle avoir pour voir la même étoile avec la même brillance?
+﻿Vous observez une étoile avec un télescope de 10 cm. Votre jumelle observe la même étoile, mais d'une distance 3 fois plus grande. Quelle grandeur de télescope votre jumelle doit-elle avoir pour voir la même étoile avec la même brillance?
 5 cm
 10 cm
 30 cm

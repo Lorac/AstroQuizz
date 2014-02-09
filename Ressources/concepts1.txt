@@ -1,4 +1,4 @@
-Si vous pouviez ajouter un proton au noyau d'un atome pour créer un nouvel atome isolé stable, vous auriez créé:
+﻿Si vous pouviez ajouter un proton au noyau d'un atome pour créer un nouvel atome isolé stable, vous auriez créé:
 Un élément différent avec une charge positive
 Un élément différent avec une charge négative
 Un isotope de l'élément original
@@ -36,7 +36,7 @@ Des raies d'absorption d'hydrogène décalées vers le bleu
 Des raies d'émission d'hydrogène décalées vers le rouge
 Des raies d'absorption d'hydrogène décalées vers le rouge
 Un spectre continu d'hydrogène décalé vers le rouge
-B
+D
 NO PICTURE
 Qu'est-ce qui cause un décalage Doppler dans la lumière provenant d'une étoile?
 La distance entre l'étoile et nous

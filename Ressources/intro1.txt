@@ -1,4 +1,4 @@
-﻿Le nombre d'êtres humains sur Terre est d'environs 6 milliards, ce qui s'écrit en notation scientifique :
+﻿Le nombre d'êtres humains sur Terre est d'environ 6 milliards, ce qui s'écrit en notation scientifique :
 6 à la puissance 9
 6 à la 9ième puissance de 10
 6 fois 10 à la puissance 9
@@ -20,7 +20,7 @@ Pour voir le maximum possible d'étoiles sur une période d'une année, une pers
 0
 N'importe laquelle, puisque la latitude n'a pas d'importance
 
-REPONSE
+C
 NO PICTURE
 Vous êtes à Quito, en équateur, le 21 septembre, et il est midi. À combien de degrés au-dessus de l'horizon se trouve le Soleil?
 0
@@ -28,7 +28,7 @@ Vous êtes à Quito, en équateur, le 21 septembre, et il est midi. À combien d
 45
 46
 90
-REPONSE
+D
 NO PICTURE
 Vous êtes perdu sur une île déserte et voyez l'étoile polaire à 17 degrés au dessus de votre horizon nord. A quelle latitude vous trouvez-vous?
 73 degrés sud
@@ -36,7 +36,7 @@ Vous êtes perdu sur une île déserte et voyez l'étoile polaire à 17 degrés 
 73 degrés nord
 17 degrés sud
 
-REPONSE
+B
 NO PICTURE
 Le premier jour de l'hiver dans l'hémisphère nord, le Soleil se couche:
 au nord de l'ouest
@@ -44,7 +44,7 @@ directement à l'ouest
 au sud de l'ouest
 directement au sud
 
-REPONSE
+C
 NO PICTURE
 Vous visitez l'Australie en août. Quel énoncé est vrai? C'est
 l'hiver et le Soleil se lève au nord-est
@@ -52,5 +52,5 @@ l'été et le Soleil se lève au nord-est
 l'hiver et le Soleil se lève au sud-est
 l'été et le Soleil se lève au sud-est
 
-REPONSE
+A
 NO PICTURE

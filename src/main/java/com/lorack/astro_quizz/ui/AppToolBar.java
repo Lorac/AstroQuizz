@@ -25,8 +25,6 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JToolBar;
 
-import org.apache.commons.lang3.text.WordUtils;
-
 public class AppToolBar extends JToolBar {
 
     private static final long serialVersionUID = 1L;
@@ -69,8 +67,6 @@ public class AppToolBar extends JToolBar {
                 for (int i = 0; i < list.size(); i++) {
                     String moduleName = (String) list.get(i).getName()
                             .subSequence(0, list.get(i).getName().length() - 4);
-                    moduleName = moduleName.trim().replace(' ', '_');
-                    moduleName = WordUtils.capitalize(moduleName);
                     moduleName = moduleName.replace('_', ' ');
                     moduleComboBox.addItem(moduleName);
                 }

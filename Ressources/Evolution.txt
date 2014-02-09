@@ -1,10 +1,10 @@
-Deux étoiles sont sur la séquence principale. Quel énoncé est vrai?
+﻿Deux étoiles sont sur la séquence principale. Quel énoncé est vrai?
 La plus lumineuse vivra plus longtemps
 La plus faible est la plus massive
 La plus lumineuse est la plus massive
 La plus lumineuse a une couleur plus rouge
 
-A
+C
 NO PICTURE
 Une étoile évolue vers le stade de géante rouge.
 Sa température de surface et sa luminosité augmentent
@@ -12,15 +12,15 @@ Sa température de surface et sa luminosité décroissent
 Sa luminosité décroît et sa température de surface augmente
 Sa luminosité augmente et sa température de surface décroît
 
-REPONSE
+D
 NO PICTURE
-Une étoile de la séquence principale a dix fois la masse du Solei. Par rapport au Soleil, quel énoncé est vrai?
+Une étoile de la séquence principale a dix fois la masse du Soleil. Par rapport au Soleil, quel énoncé est vrai?
 Sa température de surface est plus petite
 Elle est plus rouge, plus lumineuse et plus volumineuse que le Soleil
 Elle est plus bleue, plus volumineuse et plus lumineuse que le Soleil
 A la fois a) et b)
 A la fois a) et c)
-REPONSE
+C
 NO PICTURE
 Laquelle de ces deux étoiles est probablement la plus vieille?
 une étoile solaire de la séquence principale
@@ -28,7 +28,7 @@ une naine blanche d'une masse solaire
 une étoile de la séquence principale de 10 fois la masse du Soleil
 une géante rouge de 10 fois la masse du Soleil
 
-REPONSE
+B
 NO PICTURE
 Dans quelques 5 milliards d'année, le Soleil aura passé à travers la phase de géante rouge et sera devenu une naine blanche. Si son rayon actuel est 1, l'ordre de progression de son rayon aura été:
 1, 400, 0.01
@@ -36,7 +36,7 @@ Dans quelques 5 milliards d'année, le Soleil aura passé à travers la phase de
 0.01, 400, 1
 1, 0.01, 400
 
-REPONSE
+A
 NO PICTURE
 Lorsqu'une étoile devient géante rouge, le brûlage d'hydrogène en hélium
 a cessé complètement
@@ -44,7 +44,7 @@ se passe uniquement dans le coeur de l'étoile
 se passe uniquement dans une coquille à l'extérieur du coeur
 se passe dans une série de coquilles concentriques autour du coeur
 
-REPONSE
+C
 NO PICTURE
 On considère deux étoiles. L'étoile A brûle du carbone dans son coeur, l'étoile B contient du néon dans son coeur. Quel énoncé est vrai?
 Les deux étoiles deviendront naine blanche
@@ -52,5 +52,7 @@ A deviendra naine blanche et B étoile à neutrons
 A deviendra étoile à neutrons et B naine blanche
 les deux étoiles vont mourir en explosion de supernova
 
-REPONSE
+D
 NO PICTURE
+
+

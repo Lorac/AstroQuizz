@@ -26,8 +26,6 @@ import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import org.apache.commons.lang3.text.WordUtils;
-
 import com.lorack.astro_quizz.domain.Module;
 
 /**
@@ -56,14 +54,15 @@ public class AppFrame extends JFrame implements ActionListener {
      * 
      * @param questionnaires
      */
-    public AppFrame( Map<String, Module> questionnaires ) {
+    public AppFrame(Map<String, Module> questionnaires) {
         modules = questionnaires;
         _moduleName = _mainToolBar.moduleComboBox.getSelectedItem().toString();
 
         String moduleAsKey = getModuleAsKey();
+        System.out.println(moduleAsKey);
 
         _questionArea = new AppCenter(modules.get(moduleAsKey), 0,
-                getNumberOfPossibleChoicesOfAQuestion(moduleAsKey, 0));
+                        getNumberOfPossibleChoicesOfAQuestion(moduleAsKey, 0));
 
         setWindowsProperty();
         setActionListener();
@@ -73,27 +72,30 @@ public class AppFrame extends JFrame implements ActionListener {
     /**
      * Any action performed on any button is here
      */
-    public void actionPerformed( ActionEvent evt ) {
+    public void actionPerformed(ActionEvent evt) {
 
         String moduleChanged = getModuleAsKey();
 
         int nextQuestion = _questionArea.getCurrentQuestion() + 1;
         int previousQuestion = _questionArea.getCurrentQuestion() - 1;
 
-        if ( evt.getSource() == _mainToolBar.randomButton ) {
+        if (evt.getSource() == _mainToolBar.randomButton) {
             // Need to disable the ActionListener to not call initQuestion twice
             this._mainToolBar.moduleComboBox.removeActionListener(this);
             chooseRandomQuestion();
             this._mainToolBar.moduleComboBox.addActionListener(this);
-        } else if ( evt.getSource() == _botToolBar.nextButton ) {
+        }
+        else if (evt.getSource() == _botToolBar.nextButton) {
 
             initQuestion(moduleChanged, nextQuestion);
 
-        } else if ( evt.getSource() == _botToolBar.previousButton ) {
+        }
+        else if (evt.getSource() == _botToolBar.previousButton) {
 
             initQuestion(moduleChanged, previousQuestion);
 
-        } else if ( evt.getSource() == _mainToolBar.moduleComboBox ) {
+        }
+        else if (evt.getSource() == _mainToolBar.moduleComboBox) {
             initQuestion(moduleChanged, 0);
 
         }
@@ -108,7 +110,7 @@ public class AppFrame extends JFrame implements ActionListener {
         Random random = new Random();
         int randomQuestionNumber = random.nextInt(module.getSize());
 
-        initQuestion(module.getName(), randomQuestionNumber);
+        initQuestion(module.getName().toLowerCase(), randomQuestionNumber);
 
     }
 
@@ -135,7 +137,7 @@ public class AppFrame extends JFrame implements ActionListener {
      * @param module
      * @param question
      */
-    public void initQuestion( String module, int question ) {
+    public void initQuestion(String module, int question) {
         _container.remove(_questionArea);
         int nbQuestion = getNumberOfQuestion(module);
 
@@ -143,12 +145,14 @@ public class AppFrame extends JFrame implements ActionListener {
         _botToolBar.nextButton.setEnabled(nbQuestion - question - 1 > 0);
 
         try {
-            _questionArea = new AppCenter(modules.get(module), question, getNumberOfPossibleChoicesOfAQuestion(module,
-                    question));
-        } catch ( ClassCastException e ) {
-            System.err.println("The key is of an inappropriate type for this map, Key :" + module);
+            _questionArea = new AppCenter(modules.get(module), question,
+                            getNumberOfPossibleChoicesOfAQuestion(module,
+                                            question));
+        } catch (ClassCastException e) {
+            System.err.println("The key is of an inappropriate type for this map, Key :"
+                            + module);
 
-        } catch ( NullPointerException e ) {
+        } catch (NullPointerException e) {
             System.err.println("initQuestion : The specified key is null and this map does not permit null keys");
         }
 
@@ -168,9 +172,8 @@ public class AppFrame extends JFrame implements ActionListener {
      */
     private String getModuleAsKey() {
         _moduleName = _mainToolBar.moduleComboBox.getSelectedItem().toString();
-        String moduleChanged = WordUtils.uncapitalize(_moduleName);
+        String moduleChanged = _moduleName.toLowerCase();
         moduleChanged = moduleChanged.trim().replace(' ', '_');
-
         return moduleChanged;
     }
 
@@ -180,14 +183,17 @@ public class AppFrame extends JFrame implements ActionListener {
      * @param currentQuestion
      * @return the number of possible choices for a question
      */
-    private int getNumberOfPossibleChoicesOfAQuestion( String module, int currentQuestion ) {
+    private int getNumberOfPossibleChoicesOfAQuestion(String module,
+                    int currentQuestion) {
         int NbChoix = 0;
         try {
-            NbChoix = modules.get(module).getQuestions().get(currentQuestion).getNbChoix();
-        } catch ( ClassCastException e ) {
-            System.err.println("The key is of an inappropriate type for this map" + module);
+            NbChoix = modules.get(module).getQuestions().get(currentQuestion)
+                            .getNbChoix();
+        } catch (ClassCastException e) {
+            System.err.println("The key is of an inappropriate type for this map"
+                            + module);
 
-        } catch ( NullPointerException e ) {
+        } catch (NullPointerException e) {
             System.err.println("The specified key is null and this map does not permit null keys");
         }
         return NbChoix;
@@ -198,14 +204,15 @@ public class AppFrame extends JFrame implements ActionListener {
      * @param module
      * @return int Number of questions for a Module
      */
-    private int getNumberOfQuestion( String module ) {
+    private int getNumberOfQuestion(String module) {
         int size = 0;
         try {
             size = modules.get(module).getSize();
-        } catch ( ClassCastException e ) {
-            System.err.println("The key is of an inappropriate type for this map (optional)");
+        } catch (ClassCastException e) {
+            System.err.println("The key is of an inappropriate type for this map :"
+                            + module);
 
-        } catch ( NullPointerException e ) {
+        } catch (NullPointerException e) {
             System.err.println("The specified key is null and this map does not permit null keys");
         }
         return size;

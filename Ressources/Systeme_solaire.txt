@@ -4,7 +4,7 @@ un peu plus froides que le reste de la photosphère
 des structures opaques bloquant la lumière de la surface solaire
 la cause de dommage à la rétine
 
-REPONSE
+B
 NO PICTURE
 Dans le Soleil, le transport d'énergie entre l'intérieur profond du Soleil et la surface se fait par un processus qui ressemble à celui qui
 fait qu'une cuillère plongée dans une tasse d'eau bouillante devient chaude au toucher
@@ -12,7 +12,7 @@ chauffe les éléments chauffants d'un four normal
 fait bouillir l'eau dans une casserole
 fait que vous sentez de la chaleur lorsque vous mettez votre main près d'un foyer allumé
 
-REPONSE
+D
 NO PICTURE
 La température du Soleil
 augmente constamment du centre vers l'extérieur
@@ -20,7 +20,7 @@ baisse constamment du centre vers l'extérieur
 augmente du centre jusqu'à la photosphère et baisse ensuite
 baisse du centre jusqu'à la photosphère et augmente ensuite
 
-REPONSE
+D
 NO PICTURE
 La queue d'une comète pointe généralement
 en direction opposée au Soleil
@@ -28,7 +28,7 @@ en direction opposée au mouvement de la comète
 vers le Soleil à cause de sa gravité
 le long du champ magnétique de la comète
 
-REPONSE
+A
 NO PICTURE
 Il y a peu ou pas d'atmosphère sur la Lune parce que
 le sol est sec et a absorbé toute l'atmosphère
@@ -36,15 +36,15 @@ elle a été perdue à cause du bombardement incessant de météores
 la faible masse de la Lune et sa température élevée ont permis aux molécules de s'échapper
 les forces de marée de la Terre l'ont arrachée
 
-REPONSE
+C
 NO PICTURE
 Le fait qu'il y ait moins de cratères sur les mers lunaires que sur les hautes terres indique que
 les mers sont plus vieilles que les hautes terres
 les cratères se sont formés par des éruptions volcaniques
-les mers se sont formés plus récemment
+les mers se sont formées plus récemment
 les mers sont d'origine volcanique
 
-REPONSE
+C
 NO PICTURE
 Les planètes que l'on ne voit jamais sur notre méridien à minuit sont (plus d'une réponse est possible...)
 Mercure
@@ -52,7 +52,7 @@ Vénus
 Mars
 Jupiter
 Saturne
-REPONSE
+
 NO PICTURE
 Lequel des énoncés suivants est correct?
 Les planètes ont leur axe de rotation perpendiculaire à l'écliptique
@@ -60,5 +60,6 @@ Aucune planète n'a son inclinaison orbitale à plus de 20 degrés de l'éclipti
 Les orbites des planètes sont circulaires
 Les planètes effectuent leur rotation et leur révolution dans le même sens
 
-REPONSE
+B
 NO PICTURE
+

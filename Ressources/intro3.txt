@@ -4,7 +4,7 @@ certaines planètes sont plus brillantes que d'autres
 le Soleil se lève et se couche
 toutes les planètes ne sont pas nécessairement toutes visibles le même soir
 les éclipses se produisent
-REPONSE
+A
 NO PICTURE
 Laquelle des descriptions suivantes correspond à la relation entre la période de révolution P et la distance R à partir du centre d'un point sur un CD
 le carré de P est proportionnel au carré de R
@@ -12,7 +12,7 @@ le carré de P est proportionnel au cube de R
 P est proportionnel à R
 P est proportionnel à la racine carrée de R
 P ne dépend pas de R
-REPONSE
+E
 NO PICTURE
 La vitesse orbitale d'une planète au périhélie par rapport à sa vitesse à l'aphélie est
 plus grande
@@ -20,7 +20,7 @@ plus petite
 la même
 tend vers l'infini
 nulle
-REPONSE
+A
 NO PICTURE
 Une planète hypothétique a un demi-grand axe majeur égal à 2 fois celui de la Terre. Sa période sidérale est d'environ
 1 année terrestre
@@ -28,5 +28,5 @@ Une planète hypothétique a un demi-grand axe majeur égal à 2 fois celui de l
 2.8 années terrestres
 8 années terrestres
 16 années terrestres
-REPONSE
+C
 NO PICTURE

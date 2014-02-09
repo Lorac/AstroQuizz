@@ -4,7 +4,7 @@
 1 pc
 0.1 pc
 0.1 UA
-D
+B
 NO PICTURE
 La phase de la Lune lors d'une éclipse lunaire est
 toujours pleine
@@ -12,7 +12,7 @@ toujours nouvelle
 toujours premier croissant
 toujours dernier croissant
 indépendante de la géométrie
-REPONSE
+A
 NO PICTURE
 Si la Lune se lève aujourd'hui à 9 h pm, demain elle se lèvera vers
 10 pm
@@ -20,7 +20,7 @@ Si la Lune se lève aujourd'hui à 9 h pm, demain elle se lèvera vers
 9:50 pm
 8:10 pm
 minuit
-REPONSE
+C
 NO PICTURE
 Si la Terre était sur une orbite plus distante du Soleil que maintenant
 le jour serait plus long
@@ -28,5 +28,5 @@ le jour serait plus court
 l'année serait plus longue
 l'année serait plus courte
 Deux des choix mentionnés sont corrects
-REPONSE
+C
 NO PICTURE

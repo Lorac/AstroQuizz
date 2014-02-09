@@ -4,7 +4,7 @@ GNM, Andromède, Vierge
 GNM, Vierge, Andromède
 Andromède, Vierge, GNM
 Andromède, GNM, Vierge
-REPONSE
+B
 NO PICTURE
 La meilleure façon de déterminer les distances aux autres galaxies est de chercher des objets pour lesquels on connaît:
 la luminosité
@@ -12,15 +12,15 @@ la couleur
 la masse
 la vitesse orbitale autour du centre de la galaxie
 le type spectral
-REPONSE
+A
 NO PICTURE
-On observe plus de galaxies actives à hauts décalages spectraux On peut donc dire que
+On observe plus de galaxies actives à hauts décalages spectraux. On peut donc dire que
 toutes les galaxies passent par une phase active et il y en avait plus dans le passé
-quelques galaxies passent par une phase active et il y en avait plus dans le passé
+certaines galaxies passent par une phase active et il y en avait plus dans le passé
 toutes les galaxies sont soit actives, soit normales
 les galaxies peuvent devenir actives plus qu'une fois dans leur vie
 
-REPONSE
+B
 NO PICTURE
 Il y a plus de galaxies actives à hauts décalages spectraux. Si l'activité est due à des collisions ou interactions entre galaxies, alors on peut dire que
 il y avait plus d'interaction dans le passé et l'activité décroît avec le temps
@@ -28,7 +28,7 @@ le nombre de galaxies dans l'Univers décroît
 les galaxies étaient plus proches dans le passé
 toutes ces options sont valables
 
-REPONSE
+D
 NO PICTURE
 Une façon de découvrir un trou noir de grande masse dans un noyau de galaxie est de chercher
 un point noir centré sur le noyau de la galaxie
@@ -36,15 +36,15 @@ une étoile de très grande luminosité
 des objets ayant une vaste gamme de décalages Doppler près du noyau
 des étoiles montrant une grande distortion
 
-REPONSE
+C
 NO PICTURE
-On trouve la distance des quasars en comparant leurs magnitudes apparentes et absolues en
+On trouve la distance des quasars en
+comparant leurs magnitudes apparentes et absolues
 mesurant la magnitude apparente de leurs supernovae
 mesurant leurs parallaxes avec des radio télescopes
 mesurant leur décalage spectral et en utilisant la loi de Hubble
 
-
-REPONSE
+D
 NO PICTURE
 Si le grand redshift des quasars n'était PAS dû à l'expansion de l'Univers, alors on pourrait les expliquer comme étant
 des objets distants très lumineux
@@ -52,7 +52,7 @@ des objets lumineux proches éjectés de la Voie Lactée
 des objets lumineux proches extrêmement rougis par la poussière interstellaire
 des objets distants extrêmement rougis par la poussière interstellaire
 
-REPONSE
+B
 NO PICTURE
 Le rayonnement synchrotron est produit lorsque
 des électrons entrent en collision avec des protons
@@ -60,7 +60,7 @@ des électrons et des protons rayonnent en synchronisme
 des particules chargées se déplacent à très grande vitesse dans un champ magnétique
 un corps est porté à une température extrême
 
-REPONSE
+C
 NO PICTURE
 La source d'énergie la plus probable pour un noyau actif de galaxies est
 les supernovae
@@ -68,5 +68,5 @@ la rotation rapide des pulsars
 les réactions nucléaires dans les étoiles
 un trou noir supermassif
 la collision entre des étoiles
-REPONSE
+D
 NO PICTURE
