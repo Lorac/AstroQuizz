@@ -25,7 +25,7 @@ import com.lorack.astro_quizz.domain.Module;
 import com.lorack.astro_quizz.ui.AppFrame;
 
 public abstract class MainApp {
-    public static void main( String[] args ) {
+    public static void main(String[] args) {
 
         setLookAndFeel();
 
@@ -44,42 +44,43 @@ public abstract class MainApp {
     private static void setLookAndFeel() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch ( ClassNotFoundException e ) {
+        } catch (ClassNotFoundException e) {
             System.err.println("Couldn't find class for specified look and feel:"
-                    + UIManager.getSystemLookAndFeelClassName());
+                            + UIManager.getSystemLookAndFeelClassName());
             System.err.println("Did you include the L&F library in the class path?");
             System.err.println("Using the default look and feel.");
-            e.printStackTrace();
-        } catch ( InstantiationException e ) {
 
-            e.printStackTrace();
-        } catch ( IllegalAccessException e ) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch ( UnsupportedLookAndFeelException e ) {
-            System.err.println("Can't use the specified look and feel (" + UIManager.getSystemLookAndFeelClassName()
-                    + ") on this platform.");
+        } catch (InstantiationException e) {
+
+        } catch (IllegalAccessException e) {
+
+        } catch (UnsupportedLookAndFeelException e) {
+            System.err.println("Can't use the specified look and feel ("
+                            + UIManager.getSystemLookAndFeelClassName()
+                            + ") on this platform.");
             System.err.println("Using the default look and feel.");
-            e.printStackTrace();
-        } catch ( Exception e ) {
-            System.err.println("Couldn't get specified look and feel (" + UIManager.getSystemLookAndFeelClassName()
-                    + "), for some reason.");
+
+        } catch (Exception e) {
+            System.err.println("Couldn't get specified look and feel ("
+                            + UIManager.getSystemLookAndFeelClassName()
+                            + "), for some reason.");
             System.err.println("Using the default look and feel.");
-            e.printStackTrace();
+
         }
     }
 
     /**
      * It creates all the questionnaires
-     *
+     * 
      * @param questionnaires
      */
-    private static void creerQuestionaires( Map<String, Module> questionnaires ) {
+    private static void creerQuestionaires(Map<String, Module> questionnaires) {
         File folder = new File("./Ressources");
         File[] listOfFiles = folder.listFiles();
         for (int i = 0; i < listOfFiles.length; i++) {
-            if ( listOfFiles[i].isFile() ) {
-                String fileName = listOfFiles[i].getName().substring(0, listOfFiles[i].getName().lastIndexOf("."));
+            if (listOfFiles[i].isFile()) {
+                String fileName = listOfFiles[i].getName().substring(0,
+                                listOfFiles[i].getName().lastIndexOf("."));
 
                 questionnaires.put(fileName.toLowerCase(), new Module(fileName));
 

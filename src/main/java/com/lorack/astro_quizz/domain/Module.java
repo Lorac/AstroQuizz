@@ -30,7 +30,7 @@ public class Module {
      * 
      * @param module
      */
-    public Module( String module ) {
+    public Module(String module) {
         _questions = new ArrayList<Question>();
         construireQuestionnaire(module);
     }
@@ -39,57 +39,67 @@ public class Module {
      * 
      * @param module
      */
-    public void construireQuestionnaire( String module ) {
+    public void construireQuestionnaire(String module) {
         BufferedReader fluxEntree = null;
         String questionLabel;
         String[] choixReponse = new String[5];
         int nbChoix = 0;
 
-        char reponse;
+        char reponse = 0;
         String LigneLue;
         String picturePath;
 
         int i = 0;
-        if ( module != "" ) {
+        if (module != "") {
             try {
-                fluxEntree = new BufferedReader(new InputStreamReader(new FileInputStream("./Ressources/" + module
-                        + ".txt"), "UTF-8"));
+                fluxEntree = new BufferedReader(new InputStreamReader(
+                                new FileInputStream("./Ressources/" + module
+                                                + ".txt"), "UTF-8"));
 
                 do {
 
                     questionLabel = fluxEntree.readLine();
-                    if ( questionLabel == null ) {
+                    if (questionLabel == null) {
                         break;
                     }
                     for (i = 0; i < 5; i++) {
                         LigneLue = fluxEntree.readLine();
-                        if ( !LigneLue.isEmpty() ) {
+                        if (!LigneLue.isEmpty()) {
                             choixReponse[i] = (LigneLue);
                             nbChoix++;
                         }
                     }
-                    reponse = fluxEntree.readLine().charAt(0);
+
+                    try {
+                        reponse = fluxEntree.readLine().charAt(0);
+                    } catch (IndexOutOfBoundsException e) {
+                        System.err.println("Error: Impossible de lire la réponse de la question suivante : "
+                                        + questionLabel);
+                        System.err.println("Dans le module suivant : " + module);
+                    }
                     picturePath = fluxEntree.readLine();
 
-                    _questions.add(new Question(questionLabel, choixReponse, nbChoix, reponse, picturePath));
+                    _questions.add(new Question(questionLabel, choixReponse,
+                                    nbChoix, reponse, picturePath));
                     nbChoix = 0;
 
-                } while (questionLabel != "");
+                }
+                while (questionLabel != "");
                 setName(module);
                 setSize(_questions.size());
 
-            } catch ( IOException exc ) {
-                exc.printStackTrace();
-            } catch ( NullPointerException ex ) {
-
+            } catch (IOException exc) {
+                System.err.println("Erreur de lecture du fichier : " + module);
+            } catch (NullPointerException ex) {
+                System.err.println("Erreur : construireQuestionnaire, dans le module suivant : "
+                                + module);
             }
 
-            if ( fluxEntree != null ) {
+            if (fluxEntree != null) {
                 try {
                     fluxEntree.close();
-                } catch ( IOException e ) {
+                } catch (IOException e) {
                     System.err.println("Error can't close the ressource file");
-                    e.printStackTrace();
                 }
             }
 
@@ -122,7 +132,7 @@ public class Module {
      * @param _name
      *            the _name to set
      */
-    public void setName( String _name ) {
+    public void setName(String _name) {
         this._name = _name;
     }
 
@@ -130,7 +140,7 @@ public class Module {
      * @param _size
      *            the _size to set
      */
-    public void setSize( int _size ) {
+    public void setSize(int _size) {
         this._size = _size;
     }
 }

@@ -108,9 +108,21 @@ public class AppFrame extends JFrame implements ActionListener {
 
         Module module = getRandomModule();
         Random random = new Random();
-        int randomQuestionNumber = random.nextInt(module.getSize());
+        int randomQuestionNumber = 0;
+        try {
+            randomQuestionNumber = random.nextInt(module.getSize());
+        } catch (IllegalArgumentException e) {
+            System.err.println("Erreur: chooseRandomQuestion, le module : "
+                            + module.getName());
+        }
 
-        initQuestion(module.getName().toLowerCase(), randomQuestionNumber);
+        try {
+            initQuestion(module.getName().toLowerCase(), randomQuestionNumber);
+        } catch (NullPointerException e) {
+            System.err.println("Le module est invalide, null");
+        } catch (Exception e) {
+            System.err.println("Erreur majeur : initQuestion");
+        }
 
     }
 
@@ -126,7 +138,13 @@ public class AppFrame extends JFrame implements ActionListener {
 
         _mainToolBar.moduleComboBox.setSelectedIndex(keys.indexOf(randomKey));
 
-        Module module = modules.get(randomKey);
+        Module module = null;
+        try {
+            module = modules.get(randomKey);
+        } catch (NullPointerException e) {
+            System.err.println("Erreur, getRandomModule : impossible de retrouver le module : "
+                            + randomKey);
+        }
 
         return module;
     }
