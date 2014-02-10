@@ -29,9 +29,9 @@ import javax.swing.JPanel;
 import com.lorack.astro_quizz.domain.Module;
 
 /**
- * 
+ *
  * @author Maxime
- * 
+ *
  */
 public class AppFrame extends JFrame implements ActionListener {
 
@@ -51,7 +51,7 @@ public class AppFrame extends JFrame implements ActionListener {
 
     /**
      * Makes the whole frame
-     * 
+     *
      * @param questionnaires
      */
     public AppFrame(Map<String, Module> questionnaires) {
@@ -59,7 +59,6 @@ public class AppFrame extends JFrame implements ActionListener {
         _moduleName = _mainToolBar.moduleComboBox.getSelectedItem().toString();
 
         String moduleAsKey = getModuleAsKey();
-        System.out.println(moduleAsKey);
 
         _questionArea = new AppCenter(modules.get(moduleAsKey), 0,
                         getNumberOfPossibleChoicesOfAQuestion(moduleAsKey, 0));
@@ -128,7 +127,7 @@ public class AppFrame extends JFrame implements ActionListener {
 
     /**
      * It chooses a random Module from all the modules
-     * 
+     *
      * @return the choosen Module
      */
     public Module getRandomModule() {
@@ -151,7 +150,7 @@ public class AppFrame extends JFrame implements ActionListener {
 
     /**
      * Initialiase a question
-     * 
+     *
      * @param module
      * @param question
      */
@@ -185,7 +184,7 @@ public class AppFrame extends JFrame implements ActionListener {
 
     /**
      * Get a module as a Key for the Map
-     * 
+     *
      * @return string as key for the map
      */
     private String getModuleAsKey() {
@@ -196,7 +195,7 @@ public class AppFrame extends JFrame implements ActionListener {
     }
 
     /**
-     * 
+     *
      * @param module
      * @param currentQuestion
      * @return the number of possible choices for a question
@@ -218,7 +217,7 @@ public class AppFrame extends JFrame implements ActionListener {
     }
 
     /**
-     * 
+     *
      * @param module
      * @return int Number of questions for a Module
      */

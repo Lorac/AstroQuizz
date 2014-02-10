@@ -27,7 +27,7 @@ public class Module {
     private int                 _size;
 
     /**
-     * 
+     *
      * @param module
      */
     public Module(String module) {
@@ -36,12 +36,12 @@ public class Module {
     }
 
     /**
-     * 
+     *
      * @param module
      */
     public void construireQuestionnaire(String module) {
         BufferedReader fluxEntree = null;
-        String questionLabel;
+        String questionLabel = null;
         String[] choixReponse = new String[5];
         int nbChoix = 0;
 
@@ -92,7 +92,7 @@ public class Module {
                 System.err.println("Erreur de lecture du fichier : " + module);
             } catch (NullPointerException ex) {
                 System.err.println("Erreur : construireQuestionnaire, dans le module suivant : "
-                                + module);
+                                + module + ", probablement des lignes de trops à la fin du fichier");
             }
 
             if (fluxEntree != null) {
@@ -114,7 +114,7 @@ public class Module {
     }
 
     /**
-     * 
+     *
      * @return
      */
     public ArrayList<Question> getQuestions() {
