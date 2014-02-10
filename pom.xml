@@ -69,20 +69,5 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-	<dependencies>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-		</dependency>
-	</dependencies>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-lang3</artifactId>
-				<version>3.2.1</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 	<version>1.0.0</version>
 </project>

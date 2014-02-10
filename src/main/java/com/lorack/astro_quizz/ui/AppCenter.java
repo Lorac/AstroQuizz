@@ -55,7 +55,7 @@ public class AppCenter extends JPanel {
 
     /**
      * Create the app Center
-     * 
+     *
      * @param module
      *            The module to create with
      * @param currentQuestion
@@ -93,7 +93,7 @@ public class AppCenter extends JPanel {
     }
 
     /**
-     * 
+     *
      * @return int number of question
      */
     public int getCurrentQuestion() {
@@ -102,7 +102,7 @@ public class AppCenter extends JPanel {
 
     /**
      * Make the question appear on the frame
-     * 
+     *
      * @param theQuestion
      *            The question to make appear
      * @param numberOfChoices
@@ -139,7 +139,7 @@ public class AppCenter extends JPanel {
 
     /**
      * Set the picture on the frame
-     * 
+     *
      */
     private void setImageOnFrame() {
         if ( _picturePath.equals(NOPICTURE) ) {
@@ -160,7 +160,7 @@ public class AppCenter extends JPanel {
 
     /**
      * Set Listener on each JButton of possible answers
-     * 
+     *
      * @param module
      *            The current module
      * @param currentQuestion
@@ -223,7 +223,7 @@ public class AppCenter extends JPanel {
 
     /**
      * \brief Set the question label on the frame
-     * 
+     *
      */
     private void setQuestionLabelOnFrame() {
         _question.setContentType("text/html");
@@ -233,7 +233,6 @@ public class AppCenter extends JPanel {
 
         add(_question, BorderLayout.NORTH);
         add(_reponse, BorderLayout.CENTER);
-        repaint();
     }
 
 }
