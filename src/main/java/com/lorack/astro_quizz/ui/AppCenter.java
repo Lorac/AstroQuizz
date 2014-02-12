@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
@@ -230,6 +231,7 @@ public class AppCenter extends JPanel {
         _question.setText("<b>Question #" + (_questionNumber + 1) + "</b>:  " + _questionlabel);
         _question.setEditable(false);
         _question.setBackground(Color.LIGHT_GRAY);
+        _question.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 
         add(_question, BorderLayout.NORTH);
         add(_reponse, BorderLayout.CENTER);
