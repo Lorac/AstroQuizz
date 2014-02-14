@@ -18,21 +18,26 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class AppBotToolBar extends JPanel {
+public class AppBotToolBar
+    extends JPanel
+{
     /**
 	 *
 	 */
     private static final long serialVersionUID = 1L;
-    public JButton            nextButton       = new JButton();
-    public JButton            previousButton   = new JButton();
 
-    public AppBotToolBar() {
-        nextButton.setText("Question Suivante");
-        previousButton.setText("Question Précédente");
-        setBackground(Color.LIGHT_GRAY);
+    public JButton nextButton = new JButton();
 
-        add(previousButton);
-        add(nextButton);
+    public JButton previousButton = new JButton();
+
+    public AppBotToolBar()
+    {
+        nextButton.setText( "Question Suivante" );
+        previousButton.setText( "Question Précédente" );
+        setBackground( Color.LIGHT_GRAY );
+
+        add( previousButton );
+        add( nextButton );
     }
 
 }

@@ -14,101 +14,111 @@
 
 package com.lorack.astro_quizz.domain;
 
-public class Question {
+public class Question
+{
 
     private String[] _choixReponse;
-    private String   _picturePath;
-    private String   _questionLabel;
 
-    private int      _nbChoix;
+    private String _picturePath;
 
-    private char     _reponse;
+    private String _questionLabel;
 
-    public Question( String questionLabel, String[] choixReponse, int nbChoix, char reponse, String picturePath ) {
+    private int _nbChoix;
 
-        setQuestionLabel(questionLabel);
-        setNbChoix(nbChoix);
-        setChoixReponse(choixReponse);
-        setReponse(reponse);
-        setPicturePath(picturePath);
+    private char _reponse;
+
+    public Question( String questionLabel, String[] choixReponse, int nbChoix, char reponse, String picturePath )
+    {
+
+        setQuestionLabel( questionLabel );
+        setNbChoix( nbChoix );
+        setChoixReponse( choixReponse );
+        setReponse( reponse );
+        setPicturePath( picturePath );
     }
 
     /**
      * @return the choixReponse
      */
-    public String[] getChoixReponse() {
+    public String[] getChoixReponse()
+    {
         return _choixReponse;
     }
 
     /**
      * @return the nbChoix
      */
-    public int getNbChoix() {
+    public int getNbChoix()
+    {
         return _nbChoix;
     }
 
     /**
      * @return the picturePath
      */
-    public String getPicturePath() {
+    public String getPicturePath()
+    {
         return _picturePath;
     }
 
     /**
      * @return the questionLabel
      */
-    public String getQuestionLabel() {
+    public String getQuestionLabel()
+    {
         return _questionLabel;
     }
 
     /**
      * @return the reponse
      */
-    public char getReponse() {
+    public char getReponse()
+    {
         return _reponse;
     }
 
     /**
-     * @param choixReponse
-     *            the choixReponse to set
+     * @param choixReponse the choixReponse to set
      */
-    public void setChoixReponse( String[] choixReponse ) {
+    public void setChoixReponse( String[] choixReponse )
+    {
 
         this._choixReponse = new String[choixReponse.length];
-        for (int i = 0; i < choixReponse.length; i++) {
+        for ( int i = 0; i < choixReponse.length; i++ )
+        {
             this._choixReponse[i] = choixReponse[i];
         }
     }
 
     /**
-     * @param nbChoix
-     *            the nbChoix to set
+     * @param nbChoix the nbChoix to set
      */
-    public void setNbChoix( int nbChoix ) {
+    public void setNbChoix( int nbChoix )
+    {
         this._nbChoix = nbChoix;
     }
 
     /**
-     * @param picturePath
-     *            the picturePath to set
+     * @param picturePath the picturePath to set
      */
-    public void setPicturePath( String picturePath ) {
+    public void setPicturePath( String picturePath )
+    {
         this._picturePath = picturePath;
     }
 
     /**
-     * @param questionLabel
-     *            the questionLabel to set
+     * @param questionLabel the questionLabel to set
      */
-    public void setQuestionLabel( String questionLabel ) {
+    public void setQuestionLabel( String questionLabel )
+    {
         this._questionLabel = questionLabel;
     }
 
     /**
-     * @param reponse
-     *            the reponse to set
+     * @param reponse the reponse to set
      */
-    public void setReponse( char reponse ) {
+    public void setReponse( char reponse )
+    {
         this._reponse = reponse;
     }
 }
