@@ -18,19 +18,23 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class AppBotToolBar
+@SuppressWarnings( "serial" )
+public class BottomToolBar
     extends JPanel
 {
-    /**
-	 *
-	 */
-    private static final long serialVersionUID = 1L;
-
+    // ----------------------------------------------------------------------
+    // Attributs de la BottomToolBar
+    // ----------------------------------------------------------------------
     public JButton nextButton = new JButton();
 
     public JButton previousButton = new JButton();
 
-    public AppBotToolBar()
+    
+    // ----------------------------------------------------------------------
+    // Méthodes publique
+    // ----------------------------------------------------------------------
+    
+    public BottomToolBar()
     {
         nextButton.setText( "Question Suivante" );
         previousButton.setText( "Question Précédente" );

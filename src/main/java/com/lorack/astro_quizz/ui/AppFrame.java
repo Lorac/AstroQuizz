@@ -23,34 +23,38 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.lorack.astro_quizz.domain.Module;
 
-/**
- * @author Maxime
- */
+@SuppressWarnings( "serial" )
 public class AppFrame
     extends JFrame
     implements ActionListener
 {
-
-    private static final long serialVersionUID = 1L;
+    // ----------------------------------------------------------------------
+    // Attributs du AppFrame
+    // ----------------------------------------------------------------------
 
     public Map<String, Module> modules;
 
-    private AppBotToolBar _botToolBar = new AppBotToolBar();
+    private BottomToolBar _botToolBar = new BottomToolBar();
 
     private JPanel _container = new JPanel();
 
-    private AppToolBar _mainToolBar = new AppToolBar();
+    private TopToolBar _mainToolBar = new TopToolBar();
 
     private String _moduleName = "";
 
     private AppCenter _questionArea;
 
     private JPanel _top = new JPanel();
+
+    // ----------------------------------------------------------------------
+    // Méthodes publique
+    // ----------------------------------------------------------------------
 
     /**
      * Makes the whole frame
@@ -207,6 +211,10 @@ public class AppFrame
         setContentPane( _container );
     }
 
+    // ----------------------------------------------------------------------
+    // Méthodes privées
+    // ----------------------------------------------------------------------
+
     /**
      * Get a module as a Key for the Map
      * 
@@ -267,6 +275,9 @@ public class AppFrame
         return size;
     }
 
+    /**
+     * 
+     */
     private void setActionListener()
     {
         _mainToolBar.moduleComboBox.addActionListener( this );
@@ -275,6 +286,9 @@ public class AppFrame
         _botToolBar.previousButton.addActionListener( this );
     }
 
+    /**
+     * 
+     */
     private void setWindowsProperty()
     {
 
@@ -282,18 +296,19 @@ public class AppFrame
         setTitle( "Astro Quizz" );
         setDefaultCloseOperation( EXIT_ON_CLOSE );
 
-        _container.setBackground( Color.LIGHT_GRAY );
         _container.setLayout( new BorderLayout() );
-
-        _top.setBackground( Color.LIGHT_GRAY );
-        _top.setLayout( new BorderLayout() );
-        _top.add( _mainToolBar, BorderLayout.EAST );
-        _top.add( _mainToolBar.randomButton, BorderLayout.WEST );
-
+        _container.setBackground( Color.LIGHT_GRAY );
         _container.add( _top, BorderLayout.NORTH );
         _container.add( _botToolBar, BorderLayout.SOUTH );
         _container.add( _questionArea, BorderLayout.CENTER );
+
+        _top.setLayout( new BorderLayout() );
+        _top.setBackground( Color.LIGHT_GRAY );
+        _top.add( _mainToolBar, BorderLayout.EAST );
+        _top.add( _mainToolBar.randomButton, BorderLayout.WEST );
+
         _botToolBar.previousButton.setEnabled( false );
+
         setContentPane( _container );
 
     }

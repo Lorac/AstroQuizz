@@ -33,14 +33,13 @@ import javax.swing.JPanel;
 import com.lorack.astro_quizz.domain.Module;
 import com.lorack.astro_quizz.domain.Question;
 
+@SuppressWarnings( "serial" )
 public class AppCenter
     extends JPanel
 {
     private static final String IMAGEPATH = "./Ressources/images/";
 
     private static final String NOPICTURE = "NO PICTURE";
-
-    private static final long serialVersionUID = 1L;
 
     public JLabel _picture = new JLabel();
 

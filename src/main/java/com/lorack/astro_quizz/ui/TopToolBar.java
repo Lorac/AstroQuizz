@@ -25,12 +25,14 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JToolBar;
 
-public class AppToolBar
+@SuppressWarnings( "serial" )
+public class TopToolBar
     extends JToolBar
 {
-
-    private static final long serialVersionUID = 1L;
-
+    
+    // ----------------------------------------------------------------------
+    // Attributs de la TopToolBar
+    // ----------------------------------------------------------------------
     public JComboBox moduleComboBox = new JComboBox();
 
     public JButton randomButton = new JButton();
@@ -39,7 +41,10 @@ public class AppToolBar
 
     private File _ressources;
 
-    public AppToolBar()
+    /**
+     * 
+     */
+    public TopToolBar()
     {
         _ressources = new File( "./Ressources/" );
         setFloatable( false );
@@ -57,6 +62,9 @@ public class AppToolBar
 
     }
 
+    /**
+     * @param Ressources
+     */
     private void setListFiles( File Ressources )
     {
         if ( Ressources.exists() && Ressources.isDirectory() )

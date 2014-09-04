@@ -28,16 +28,13 @@ public abstract class MainApp
 {
     public static void main( String[] args )
     {
-
         setLookAndFeel();
-
         Map<String, Module> questionnaires = new TreeMap<String, Module>();
         creerQuestionaires( questionnaires );
 
         AppFrame AstroQuizz = new AppFrame( questionnaires );
 
         AstroQuizz.setVisible( true );
-
     }
 
     /**
@@ -57,14 +54,6 @@ public abstract class MainApp
             System.err.println( "Using the default look and feel." );
 
         }
-        catch ( InstantiationException e )
-        {
-
-        }
-        catch ( IllegalAccessException e )
-        {
-
-        }
         catch ( UnsupportedLookAndFeelException e )
         {
             System.err.println( "Can't use the specified look and feel (" + UIManager.getSystemLookAndFeelClassName()
@@ -81,8 +70,9 @@ public abstract class MainApp
         }
     }
 
+
     /**
-     * It creates all the questionnaires
+     * Création de toutes les questionnaires
      * 
      * @param questionnaires
      */

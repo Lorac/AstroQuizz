@@ -14,9 +14,12 @@
 
 package com.lorack.astro_quizz.domain;
 
-public class Question
+public abstract class Question
 {
-
+    // ----------------------------------------------------------------------
+    // Attributs d'une Question
+    // ----------------------------------------------------------------------
+    
     private String[] _choixReponse;
 
     private String _picturePath;
@@ -26,7 +29,20 @@ public class Question
     private int _nbChoix;
 
     private char _reponse;
+    
+    
+    // ----------------------------------------------------------------------
+    // Méthodes publique
+    // ----------------------------------------------------------------------
 
+    /**
+     * 
+     * @param questionLabel
+     * @param choixReponse
+     * @param nbChoix
+     * @param reponse
+     * @param picturePath
+     */
     public Question( String questionLabel, String[] choixReponse, int nbChoix, char reponse, String picturePath )
     {
 

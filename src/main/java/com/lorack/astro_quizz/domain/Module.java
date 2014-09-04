@@ -22,14 +22,22 @@ import java.util.ArrayList;
 
 public class Module
 {
-
+    // ----------------------------------------------------------------------
+    // Attributs d'un module
+    // ----------------------------------------------------------------------
     private String _name;
 
     private ArrayList<Question> _questions;
 
     private int _size;
 
+    // ----------------------------------------------------------------------
+    // Méthodes publique
+    // ----------------------------------------------------------------------
+
     /**
+     * Constructeur de module
+     * 
      * @param module
      */
     public Module( String module )
@@ -81,19 +89,12 @@ public class Module
                         }
                     }
 
-                    try
-                    {
-                        reponse = fluxEntree.readLine().charAt( 0 );
-                    }
-                    catch ( IndexOutOfBoundsException e )
-                    {
-                        System.err.println( "Error: Impossible de lire la réponse de la question suivante : "
-                            + questionLabel );
-                        System.err.println( "Dans le module suivant : " + module );
-                    }
+                    reponse = fluxEntree.readLine().charAt( 0 );
+
                     picturePath = fluxEntree.readLine();
 
-                    _questions.add( new Question( questionLabel, choixReponse, nbChoix, reponse, picturePath ) );
+                    _questions.add( new MultipleChoiceQuestion( questionLabel, choixReponse, nbChoix, reponse,
+                                                                picturePath ) );
                     nbChoix = 0;
 
                 }
@@ -110,6 +111,11 @@ public class Module
             {
                 System.err.println( "Erreur : construireQuestionnaire, dans le module suivant : " + module
                     + ", probablement des lignes de trops à la fin du fichier" );
+            }
+            catch ( IndexOutOfBoundsException e )
+            {
+                System.err.println( "Error: Impossible de lire la réponse de la question suivante : " + questionLabel );
+                System.err.println( "Dans le module suivant : " + module );
             }
 
             if ( fluxEntree != null )
