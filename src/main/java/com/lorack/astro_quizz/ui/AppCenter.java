@@ -38,26 +38,21 @@ public class AppCenter
     extends JPanel
 {
     private static final String IMAGEPATH = "./Ressources/images/";
-
     private static final String NOPICTURE = "NO PICTURE";
 
-    public JLabel _picture = new JLabel();
+    public JEditorPane question = new JEditorPane();
 
-    public JEditorPane _question = new JEditorPane();
-
-    public JPanel _reponse = new JPanel();
+    public JLabel picture = new JLabel();
+    public JPanel reponse = new JPanel();
 
     public List<JButton> answers = new ArrayList<JButton>();
-
     public List<String> labels = new ArrayList<String>();
+    private final List<String> possibleChoices = Arrays.asList( "A. ", "B. ", "C. ", "D. ", "E. " );
 
-    private String _picturePath = "";
+    private String picturePath = "";
+    private String questionlabel = "";
 
-    private final List<String> _possibleChoices = Arrays.asList( "A. ", "B. ", "C. ", "D. ", "E. " );
-
-    private String _questionlabel = "";
-
-    private int _questionNumber = 0;
+    private int questionNumber = 0;
 
     /**
      * Create the app Center
@@ -69,12 +64,12 @@ public class AppCenter
     public AppCenter( final Module module, final int currentQuestion, int numberOfChoices )
     {
 
-        _questionNumber = currentQuestion;
+        questionNumber = currentQuestion;
 
         answers.clear();
         labels.clear();
 
-        _reponse.setBackground( Color.LIGHT_GRAY );
+        reponse.setBackground(Color.LIGHT_GRAY);
 
         for ( int i = 0; i < numberOfChoices; i++ )
         {
@@ -85,7 +80,7 @@ public class AppCenter
         setListenerOnJButton( module, currentQuestion, numberOfChoices );
         setLayout( new BorderLayout() );
 
-        _reponse.setLayout( new GridLayout( numberOfChoices, 1 ) );
+        reponse.setLayout(new GridLayout(numberOfChoices, 1));
 
         for ( int i = 0; i < numberOfChoices; i++ )
         {
@@ -95,7 +90,7 @@ public class AppCenter
 
         }
 
-        printQuestion( module.getQuestions().get( _questionNumber ), numberOfChoices );
+        printQuestion( module.getQuestions().get(questionNumber), numberOfChoices );
     }
 
     /**
@@ -103,7 +98,7 @@ public class AppCenter
      */
     public int getCurrentQuestion()
     {
-        return _questionNumber;
+        return questionNumber;
     }
 
     /**
@@ -116,15 +111,15 @@ public class AppCenter
     {
         String[] lesChoixPossible = null;
 
-        _questionlabel = theQuestion.getQuestionLabel();
+        questionlabel = theQuestion.getQuestionLabel();
         lesChoixPossible = theQuestion.getChoixReponse();
 
         for ( int i = 0; i < numberOfChoices; i++ )
         {
 
             labels.add( lesChoixPossible[i].trim() );
-            answers.get( i ).setText( _possibleChoices.get( i ) + labels.get( i ) );
-            _reponse.add( answers.get( i ) );
+            answers.get( i ).setText( possibleChoices.get( i ) + labels.get( i ) );
+            reponse.add(answers.get(i));
 
             if ( labels.get( i ).isEmpty() )
             {
@@ -137,7 +132,7 @@ public class AppCenter
 
         }
         theQuestion.getReponse();
-        _picturePath = theQuestion.getPicturePath();
+        picturePath = theQuestion.getPicturePath();
 
         setQuestionLabelOnFrame();
         setImageOnFrame();
@@ -151,22 +146,22 @@ public class AppCenter
      */
     private void setImageOnFrame()
     {
-        if ( _picturePath.equals( NOPICTURE ) )
+        if ( picturePath.equals( NOPICTURE ) )
         {
-            _picture.setVisible( false );
+            picture.setVisible(false);
         }
         else
         {
-            ImageIcon image = new ImageIcon( IMAGEPATH + _picturePath );
+            ImageIcon image = new ImageIcon( IMAGEPATH + picturePath);
             Dimension imageSize = new Dimension( image.getIconWidth(), image.getIconHeight() );
 
-            _picture.setIcon( image );
-            _picture.setPreferredSize( imageSize );
-            _picture.setBackground( Color.LIGHT_GRAY );
-            _picture.setOpaque( true );
+            picture.setIcon(image);
+            picture.setPreferredSize(imageSize);
+            picture.setBackground(Color.LIGHT_GRAY);
+            picture.setOpaque(true);
 
-            add( _picture, BorderLayout.EAST );
-            _picture.setVisible( true );
+            add(picture, BorderLayout.EAST );
+            picture.setVisible(true);
         }
     }
 
@@ -181,7 +176,7 @@ public class AppCenter
     {
         for ( int i = 0; i < numberOfChoices; i++ )
         {
-            answers.get( i ).setName( _possibleChoices.get( i ) );
+            answers.get(i).setName(possibleChoices.get(i));
             answers.get( i ).addMouseListener( new java.awt.event.MouseAdapter()
             {
 
@@ -252,14 +247,14 @@ public class AppCenter
      */
     private void setQuestionLabelOnFrame()
     {
-        _question.setContentType( "text/html" );
-        _question.setText( "<b>Question #" + ( _questionNumber + 1 ) + "</b>:  " + _questionlabel );
-        _question.setEditable( false );
-        _question.setBackground( Color.LIGHT_GRAY );
-        _question.setBorder( BorderFactory.createLineBorder( Color.LIGHT_GRAY ) );
+        question.setContentType("text/html");
+        question.setText("<b>Question #" + (questionNumber + 1) + "</b>:  " + questionlabel);
+        question.setEditable(false);
+        question.setBackground(Color.LIGHT_GRAY);
+        question.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 
-        add( _question, BorderLayout.NORTH );
-        add( _reponse, BorderLayout.CENTER );
+        add(question, BorderLayout.NORTH );
+        add(reponse, BorderLayout.CENTER );
     }
 
 }
