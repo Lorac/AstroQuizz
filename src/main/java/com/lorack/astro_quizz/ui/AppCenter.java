@@ -24,8 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @SuppressWarnings("serial")
-public class AppCenter
-        extends JPanel {
+public class AppCenter extends JPanel {
     private static final String IMAGEPATH = "./Ressources/images/";
     private static final String NOPICTURE = "NO PICTURE";
     private final List<String> possibleChoices = Arrays.asList("A. ", "B. ", "C. ", "D. ", "E. ");

@@ -19,6 +19,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Module {
     // ----------------------------------------------------------------------
@@ -29,6 +31,8 @@ public class Module {
     private ArrayList<Question> questions;
 
     private int size;
+
+    private static Logger moduleLog;
 
     // ----------------------------------------------------------------------
     // Méthodes publique
@@ -94,20 +98,20 @@ public class Module {
                 setSize(questions.size());
 
             } catch (IOException exc) {
-                System.err.println("Erreur de lecture du fichier : " + module);
+                moduleLog.log(Level.SEVERE, "Erreur de lecture du fichier : " + module);
             } catch (NullPointerException ex) {
-                System.err.println("Erreur : construireQuestionnaire, dans le module suivant : " + module
+                moduleLog.log(Level.SEVERE, "Erreur : construireQuestionnaire, dans le module suivant : " + module
                         + ", probablement des lignes de trops à la fin du fichier");
             } catch (IndexOutOfBoundsException e) {
-                System.err.println("Error: Impossible de lire la réponse de la question suivante : " + questionLabel);
-                System.err.println("Dans le module suivant : " + module);
+                moduleLog.log(Level.SEVERE, "Error: Impossible de lire la réponse de la question suivante : " + questionLabel);
+                moduleLog.log(Level.SEVERE, "Dans le module suivant : " + module);
             }
 
             if (fluxEntree != null) {
                 try {
                     fluxEntree.close();
                 } catch (IOException e) {
-                    System.err.println("Error can't close the ressource file");
+                    moduleLog.log(Level.SEVERE, "Error can't close the ressource file");
                 }
             }
 

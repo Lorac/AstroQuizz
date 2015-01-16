@@ -24,26 +24,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @SuppressWarnings("serial")
-public class AppFrame
-        extends JFrame
-        implements ActionListener {
+public class AppFrame extends JFrame implements ActionListener {
     // ----------------------------------------------------------------------
     // Attributs du AppFrame
     // ----------------------------------------------------------------------
 
+    private static Logger appFrameLogger;
     public Map<String, Module> modules;
-
     private BottomToolBar botToolBar = new BottomToolBar();
-
     private JPanel container = new JPanel();
     private JPanel top = new JPanel();
-
     private TopToolBar mainToolBar = new TopToolBar();
     private String moduleName = "";
-
     private AppCenter questionArea;
+
 
     // ----------------------------------------------------------------------
     // Méthodes publique
@@ -60,8 +58,8 @@ public class AppFrame
 
         String moduleAsKey = getModuleAsKey();
 
-        questionArea =
-                new AppCenter(modules.get(moduleAsKey), 0, getNumberOfPossibleChoicesOfAQuestion(moduleAsKey, 0));
+        questionArea = new AppCenter(modules.get(moduleAsKey), 0, getNumberOfPossibleChoicesOfAQuestion(moduleAsKey, 0));
+
 
         setWindowsProperty();
         setActionListener();
@@ -108,15 +106,15 @@ public class AppFrame
         try {
             randomQuestionNumber = random.nextInt(module.getSize());
         } catch (IllegalArgumentException e) {
-            System.err.println("Erreur: chooseRandomQuestion, le module : " + module.getName());
+            appFrameLogger.log(Level.SEVERE, "Erreur: chooseRandomQuestion, le module : " + module.getName());
         }
 
         try {
             initQuestion(module.getName().toLowerCase(), randomQuestionNumber);
         } catch (NullPointerException e) {
-            System.err.println("Le module est invalide, null");
+            appFrameLogger.log(Level.SEVERE, "Le module est invalide, null");
         } catch (Exception e) {
-            System.err.println("Erreur majeur : initQuestion");
+            appFrameLogger.log(Level.SEVERE, "Erreur majeur : initQuestion");
         }
 
     }
@@ -137,7 +135,7 @@ public class AppFrame
         try {
             module = modules.get(randomKey);
         } catch (NullPointerException e) {
-            System.err.println("Erreur, getRandomModule : impossible de retrouver le module : " + randomKey);
+            appFrameLogger.log(Level.SEVERE, "Erreur, getRandomModule : impossible de retrouver le module : " + randomKey);
         }
 
         return module;
@@ -161,10 +159,10 @@ public class AppFrame
                     new AppCenter(modules.get(module), question,
                             getNumberOfPossibleChoicesOfAQuestion(module, question));
         } catch (ClassCastException e) {
-            System.err.println("The key is of an inappropriate type for this map, Key :" + module);
+            appFrameLogger.log(Level.SEVERE, "The key is of an inappropriate type for this map, Key :" + module);
 
         } catch (NullPointerException e) {
-            System.err.println("initQuestion : The specified key is null and this map does not permit null keys");
+            appFrameLogger.log(Level.SEVERE, "initQuestion : The specified key is null and this map does not permit null keys");
         }
 
         container.add(questionArea, BorderLayout.CENTER);
@@ -202,10 +200,10 @@ public class AppFrame
         try {
             NbChoix = modules.get(module).getQuestions().get(currentQuestion).getNbChoix();
         } catch (ClassCastException e) {
-            System.err.println("The key is of an inappropriate type for this map" + module);
+            appFrameLogger.log(Level.SEVERE, "The key is of an inappropriate type for this map" + module);
 
         } catch (NullPointerException e) {
-            System.err.println("The specified key is null and this map does not permit null keys");
+            appFrameLogger.log(Level.SEVERE, "The specified key is null and this map does not permit null keys");
         }
         return NbChoix;
     }
@@ -219,10 +217,10 @@ public class AppFrame
         try {
             size = modules.get(module).getSize();
         } catch (ClassCastException e) {
-            System.err.println("The key is of an inappropriate type for this map :" + module);
+            appFrameLogger.log(Level.SEVERE, "The key is of an inappropriate type for this map :" + module);
 
         } catch (NullPointerException e) {
-            System.err.println("The specified key is null and this map does not permit null keys");
+            appFrameLogger.log(Level.SEVERE, "The specified key is null and this map does not permit null keys");
         }
         return size;
     }

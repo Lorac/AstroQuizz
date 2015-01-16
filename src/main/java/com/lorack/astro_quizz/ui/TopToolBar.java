@@ -20,10 +20,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @SuppressWarnings("serial")
-public class TopToolBar
-        extends JToolBar {
+public class TopToolBar extends JToolBar {
 
     // ----------------------------------------------------------------------
     // Attributs de la TopToolBar
@@ -35,6 +36,8 @@ public class TopToolBar
     private JLabel moduleLabel = new JLabel();
 
     private File ressources;
+
+    private static Logger topToolBar;
 
     /**
      *
@@ -80,7 +83,7 @@ public class TopToolBar
             }
 
         } else {
-            System.out.println("Répertoire non trouver");
+            topToolBar.log(Level.SEVERE, "Répertoire non trouver");
         }
 
     }
