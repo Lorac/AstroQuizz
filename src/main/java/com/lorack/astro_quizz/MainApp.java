@@ -44,20 +44,22 @@ public abstract class MainApp {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException e) {
-            mainAppLogger.log(Level.SEVERE, "Couldn't find class for specified look and feel:"
-                    + UIManager.getSystemLookAndFeelClassName());
+            mainAppLogger.log(Level.SEVERE, "Couldn't find class for specified look and feel:" + UIManager.getSystemLookAndFeelClassName());
             mainAppLogger.log(Level.SEVERE, "Did you include the L&F library in the class path?");
             mainAppLogger.log(Level.SEVERE, "Using the default look and feel.");
+            mainAppLogger.log(Level.WARNING, e.getMessage());
 
         } catch (UnsupportedLookAndFeelException e) {
             mainAppLogger.log(Level.SEVERE, "Can't use the specified look and feel (" + UIManager.getSystemLookAndFeelClassName()
                     + ") on this platform.");
             mainAppLogger.log(Level.SEVERE, "Using the default look and feel.");
+            mainAppLogger.log(Level.WARNING, e.getMessage());
 
         } catch (Exception e) {
             mainAppLogger.log(Level.SEVERE, "Couldn't get specified look and feel (" + UIManager.getSystemLookAndFeelClassName()
                     + "), for some reason.");
             mainAppLogger.log(Level.SEVERE, "Using the default look and feel.");
+            mainAppLogger.log(Level.WARNING, e.getMessage());
 
         }
     }

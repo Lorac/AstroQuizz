@@ -99,12 +99,15 @@ public class Module {
 
             } catch (IOException exc) {
                 moduleLog.log(Level.SEVERE, "Erreur de lecture du fichier : " + module);
+                moduleLog.log(Level.WARNING, exc.getMessage());
             } catch (NullPointerException ex) {
                 moduleLog.log(Level.SEVERE, "Erreur : construireQuestionnaire, dans le module suivant : " + module
                         + ", probablement des lignes de trops à la fin du fichier");
+                moduleLog.log(Level.WARNING, ex.getMessage());
             } catch (IndexOutOfBoundsException e) {
                 moduleLog.log(Level.SEVERE, "Error: Impossible de lire la réponse de la question suivante : " + questionLabel);
                 moduleLog.log(Level.SEVERE, "Dans le module suivant : " + module);
+                moduleLog.log(Level.WARNING, e.getMessage());
             }
 
             if (fluxEntree != null) {
@@ -112,6 +115,7 @@ public class Module {
                     fluxEntree.close();
                 } catch (IOException e) {
                     moduleLog.log(Level.SEVERE, "Error can't close the ressource file");
+                    moduleLog.log(Level.WARNING, e.getMessage());
                 }
             }
 
