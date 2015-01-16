@@ -20,16 +20,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class Module
-{
+public class Module {
     // ----------------------------------------------------------------------
     // Attributs d'un module
     // ----------------------------------------------------------------------
-    private String _name;
+    private String name;
 
-    private ArrayList<Question> _questions;
+    private ArrayList<Question> questions;
 
-    private int _size;
+    private int size;
 
     // ----------------------------------------------------------------------
     // Méthodes publique
@@ -37,20 +36,18 @@ public class Module
 
     /**
      * Constructeur de module
-     * 
+     *
      * @param module
      */
-    public Module( String module )
-    {
-        _questions = new ArrayList<Question>();
-        construireQuestionnaire( module );
+    public Module(String module) {
+        questions = new ArrayList<Question>();
+        construireQuestionnaire(module);
     }
 
     /**
      * @param module
      */
-    public void construireQuestionnaire( String module )
-    {
+    public void construireQuestionnaire(String module) {
         BufferedReader fluxEntree = null;
         String questionLabel = null;
         String[] choixReponse = new String[5];
@@ -61,72 +58,56 @@ public class Module
         String picturePath;
 
         int i = 0;
-        if ( module != "" )
-        {
-            try
-            {
+        if (module != "") {
+            try {
                 fluxEntree =
-                    new BufferedReader(
-                                        new InputStreamReader(
-                                                               new FileInputStream( "./Ressources/" + module + ".txt" ),
-                                                               "UTF-8" ) );
+                        new BufferedReader(
+                                new InputStreamReader(
+                                        new FileInputStream("./Ressources/" + module + ".txt"),
+                                        "UTF-8"));
 
-                do
-                {
+                do {
 
                     questionLabel = fluxEntree.readLine();
-                    if ( questionLabel == null )
-                    {
+                    if (questionLabel == null) {
                         break;
                     }
-                    for ( i = 0; i < 5; i++ )
-                    {
+                    for (i = 0; i < 5; i++) {
                         LigneLue = fluxEntree.readLine();
-                        if ( !LigneLue.isEmpty() )
-                        {
-                            choixReponse[i] = ( LigneLue );
+                        if (!LigneLue.isEmpty()) {
+                            choixReponse[i] = (LigneLue);
                             nbChoix++;
                         }
                     }
 
-                    reponse = fluxEntree.readLine().charAt( 0 );
+                    reponse = fluxEntree.readLine().charAt(0);
 
                     picturePath = fluxEntree.readLine();
 
-                    _questions.add( new MultipleChoiceQuestion( questionLabel, choixReponse, nbChoix, reponse,
-                                                                picturePath ) );
+                    questions.add(new MultipleChoiceQuestion(questionLabel, choixReponse, nbChoix, reponse,
+                            picturePath));
                     nbChoix = 0;
 
                 }
-                while ( questionLabel != "" );
-                setName( module );
-                setSize( _questions.size() );
+                while (questionLabel != "");
+                setName(module);
+                setSize(questions.size());
 
-            }
-            catch ( IOException exc )
-            {
-                System.err.println( "Erreur de lecture du fichier : " + module );
-            }
-            catch ( NullPointerException ex )
-            {
-                System.err.println( "Erreur : construireQuestionnaire, dans le module suivant : " + module
-                    + ", probablement des lignes de trops à la fin du fichier" );
-            }
-            catch ( IndexOutOfBoundsException e )
-            {
-                System.err.println( "Error: Impossible de lire la réponse de la question suivante : " + questionLabel );
-                System.err.println( "Dans le module suivant : " + module );
+            } catch (IOException exc) {
+                System.err.println("Erreur de lecture du fichier : " + module);
+            } catch (NullPointerException ex) {
+                System.err.println("Erreur : construireQuestionnaire, dans le module suivant : " + module
+                        + ", probablement des lignes de trops à la fin du fichier");
+            } catch (IndexOutOfBoundsException e) {
+                System.err.println("Error: Impossible de lire la réponse de la question suivante : " + questionLabel);
+                System.err.println("Dans le module suivant : " + module);
             }
 
-            if ( fluxEntree != null )
-            {
-                try
-                {
+            if (fluxEntree != null) {
+                try {
                     fluxEntree.close();
-                }
-                catch ( IOException e )
-                {
-                    System.err.println( "Error can't close the ressource file" );
+                } catch (IOException e) {
+                    System.err.println("Error can't close the ressource file");
                 }
             }
 
@@ -134,42 +115,37 @@ public class Module
     }
 
     /**
-     * @return the _name
+     * @return the name
      */
-    public String getName()
-    {
-        return _name;
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param _name the name to set
+     */
+    public void setName(String _name) {
+        this.name = _name;
     }
 
     /**
      * @return
      */
-    public ArrayList<Question> getQuestions()
-    {
-        return _questions;
+    public ArrayList<Question> getQuestions() {
+        return questions;
     }
 
     /**
-     * @return the _size
+     * @return the size
      */
-    public int getSize()
-    {
-        return _size;
+    public int getSize() {
+        return size;
     }
 
     /**
-     * @param _name the _name to set
+     * @param _size the size to set
      */
-    public void setName( String _name )
-    {
-        this._name = _name;
-    }
-
-    /**
-     * @param _size the _size to set
-     */
-    public void setSize( int _size )
-    {
-        this._size = _size;
+    public void setSize(int _size) {
+        this.size = _size;
     }
 }

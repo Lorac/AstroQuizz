@@ -13,42 +13,27 @@
  *******************************************************************************/
 package com.lorack.astro_quizz.ui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import com.lorack.astro_quizz.domain.Module;
+import com.lorack.astro_quizz.domain.Question;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JEditorPane;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-import com.lorack.astro_quizz.domain.Module;
-import com.lorack.astro_quizz.domain.Question;
-
-@SuppressWarnings( "serial" )
+@SuppressWarnings("serial")
 public class AppCenter
-    extends JPanel
-{
+        extends JPanel {
     private static final String IMAGEPATH = "./Ressources/images/";
     private static final String NOPICTURE = "NO PICTURE";
-
+    private final List<String> possibleChoices = Arrays.asList("A. ", "B. ", "C. ", "D. ", "E. ");
     public JEditorPane question = new JEditorPane();
-
     public JLabel picture = new JLabel();
     public JPanel reponse = new JPanel();
-
     public List<JButton> answers = new ArrayList<JButton>();
     public List<String> labels = new ArrayList<String>();
-    private final List<String> possibleChoices = Arrays.asList( "A. ", "B. ", "C. ", "D. ", "E. " );
-
     private String picturePath = "";
     private String questionlabel = "";
 
@@ -56,13 +41,12 @@ public class AppCenter
 
     /**
      * Create the app Center
-     * 
-     * @param module The module to create with
+     *
+     * @param module          The module to create with
      * @param currentQuestion the question to get
      * @param numberOfChoices Number of possible choices for that question
      */
-    public AppCenter( final Module module, final int currentQuestion, int numberOfChoices )
-    {
+    public AppCenter(final Module module, final int currentQuestion, int numberOfChoices) {
 
         questionNumber = currentQuestion;
 
@@ -71,63 +55,55 @@ public class AppCenter
 
         reponse.setBackground(Color.LIGHT_GRAY);
 
-        for ( int i = 0; i < numberOfChoices; i++ )
-        {
-            answers.add( new JButton() );
-            answers.get( i ).setFocusable( false );
+        for (int i = 0; i < numberOfChoices; i++) {
+            answers.add(new JButton());
+            answers.get(i).setFocusable(false);
         }
 
-        setListenerOnJButton( module, currentQuestion, numberOfChoices );
-        setLayout( new BorderLayout() );
+        setListenerOnJButton(module, currentQuestion, numberOfChoices);
+        setLayout(new BorderLayout());
 
         reponse.setLayout(new GridLayout(numberOfChoices, 1));
 
-        for ( int i = 0; i < numberOfChoices; i++ )
-        {
+        for (int i = 0; i < numberOfChoices; i++) {
 
-            answers.get( i ).setBackground( Color.LIGHT_GRAY );
-            answers.get( i ).setBorderPainted( false );
+            answers.get(i).setBackground(Color.LIGHT_GRAY);
+            answers.get(i).setBorderPainted(false);
 
         }
 
-        printQuestion( module.getQuestions().get(questionNumber), numberOfChoices );
+        printQuestion(module.getQuestions().get(questionNumber), numberOfChoices);
     }
 
     /**
      * @return int number of question
      */
-    public int getCurrentQuestion()
-    {
+    public int getCurrentQuestion() {
         return questionNumber;
     }
 
     /**
      * Make the question appear on the frame
-     * 
-     * @param theQuestion The question to make appear
+     *
+     * @param theQuestion     The question to make appear
      * @param numberOfChoices Number of choices of that question
      */
-    private void printQuestion( Question theQuestion, int numberOfChoices )
-    {
+    private void printQuestion(Question theQuestion, int numberOfChoices) {
         String[] lesChoixPossible = null;
 
         questionlabel = theQuestion.getQuestionLabel();
         lesChoixPossible = theQuestion.getChoixReponse();
 
-        for ( int i = 0; i < numberOfChoices; i++ )
-        {
+        for (int i = 0; i < numberOfChoices; i++) {
 
-            labels.add( lesChoixPossible[i].trim() );
-            answers.get( i ).setText( possibleChoices.get( i ) + labels.get( i ) );
+            labels.add(lesChoixPossible[i].trim());
+            answers.get(i).setText(possibleChoices.get(i) + labels.get(i));
             reponse.add(answers.get(i));
 
-            if ( labels.get( i ).isEmpty() )
-            {
-                answers.get( i ).setVisible( false );
-            }
-            else
-            {
-                answers.get( i ).setVisible( true );
+            if (labels.get(i).isEmpty()) {
+                answers.get(i).setVisible(false);
+            } else {
+                answers.get(i).setVisible(true);
             }
 
         }
@@ -137,124 +113,103 @@ public class AppCenter
         setQuestionLabelOnFrame();
         setImageOnFrame();
 
-        setVisible( true );
+        setVisible(true);
 
     }
 
     /**
      * Set the picture on the frame
      */
-    private void setImageOnFrame()
-    {
-        if ( picturePath.equals( NOPICTURE ) )
-        {
+    private void setImageOnFrame() {
+        if (picturePath.equals(NOPICTURE)) {
             picture.setVisible(false);
-        }
-        else
-        {
-            ImageIcon image = new ImageIcon( IMAGEPATH + picturePath);
-            Dimension imageSize = new Dimension( image.getIconWidth(), image.getIconHeight() );
+        } else {
+            ImageIcon image = new ImageIcon(IMAGEPATH + picturePath);
+            Dimension imageSize = new Dimension(image.getIconWidth(), image.getIconHeight());
 
             picture.setIcon(image);
             picture.setPreferredSize(imageSize);
             picture.setBackground(Color.LIGHT_GRAY);
             picture.setOpaque(true);
 
-            add(picture, BorderLayout.EAST );
+            add(picture, BorderLayout.EAST);
             picture.setVisible(true);
         }
     }
 
     /**
      * Set Listener on each JButton of possible answers
-     * 
-     * @param module The current module
+     *
+     * @param module          The current module
      * @param currentQuestion The current question
      * @param numberOfChoices The number of Choices for that question
      */
-    private void setListenerOnJButton( final Module module, final int currentQuestion, int numberOfChoices )
-    {
-        for ( int i = 0; i < numberOfChoices; i++ )
-        {
+    private void setListenerOnJButton(final Module module, final int currentQuestion, int numberOfChoices) {
+        for (int i = 0; i < numberOfChoices; i++) {
             answers.get(i).setName(possibleChoices.get(i));
-            answers.get( i ).addMouseListener( new java.awt.event.MouseAdapter()
-            {
+            answers.get(i).addMouseListener(new java.awt.event.MouseAdapter() {
 
                 @Override
-                public void mouseClicked( MouseEvent e )
-                {
-                    e.getComponent().setEnabled( false );
-                    if ( module.getQuestions().get( currentQuestion ).getReponse() == e.getComponent().getName().charAt( 0 ) )
-                    {
-                        e.getComponent().setBackground( Color.GREEN );
+                public void mouseClicked(MouseEvent e) {
+                    e.getComponent().setEnabled(false);
+                    if (module.getQuestions().get(currentQuestion).getReponse() == e.getComponent().getName().charAt(0)) {
+                        e.getComponent().setBackground(Color.GREEN);
 
+                    } else {
+                        e.getComponent().setBackground(Color.RED);
                     }
-                    else
-                    {
-                        e.getComponent().setBackground( Color.RED );
-                    }
-                    ( (JComponent) e.getComponent() ).setOpaque( true );
+                    ((JComponent) e.getComponent()).setOpaque(true);
                 }
 
                 @Override
-                public void mouseEntered( MouseEvent e )
-                {
-                    if ( !( e.getComponent().getBackground() != Color.GREEN || e.getComponent().getBackground() != Color.RED ) )
-                    {
-                        e.getComponent().setBackground( Color.LIGHT_GRAY );
+                public void mouseEntered(MouseEvent e) {
+                    if (!(e.getComponent().getBackground() != Color.GREEN || e.getComponent().getBackground() != Color.RED)) {
+                        e.getComponent().setBackground(Color.LIGHT_GRAY);
                     }
-                    ( (JComponent) e.getComponent() ).setOpaque( true );
+                    ((JComponent) e.getComponent()).setOpaque(true);
                 }
 
                 @Override
-                public void mouseExited( MouseEvent e )
-                {
-                    if ( !( e.getComponent().getBackground() == Color.GREEN || e.getComponent().getBackground() == Color.RED ) )
-                    {
-                        e.getComponent().setBackground( Color.LIGHT_GRAY );
+                public void mouseExited(MouseEvent e) {
+                    if (!(e.getComponent().getBackground() == Color.GREEN || e.getComponent().getBackground() == Color.RED)) {
+                        e.getComponent().setBackground(Color.LIGHT_GRAY);
                     }
-                    ( (JComponent) e.getComponent() ).setOpaque( true );
+                    ((JComponent) e.getComponent()).setOpaque(true);
 
                 }
 
                 @Override
-                public void mousePressed( MouseEvent e )
-                {
-                    e.getComponent().setEnabled( false );
-                    if ( module.getQuestions().get( currentQuestion ).getReponse() == e.getComponent().getName().charAt( 0 ) )
-                    {
-                        e.getComponent().setBackground( Color.GREEN );
+                public void mousePressed(MouseEvent e) {
+                    e.getComponent().setEnabled(false);
+                    if (module.getQuestions().get(currentQuestion).getReponse() == e.getComponent().getName().charAt(0)) {
+                        e.getComponent().setBackground(Color.GREEN);
+                    } else {
+                        e.getComponent().setBackground(Color.RED);
                     }
-                    else
-                    {
-                        e.getComponent().setBackground( Color.RED );
-                    }
-                    ( (JComponent) e.getComponent() ).setOpaque( true );
+                    ((JComponent) e.getComponent()).setOpaque(true);
 
                 }
 
                 @Override
-                public void mouseReleased( MouseEvent e )
-                {
+                public void mouseReleased(MouseEvent e) {
 
                 }
-            } );
+            });
         }
     }
 
     /**
      * \brief Set the question label on the frame
      */
-    private void setQuestionLabelOnFrame()
-    {
+    private void setQuestionLabelOnFrame() {
         question.setContentType("text/html");
         question.setText("<b>Question #" + (questionNumber + 1) + "</b>:  " + questionlabel);
         question.setEditable(false);
         question.setBackground(Color.LIGHT_GRAY);
         question.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 
-        add(question, BorderLayout.NORTH );
-        add(reponse, BorderLayout.CENTER );
+        add(question, BorderLayout.NORTH);
+        add(reponse, BorderLayout.CENTER);
     }
 
 }

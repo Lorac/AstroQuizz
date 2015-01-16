@@ -14,58 +14,46 @@
 
 package com.lorack.astro_quizz;
 
+import com.lorack.astro_quizz.domain.Module;
+import com.lorack.astro_quizz.ui.AppFrame;
+
+import javax.swing.*;
 import java.io.File;
 import java.util.Map;
 import java.util.TreeMap;
 
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-
-import com.lorack.astro_quizz.domain.Module;
-import com.lorack.astro_quizz.ui.AppFrame;
-
-public abstract class MainApp
-{
-    public static void main( String[] args )
-    {
+public abstract class MainApp {
+    public static void main(String[] args) {
         setLookAndFeel();
         Map<String, Module> questionnaires = new TreeMap<String, Module>();
-        creerQuestionaires( questionnaires );
+        creerQuestionaires(questionnaires);
 
-        AppFrame AstroQuizz = new AppFrame( questionnaires );
+        AppFrame AstroQuizz = new AppFrame(questionnaires);
 
-        AstroQuizz.setVisible( true );
+        AstroQuizz.setVisible(true);
     }
 
     /**
      *
      */
-    private static void setLookAndFeel()
-    {
-        try
-        {
-            UIManager.setLookAndFeel( UIManager.getSystemLookAndFeelClassName() );
-        }
-        catch ( ClassNotFoundException e )
-        {
-            System.err.println( "Couldn't find class for specified look and feel:"
-                + UIManager.getSystemLookAndFeelClassName() );
-            System.err.println( "Did you include the L&F library in the class path?" );
-            System.err.println( "Using the default look and feel." );
+    private static void setLookAndFeel() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException e) {
+            System.err.println("Couldn't find class for specified look and feel:"
+                    + UIManager.getSystemLookAndFeelClassName());
+            System.err.println("Did you include the L&F library in the class path?");
+            System.err.println("Using the default look and feel.");
 
-        }
-        catch ( UnsupportedLookAndFeelException e )
-        {
-            System.err.println( "Can't use the specified look and feel (" + UIManager.getSystemLookAndFeelClassName()
-                + ") on this platform." );
-            System.err.println( "Using the default look and feel." );
+        } catch (UnsupportedLookAndFeelException e) {
+            System.err.println("Can't use the specified look and feel (" + UIManager.getSystemLookAndFeelClassName()
+                    + ") on this platform.");
+            System.err.println("Using the default look and feel.");
 
-        }
-        catch ( Exception e )
-        {
-            System.err.println( "Couldn't get specified look and feel (" + UIManager.getSystemLookAndFeelClassName()
-                + "), for some reason." );
-            System.err.println( "Using the default look and feel." );
+        } catch (Exception e) {
+            System.err.println("Couldn't get specified look and feel (" + UIManager.getSystemLookAndFeelClassName()
+                    + "), for some reason.");
+            System.err.println("Using the default look and feel.");
 
         }
     }
@@ -73,20 +61,17 @@ public abstract class MainApp
 
     /**
      * Création de toutes les questionnaires
-     * 
+     *
      * @param questionnaires
      */
-    private static void creerQuestionaires( Map<String, Module> questionnaires )
-    {
-        File folder = new File( "./Ressources" );
+    private static void creerQuestionaires(Map<String, Module> questionnaires) {
+        File folder = new File("./Ressources");
         File[] listOfFiles = folder.listFiles();
-        for ( int i = 0; i < listOfFiles.length; i++ )
-        {
-            if ( listOfFiles[i].isFile() )
-            {
-                String fileName = listOfFiles[i].getName().substring( 0, listOfFiles[i].getName().lastIndexOf( "." ) );
+        for (int i = 0; i < listOfFiles.length; i++) {
+            if (listOfFiles[i].isFile()) {
+                String fileName = listOfFiles[i].getName().substring(0, listOfFiles[i].getName().lastIndexOf("."));
 
-                questionnaires.put( fileName.toLowerCase(), new Module( fileName ) );
+                questionnaires.put(fileName.toLowerCase(), new Module(fileName));
 
             }
         }

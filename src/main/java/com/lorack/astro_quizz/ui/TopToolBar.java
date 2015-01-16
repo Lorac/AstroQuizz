@@ -14,22 +14,17 @@
 
 package com.lorack.astro_quizz.ui;
 
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JToolBar;
-
-@SuppressWarnings( "serial" )
+@SuppressWarnings("serial")
 public class TopToolBar
-    extends JToolBar
-{
-    
+        extends JToolBar {
+
     // ----------------------------------------------------------------------
     // Attributs de la TopToolBar
     // ----------------------------------------------------------------------
@@ -37,64 +32,55 @@ public class TopToolBar
 
     public JButton randomButton = new JButton();
 
-    private JLabel _moduleLabel = new JLabel();
+    private JLabel moduleLabel = new JLabel();
 
-    private File _ressources;
+    private File ressources;
 
     /**
-     * 
+     *
      */
-    public TopToolBar()
-    {
-        _ressources = new File( "./Ressources/" );
-        setFloatable( false );
-        setListFiles( _ressources );
-        setBackground( Color.LIGHT_GRAY );
-        setBorderPainted( false );
+    public TopToolBar() {
+        ressources = new File("./Ressources/");
+        setFloatable(false);
+        setListFiles(ressources);
+        setBackground(Color.LIGHT_GRAY);
+        setBorderPainted(false);
 
-        randomButton.setFocusable( false );
+        randomButton.setFocusable(false);
 
-        _moduleLabel.setText( "Module :  " );
-        randomButton.setText( "Choisir une question aléatoirement" );
+        moduleLabel.setText("Module :  ");
+        randomButton.setText("Choisir une question aléatoirement");
 
-        add( _moduleLabel );
-        add( moduleComboBox );
+        add(moduleLabel);
+        add(moduleComboBox);
 
     }
 
     /**
      * @param Ressources
      */
-    private void setListFiles( File Ressources )
-    {
-        if ( Ressources.exists() && Ressources.isDirectory() )
-        {
+    private void setListFiles(File Ressources) {
+        if (Ressources.exists() && Ressources.isDirectory()) {
             List<File> list = new ArrayList<File>();
 
-            for ( File file : Ressources.listFiles() )
-            {
-                if ( file.getName().endsWith( ".txt" ) )
-                {
-                    list.add( file );
+            for (File file : Ressources.listFiles()) {
+                if (file.getName().endsWith(".txt")) {
+                    list.add(file);
                 }
             }
 
-            if ( list.size() != 0 )
-            {
-                Collections.sort( list );
-                for ( int i = 0; i < list.size(); i++ )
-                {
+            if (list.size() != 0) {
+                Collections.sort(list);
+                for (int i = 0; i < list.size(); i++) {
                     String moduleName =
-                        (String) list.get( i ).getName().subSequence( 0, list.get( i ).getName().length() - 4 );
-                    moduleName = moduleName.replace( '_', ' ' );
-                    moduleComboBox.addItem( moduleName );
+                            (String) list.get(i).getName().subSequence(0, list.get(i).getName().length() - 4);
+                    moduleName = moduleName.replace('_', ' ');
+                    moduleComboBox.addItem(moduleName);
                 }
             }
 
-        }
-        else
-        {
-            System.out.println( "Répertoire non trouver" );
+        } else {
+            System.out.println("Répertoire non trouver");
         }
 
     }

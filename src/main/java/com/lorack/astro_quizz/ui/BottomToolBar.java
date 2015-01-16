@@ -13,15 +13,12 @@
  *******************************************************************************/
 package com.lorack.astro_quizz.ui;
 
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
-
-@SuppressWarnings( "serial" )
+@SuppressWarnings("serial")
 public class BottomToolBar
-    extends JPanel
-{
+        extends JPanel {
     // ----------------------------------------------------------------------
     // Attributs de la BottomToolBar
     // ----------------------------------------------------------------------
@@ -29,19 +26,18 @@ public class BottomToolBar
 
     public JButton previousButton = new JButton();
 
-    
+
     // ----------------------------------------------------------------------
     // Méthodes publique
     // ----------------------------------------------------------------------
-    
-    public BottomToolBar()
-    {
-        nextButton.setText( "Question Suivante" );
-        previousButton.setText( "Question Précédente" );
-        setBackground( Color.LIGHT_GRAY );
 
-        add( previousButton );
-        add( nextButton );
+    public BottomToolBar() {
+        nextButton.setText("Question Suivante");
+        previousButton.setText("Question Précédente");
+        setBackground(Color.LIGHT_GRAY);
+
+        add(previousButton);
+        add(nextButton);
     }
 
 }
