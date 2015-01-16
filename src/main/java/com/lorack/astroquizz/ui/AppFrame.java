@@ -12,9 +12,9 @@
  *     Jean Lalande - Helped on the MAC Integretion
  *******************************************************************************/
 
-package com.lorack.astro_quizz.ui;
+package com.lorack.astroquizz.ui;
 
-import com.lorack.astro_quizz.domain.Module;
+import com.lorack.astroquizz.domain.Module;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,7 +33,7 @@ public class AppFrame extends JFrame implements ActionListener {
     // Attributs du AppFrame
     // ----------------------------------------------------------------------
 
-    private static Logger appFrameLogger;
+    private static final Logger appFrameLOGGER = Logger.getLogger(AppFrame.class.getName());
     private Map<String, Module> modules;
     private BottomToolBar botToolBar = new BottomToolBar();
     private JPanel container = new JPanel();
@@ -134,18 +134,18 @@ public class AppFrame extends JFrame implements ActionListener {
         try {
             randomQuestionNumber = random.nextInt(module.getSize());
         } catch (IllegalArgumentException e) {
-            appFrameLogger.log(Level.SEVERE, "Erreur: chooseRandomQuestion, le module : " + module.getName());
-            appFrameLogger.log(Level.WARNING, e.getMessage());
+            appFrameLOGGER.log(Level.SEVERE, "Erreur: chooseRandomQuestion, le module : " + module.getName());
+            appFrameLOGGER.log(Level.WARNING, e.getMessage());
         }
 
         try {
             initQuestion(module.getName().toLowerCase(), randomQuestionNumber);
         } catch (NullPointerException e) {
-            appFrameLogger.log(Level.SEVERE, "Le module est invalide, null");
-            appFrameLogger.log(Level.WARNING, e.getMessage());
+            appFrameLOGGER.log(Level.SEVERE, "Le module est invalide, null");
+            appFrameLOGGER.log(Level.WARNING, e.getMessage());
         } catch (Exception e) {
-            appFrameLogger.log(Level.SEVERE, "Erreur majeur : initQuestion");
-            appFrameLogger.log(Level.WARNING, e.getMessage());
+            appFrameLOGGER.log(Level.SEVERE, "Erreur majeur : initQuestion");
+            appFrameLOGGER.log(Level.WARNING, e.getMessage());
         }
 
     }
@@ -166,8 +166,8 @@ public class AppFrame extends JFrame implements ActionListener {
         try {
             module = modules.get(randomKey);
         } catch (NullPointerException e) {
-            appFrameLogger.log(Level.SEVERE, "Erreur, getRandomModule : impossible de retrouver le module : " + randomKey);
-            appFrameLogger.log(Level.WARNING, e.getMessage());
+            appFrameLOGGER.log(Level.SEVERE, "Erreur, getRandomModule : impossible de retrouver le module : " + randomKey);
+            appFrameLOGGER.log(Level.WARNING, e.getMessage());
         }
 
         return module;
@@ -190,12 +190,12 @@ public class AppFrame extends JFrame implements ActionListener {
             questionArea = new AppCenter(modules.get(module), question,
                     getNumberOfPossibleChoicesOfAQuestion(module, question));
         } catch (ClassCastException e) {
-            appFrameLogger.log(Level.SEVERE, "The key is of an inappropriate type for this map, Key :" + module);
-            appFrameLogger.log(Level.WARNING, e.getMessage());
+            appFrameLOGGER.log(Level.SEVERE, "The key is of an inappropriate type for this map, Key :" + module);
+            appFrameLOGGER.log(Level.WARNING, e.getMessage());
 
         } catch (NullPointerException e) {
-            appFrameLogger.log(Level.SEVERE, "initQuestion : The specified key is null and this map does not permit null keys");
-            appFrameLogger.log(Level.WARNING, e.getMessage());
+            appFrameLOGGER.log(Level.SEVERE, "initQuestion : The specified key is null and this map does not permit null keys");
+            appFrameLOGGER.log(Level.WARNING, e.getMessage());
         }
 
         container.add(questionArea, BorderLayout.CENTER);
@@ -233,12 +233,12 @@ public class AppFrame extends JFrame implements ActionListener {
         try {
             NbChoix = modules.get(module).getQuestions().get(currentQuestion).getNbChoix();
         } catch (ClassCastException e) {
-            appFrameLogger.log(Level.SEVERE, "The key is of an inappropriate type for this map" + module);
-            appFrameLogger.log(Level.WARNING, e.getMessage());
+            appFrameLOGGER.log(Level.SEVERE, "The key is of an inappropriate type for this map" + module);
+            appFrameLOGGER.log(Level.WARNING, e.getMessage());
 
         } catch (NullPointerException e) {
-            appFrameLogger.log(Level.SEVERE, "The specified key is null and this map does not permit null keys");
-            appFrameLogger.log(Level.WARNING, e.getMessage());
+            appFrameLOGGER.log(Level.SEVERE, "The specified key is null and this map does not permit null keys");
+            appFrameLOGGER.log(Level.WARNING, e.getMessage());
         }
         return NbChoix;
     }
@@ -252,12 +252,12 @@ public class AppFrame extends JFrame implements ActionListener {
         try {
             size = modules.get(module).getSize();
         } catch (ClassCastException e) {
-            appFrameLogger.log(Level.SEVERE, "The key is of an inappropriate type for this map :" + module);
-            appFrameLogger.log(Level.WARNING, e.getMessage());
+            appFrameLOGGER.log(Level.SEVERE, "The key is of an inappropriate type for this map :" + module);
+            appFrameLOGGER.log(Level.WARNING, e.getMessage());
 
         } catch (NullPointerException e) {
-            appFrameLogger.log(Level.SEVERE, "The specified key is null and this map does not permit null keys");
-            appFrameLogger.log(Level.WARNING, e.getMessage());
+            appFrameLOGGER.log(Level.SEVERE, "The specified key is null and this map does not permit null keys");
+            appFrameLOGGER.log(Level.WARNING, e.getMessage());
         }
         return size;
     }

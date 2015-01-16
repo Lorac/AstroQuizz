@@ -12,7 +12,7 @@
  *     Jean Lalande - Helped on the MAC Integretion
  *******************************************************************************/
 
-package com.lorack.astro_quizz.domain;
+package com.lorack.astroquizz.domain;
 
 public abstract class Question {
     // ----------------------------------------------------------------------
@@ -20,15 +20,10 @@ public abstract class Question {
     // ----------------------------------------------------------------------
 
     private String[] choixReponse;
-
     private String picturePath;
-
     private String questionLabel;
-
     private int nbChoix;
-
     private char reponse;
-
 
     // ----------------------------------------------------------------------
     // Méthodes publique

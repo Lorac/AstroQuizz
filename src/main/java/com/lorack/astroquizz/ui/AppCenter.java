@@ -11,10 +11,10 @@
  *     Simon Gamache-Poirer - Helped the huge refactor
  *     Jean Lalande - Helped on the MAC Integretion
  *******************************************************************************/
-package com.lorack.astro_quizz.ui;
+package com.lorack.astroquizz.ui;
 
-import com.lorack.astro_quizz.domain.Module;
-import com.lorack.astro_quizz.domain.Question;
+import com.lorack.astroquizz.domain.Module;
+import com.lorack.astroquizz.domain.Question;
 
 import javax.swing.*;
 import java.awt.*;

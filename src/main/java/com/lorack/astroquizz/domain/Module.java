@@ -12,7 +12,7 @@
  *     Jean Lalande - Helped on the MAC Integretion
  *******************************************************************************/
 
-package com.lorack.astro_quizz.domain;
+package com.lorack.astroquizz.domain;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -32,7 +32,7 @@ public class Module {
 
     private int size;
 
-    private static Logger moduleLog;
+    private static final Logger moduleLog = Logger.getLogger(Module.class.getName());
 
     // ----------------------------------------------------------------------
     // Méthodes publique

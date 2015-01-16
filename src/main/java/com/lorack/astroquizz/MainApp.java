@@ -12,10 +12,10 @@
  *     Jean Lalande - Helped on the MAC Integretion
  *******************************************************************************/
 
-package com.lorack.astro_quizz;
+package com.lorack.astroquizz;
 
-import com.lorack.astro_quizz.domain.Module;
-import com.lorack.astro_quizz.ui.AppFrame;
+import com.lorack.astroquizz.domain.Module;
+import com.lorack.astroquizz.ui.AppFrame;
 
 import javax.swing.*;
 import java.io.File;
@@ -25,7 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public abstract class MainApp {
-    private static Logger mainAppLogger;
+    private static final Logger mainAppLogger = Logger.getLogger(MainApp.class.getName());
 
     public static void main(String[] args) {
         setLookAndFeel();

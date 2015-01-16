@@ -12,7 +12,7 @@
  *     Jean Lalande - Helped on the MAC Integretion
  *******************************************************************************/
 
-package com.lorack.astro_quizz.ui;
+package com.lorack.astroquizz.ui;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 @SuppressWarnings("serial")
 public class TopToolBar extends JToolBar {
 
-    private static Logger topToolBar;
+    private static final Logger topToolBar = Logger.getLogger(TopToolBar.class.getName());
     // ----------------------------------------------------------------------
     // Attributs de la TopToolBar
     // ----------------------------------------------------------------------

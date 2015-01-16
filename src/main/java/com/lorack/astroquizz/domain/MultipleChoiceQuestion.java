@@ -1,4 +1,4 @@
-package com.lorack.astro_quizz.domain;
+package com.lorack.astroquizz.domain;
 
 public class MultipleChoiceQuestion
         extends Question {

@@ -25,7 +25,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.lorack.astro_quizz.MainApp</mainClass>
+							<mainClass>com.lorack.astroquizz.MainApp</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>

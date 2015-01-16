@@ -11,14 +11,13 @@
  *     Simon Gamache-Poirer - Helped the huge refactor
  *     Jean Lalande - Helped on the MAC Integretion
  *******************************************************************************/
-package com.lorack.astro_quizz.ui;
+package com.lorack.astroquizz.ui;
 
 import javax.swing.*;
 import java.awt.*;
 
 @SuppressWarnings("serial")
-public class BottomToolBar
-        extends JPanel {
+public class BottomToolBar extends JPanel {
     // ----------------------------------------------------------------------
     // Attributs de la BottomToolBar
     // ----------------------------------------------------------------------
