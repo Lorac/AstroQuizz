@@ -34,18 +34,13 @@ public class AppFrame extends JFrame implements ActionListener {
     // ----------------------------------------------------------------------
 
     private static Logger appFrameLogger;
-    public Map<String, Module> modules;
+    private Map<String, Module> modules;
     private BottomToolBar botToolBar = new BottomToolBar();
     private JPanel container = new JPanel();
     private JPanel top = new JPanel();
     private TopToolBar mainToolBar = new TopToolBar();
     private String moduleName = "";
     private AppCenter questionArea;
-
-
-    // ----------------------------------------------------------------------
-    // Méthodes publique
-    // ----------------------------------------------------------------------
 
     /**
      * Makes the whole frame
@@ -54,7 +49,7 @@ public class AppFrame extends JFrame implements ActionListener {
      */
     public AppFrame(Map<String, Module> questionnaires) {
         modules = questionnaires;
-        moduleName = mainToolBar.moduleComboBox.getSelectedItem().toString();
+        moduleName = mainToolBar.getModuleComboBox().getSelectedItem().toString();
 
         String moduleAsKey = getModuleAsKey();
 
@@ -64,6 +59,39 @@ public class AppFrame extends JFrame implements ActionListener {
         setWindowsProperty();
         setActionListener();
 
+    }
+
+
+    // ----------------------------------------------------------------------
+    // Méthodes publique
+    // ----------------------------------------------------------------------
+
+    public Map<String, Module> getModules() {
+        return modules;
+    }
+
+    public BottomToolBar getBotToolBar() {
+        return botToolBar;
+    }
+
+    public JPanel getContainer() {
+        return container;
+    }
+
+    public JPanel getTop() {
+        return top;
+    }
+
+    public TopToolBar getMainToolBar() {
+        return mainToolBar;
+    }
+
+    public String getModuleName() {
+        return moduleName;
+    }
+
+    public AppCenter getQuestionArea() {
+        return questionArea;
     }
 
     /**
@@ -76,20 +104,20 @@ public class AppFrame extends JFrame implements ActionListener {
         int nextQuestion = questionArea.getCurrentQuestion() + 1;
         int previousQuestion = questionArea.getCurrentQuestion() - 1;
 
-        if (evt.getSource() == mainToolBar.randomButton) {
+        if (evt.getSource() == mainToolBar.getRandomButton()) {
             // Need to disable the ActionListener to not call initQuestion twice
-            this.mainToolBar.moduleComboBox.removeActionListener(this);
+            this.mainToolBar.getModuleComboBox().removeActionListener(this);
             chooseRandomQuestion();
-            this.mainToolBar.moduleComboBox.addActionListener(this);
-        } else if (evt.getSource() == botToolBar.nextButton) {
+            this.mainToolBar.getModuleComboBox().addActionListener(this);
+        } else if (evt.getSource() == botToolBar.getNextButton()) {
 
             initQuestion(moduleChanged, nextQuestion);
 
-        } else if (evt.getSource() == botToolBar.previousButton) {
+        } else if (evt.getSource() == botToolBar.getPreviousButton()) {
 
             initQuestion(moduleChanged, previousQuestion);
 
-        } else if (evt.getSource() == mainToolBar.moduleComboBox) {
+        } else if (evt.getSource() == mainToolBar.getModuleComboBox()) {
             initQuestion(moduleChanged, 0);
 
         }
@@ -132,7 +160,7 @@ public class AppFrame extends JFrame implements ActionListener {
         List<String> keys = new ArrayList<String>(modules.keySet());
         String randomKey = keys.get(random.nextInt(keys.size()));
 
-        mainToolBar.moduleComboBox.setSelectedIndex(keys.indexOf(randomKey));
+        mainToolBar.getModuleComboBox().setSelectedIndex(keys.indexOf(randomKey));
 
         Module module = null;
         try {
@@ -155,12 +183,12 @@ public class AppFrame extends JFrame implements ActionListener {
         container.remove(questionArea);
         int nbQuestion = getNumberOfQuestion(module);
 
-        botToolBar.previousButton.setEnabled(question > 0);
-        botToolBar.nextButton.setEnabled(nbQuestion - question - 1 > 0);
+        botToolBar.getPreviousButton().setEnabled(question > 0);
+        botToolBar.getNextButton().setEnabled(nbQuestion - question - 1 > 0);
 
         try {
             questionArea = new AppCenter(modules.get(module), question,
-                            getNumberOfPossibleChoicesOfAQuestion(module, question));
+                    getNumberOfPossibleChoicesOfAQuestion(module, question));
         } catch (ClassCastException e) {
             appFrameLogger.log(Level.SEVERE, "The key is of an inappropriate type for this map, Key :" + module);
             appFrameLogger.log(Level.WARNING, e.getMessage());
@@ -189,7 +217,7 @@ public class AppFrame extends JFrame implements ActionListener {
      * @return string as key for the map
      */
     private String getModuleAsKey() {
-        moduleName = mainToolBar.moduleComboBox.getSelectedItem().toString();
+        moduleName = mainToolBar.getModuleComboBox().getSelectedItem().toString();
         String moduleChanged = moduleName.toLowerCase();
         moduleChanged = moduleChanged.trim().replace(' ', '_');
         return moduleChanged;
@@ -238,10 +266,10 @@ public class AppFrame extends JFrame implements ActionListener {
      *
      */
     private void setActionListener() {
-        mainToolBar.moduleComboBox.addActionListener(this);
-        mainToolBar.randomButton.addActionListener(this);
-        botToolBar.nextButton.addActionListener(this);
-        botToolBar.previousButton.addActionListener(this);
+        mainToolBar.getModuleComboBox().addActionListener(this);
+        mainToolBar.getRandomButton().addActionListener(this);
+        botToolBar.getNextButton().addActionListener(this);
+        botToolBar.getPreviousButton().addActionListener(this);
     }
 
     /**
@@ -262,9 +290,9 @@ public class AppFrame extends JFrame implements ActionListener {
         top.setLayout(new BorderLayout());
         top.setBackground(Color.LIGHT_GRAY);
         top.add(mainToolBar, BorderLayout.EAST);
-        top.add(mainToolBar.randomButton, BorderLayout.WEST);
+        top.add(mainToolBar.getRandomButton(), BorderLayout.WEST);
 
-        botToolBar.previousButton.setEnabled(false);
+        botToolBar.getPreviousButton().setEnabled(false);
 
         setContentPane(container);
 

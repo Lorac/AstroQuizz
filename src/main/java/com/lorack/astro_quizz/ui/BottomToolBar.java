@@ -22,14 +22,8 @@ public class BottomToolBar
     // ----------------------------------------------------------------------
     // Attributs de la BottomToolBar
     // ----------------------------------------------------------------------
-    public JButton nextButton = new JButton();
-
-    public JButton previousButton = new JButton();
-
-
-    // ----------------------------------------------------------------------
-    // Méthodes publique
-    // ----------------------------------------------------------------------
+    private JButton nextButton = new JButton();
+    private JButton previousButton = new JButton();
 
     public BottomToolBar() {
         nextButton.setText("Question Suivante");
@@ -38,6 +32,18 @@ public class BottomToolBar
 
         add(previousButton);
         add(nextButton);
+    }
+
+    // ----------------------------------------------------------------------
+    // Méthodes publique
+    // ----------------------------------------------------------------------
+
+    public JButton getNextButton() {
+        return nextButton;
+    }
+
+    public JButton getPreviousButton() {
+        return previousButton;
     }
 
 }

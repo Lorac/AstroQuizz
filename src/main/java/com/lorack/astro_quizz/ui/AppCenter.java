@@ -28,10 +28,10 @@ public class AppCenter extends JPanel {
     private static final String IMAGEPATH = "./Ressources/images/";
     private static final String NOPICTURE = "NO PICTURE";
     private final List<String> possibleChoices = Arrays.asList("A. ", "B. ", "C. ", "D. ", "E. ");
-    public JEditorPane question = new JEditorPane();
-    public JLabel picture = new JLabel();
-    public JPanel reponse = new JPanel();
-    public List<JButton> answers = new ArrayList<JButton>();
+    private JEditorPane question = new JEditorPane();
+    private JLabel picture = new JLabel();
+    private JPanel reponse = new JPanel();
+    private List<JButton> answers = new ArrayList<JButton>();
     public List<String> labels = new ArrayList<String>();
     private String picturePath = "";
     private String questionlabel = "";

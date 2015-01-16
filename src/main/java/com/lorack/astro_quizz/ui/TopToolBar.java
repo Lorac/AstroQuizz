@@ -26,18 +26,14 @@ import java.util.logging.Logger;
 @SuppressWarnings("serial")
 public class TopToolBar extends JToolBar {
 
+    private static Logger topToolBar;
     // ----------------------------------------------------------------------
     // Attributs de la TopToolBar
     // ----------------------------------------------------------------------
-    public JComboBox moduleComboBox = new JComboBox();
-
-    public JButton randomButton = new JButton();
-
+    private JComboBox moduleComboBox = new JComboBox();
+    private JButton randomButton = new JButton();
     private JLabel moduleLabel = new JLabel();
-
     private File ressources;
-
-    private static Logger topToolBar;
 
     /**
      *
@@ -57,6 +53,22 @@ public class TopToolBar extends JToolBar {
         add(moduleLabel);
         add(moduleComboBox);
 
+    }
+
+    public JComboBox getModuleComboBox() {
+        return moduleComboBox;
+    }
+
+    public JButton getRandomButton() {
+        return randomButton;
+    }
+
+    public JLabel getModuleLabel() {
+        return moduleLabel;
+    }
+
+    public File getRessources() {
+        return ressources;
     }
 
     /**
