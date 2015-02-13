@@ -13,6 +13,12 @@ import static org.mockito.Mockito.mock;
 public class ModuleTest {
 
     private static final int ONE_QUESTION = 1;
+    
+    @Test
+    public void whenCreatingANewModuleItShouldBeEmpty() {
+        Module module = new Module();
+        module.isEmpty();
+    }
 
     @Test
     public void whenAddingAQuestionToAModuleItShouldHaveOneQuestion() {

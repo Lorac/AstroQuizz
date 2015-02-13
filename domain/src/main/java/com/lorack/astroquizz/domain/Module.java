@@ -1,7 +1,5 @@
 package com.lorack.astroquizz.domain;
 
-import com.lorack.astroquizz.domain.Question;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,5 +20,9 @@ public class Module {
 
     public int count() {
         return questions.size();
+    }
+
+    public boolean isEmpty() {
+        return questions.isEmpty();
     }
 }
