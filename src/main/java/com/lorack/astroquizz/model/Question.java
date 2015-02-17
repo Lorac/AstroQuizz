@@ -11,10 +11,12 @@ public class Question {
 
     private final String stem;
     private final List<String> choices;
+    private final int number;
 
-    public Question(String stem, List<String> choices) {
+    public Question(String stem, List<String> choices, int questionNumber) {
         this.stem = stem;
         this.choices = choices;
+        this.number = questionNumber;
     }
 
     public String getStem() {
@@ -23,6 +25,10 @@ public class Question {
 
     public List<String> getChoices() {
         return choices;
+    }
+
+    public boolean hasNumber(int questionNumber) {
+        return this.number == questionNumber;
     }
 
     @Override
@@ -55,4 +61,5 @@ public class Question {
         hash = hash * 31 + choices.hashCode();
         return hash;
     }
+
 }

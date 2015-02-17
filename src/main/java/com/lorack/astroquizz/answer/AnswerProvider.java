@@ -9,8 +9,7 @@ import com.lorack.astroquizz.model.Question;
 public class AnswerProvider {
 
     public Answer getAnswer(Question question) {
-        Answer answer = new Answer();
-        answer.setAnswer("A");
+        Answer answer = new Answer("A");
         return answer;
     }
 }
