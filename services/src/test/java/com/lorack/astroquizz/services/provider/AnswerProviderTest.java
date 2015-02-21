@@ -1,4 +1,4 @@
-package com.lorack.astroquizz.services.test.provider;
+package com.lorack.astroquizz.services.provider;
 
 import com.lorack.astroquizz.domain.Answer;
 import com.lorack.astroquizz.domain.Question;

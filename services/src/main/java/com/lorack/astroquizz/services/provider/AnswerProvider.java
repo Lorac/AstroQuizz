@@ -8,6 +8,12 @@ import com.lorack.astroquizz.domain.Question;
  */
 public class AnswerProvider {
 
+    /**
+     * Provide the answer for the question
+     *
+     * @param question The question to find the answer
+     * @return The Answer
+     */
     public Answer getAnswer(Question question) {
         Answer answer = new Answer("A");
         return answer;

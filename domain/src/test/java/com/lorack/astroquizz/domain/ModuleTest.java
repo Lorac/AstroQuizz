@@ -1,7 +1,5 @@
-package com.lorack.astroquizz.test.domain;
+package com.lorack.astroquizz.domain;
 
-import com.lorack.astroquizz.domain.Module;
-import com.lorack.astroquizz.domain.Question;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,22 +23,20 @@ public class ModuleTest {
     private static final int QUESTION_NUMBER = 2;
 
     private Module module;
-
+    
     @Mock
     private Question aQuestion;
-
-
-    @Test
-    public void whenCreatingANewModuleItShouldBeEmpty() {
-        Module module = new Module();
-        module.isEmpty();
-    }
-
 
     @Before
     public void setUp() {
         module = new Module();
         willReturn(true).given(aQuestion).hasNumber(QUESTION_NUMBER);
+    }
+
+    @Test
+    public void whenCreatingANewModuleItShouldBeEmpty() {
+        Module module = new Module();
+        module.isEmpty();
     }
 
     @Test
@@ -51,15 +47,22 @@ public class ModuleTest {
 
     @Test
     public void whenAddingMoreQuestionsShouldBeAbleToChooseOne() {
+        giveSomeQuestions();
+
+        Optional<Question> questionResult = module.getQuestionByNumber(QUESTION_NUMBER);
+        
+        assertEquals(aQuestion, questionResult.get());
+    }
+
+    private void giveSomeQuestions() {
+        Question question = mock(Question.class);
         Question question2 = mock(Question.class);
         Question question3 = mock(Question.class);
+
         module.addQuestion(question2);
         module.addQuestion(question3);
+        module.addQuestion(question);
         module.addQuestion(aQuestion);
-
-
-        Optional<Question> question = module.getQuestionByNumber(QUESTION_NUMBER);
-        assertEquals(aQuestion, question.get());
     }
 
 

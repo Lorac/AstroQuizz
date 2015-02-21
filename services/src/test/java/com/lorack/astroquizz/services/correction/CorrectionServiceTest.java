@@ -1,4 +1,4 @@
-package com.lorack.astroquizz.services.test.correction;
+package com.lorack.astroquizz.services.correction;
 
 import com.lorack.astroquizz.domain.Question;
 import com.lorack.astroquizz.services.correction.CorrectionService;
