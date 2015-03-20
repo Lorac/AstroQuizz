@@ -3,7 +3,6 @@ package com.lorack.astroquizz.services.provider;
 import com.lorack.astroquizz.domain.Answer;
 import com.lorack.astroquizz.domain.Question;
 import com.lorack.astroquizz.services.correction.CorrectionService;
-import com.lorack.astroquizz.services.provider.AnswerProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -31,6 +30,5 @@ public class AnswerProviderTest {
         AnswerProvider answerProvider = new AnswerProvider();
         Answer answer = answerProvider.getAnswer(aQuestion);
         assertEquals(answer.getAnswer(), "A");
-
     }
 }

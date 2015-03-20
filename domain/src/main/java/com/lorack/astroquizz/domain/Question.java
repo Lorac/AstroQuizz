@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Created by Maxime.Roussin-Belan on 2/2/2015.
- */
 public class Question {
 
     private final String stem;

@@ -1,17 +1,16 @@
-package com.lorack.astroquizz.domain;
+package ca.lorack.astroquizz.persistence;
+
+import com.lorack.astroquizz.domain.Question;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Created by Maxime on 2/4/2015.
- */
-public class Module {
+public class QuestionRepositoryInMemory {
 
     private List<Question> questions;
 
-    public Module() {
+    public QuestionRepositoryInMemory() {
         questions = new ArrayList<>();
     }
 
@@ -27,7 +26,7 @@ public class Module {
         return questions.isEmpty();
     }
 
-    public Optional<Question> getQuestionByNumber(int questionNumber) {
+    public Optional<Question> findQuestionByNumber(int questionNumber) {
         return questions.stream().filter(question -> question.hasNumber(questionNumber)).findFirst();
     }
 }
