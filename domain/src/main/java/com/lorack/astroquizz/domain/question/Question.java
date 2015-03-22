@@ -1,4 +1,4 @@
-package com.lorack.astroquizz.domain;
+package com.lorack.astroquizz.domain.question;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,17 +6,17 @@ import java.util.Objects;
 
 public class Question {
 
-    private final String stem;
+    private final Stem stem;
     private final List<String> choices;
-    private final int number;
+    private final QuestionNumber number;
 
-    public Question(String stem, List<String> choices, int questionNumber) {
+    public Question(Stem stem, List<String> choices, QuestionNumber questionNumber) {
         this.stem = stem;
         this.choices = choices;
         this.number = questionNumber;
     }
 
-    public String getStem() {
+    public Stem getStem() {
         return stem;
     }
 
@@ -24,8 +24,12 @@ public class Question {
         return choices;
     }
 
-    public boolean hasNumber(int questionNumber) {
+    public boolean hasNumber(QuestionNumber questionNumber) {
         return this.number == questionNumber;
+    }
+
+    public QuestionNumber getQuestionNumber() {
+        return this.number;
     }
 
     @Override

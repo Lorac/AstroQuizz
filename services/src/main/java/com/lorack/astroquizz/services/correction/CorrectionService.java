@@ -1,7 +1,7 @@
 package com.lorack.astroquizz.services.correction;
 
 
-import com.lorack.astroquizz.domain.Question;
+import com.lorack.astroquizz.domain.question.Question;
 
 public class CorrectionService {
 

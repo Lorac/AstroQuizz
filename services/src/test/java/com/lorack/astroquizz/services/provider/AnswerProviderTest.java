@@ -1,7 +1,7 @@
 package com.lorack.astroquizz.services.provider;
 
 import com.lorack.astroquizz.domain.Answer;
-import com.lorack.astroquizz.domain.Question;
+import com.lorack.astroquizz.domain.question.Question;
 import com.lorack.astroquizz.services.correction.CorrectionService;
 import org.junit.Test;
 import org.junit.runner.RunWith;

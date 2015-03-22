@@ -1,6 +1,6 @@
 package com.lorack.astroquizz.services.correction;
 
-import com.lorack.astroquizz.domain.Question;
+import com.lorack.astroquizz.domain.question.Question;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
