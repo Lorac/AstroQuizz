@@ -8,6 +8,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.willReturn;
 import static org.mockito.Mockito.mock;
@@ -50,6 +52,13 @@ public class ModuleRepositoryInMemoryTest {
         Module moduleResult = moduleRepositoryInMemory.findModuleByName(moduleName);
 
         assertEquals(aQuestion, moduleResult);
+    }
+
+    @Test(expected=NoSuchElementException.class)
+    public void whenTryingToFindANoExistingModuleShouldThrowAnException() {
+        giveSomeQuestions();
+
+        moduleRepositoryInMemory.findModuleByName(mock(ModuleName.class));
     }
 
     private void giveSomeQuestions() {

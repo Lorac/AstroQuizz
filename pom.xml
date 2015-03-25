@@ -16,10 +16,10 @@
     </scm>
 
     <modules>
-        <module>ui</module>
         <module>domain</module>
         <module>services</module>
         <module>persistence</module>
+        <module>swingui</module>
     </modules>
 
     <properties>
