@@ -12,6 +12,14 @@
 		<developerConnection>scm:git:https://github.com/Lorac/AstroQuizz.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
+	
+	<licenses>
+	    <license>
+	      <name>The MIT License (MIT)</name>
+	      <url>http://opensource.org/licenses/MIT</url>
+	      <distribution>repo</distribution>
+	    </license>
+	  </licenses>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
