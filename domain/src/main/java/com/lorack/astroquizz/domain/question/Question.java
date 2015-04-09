@@ -1,8 +1,6 @@
 package com.lorack.astroquizz.domain.question;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Question {
 
@@ -32,35 +30,7 @@ public class Question {
         return this.number;
     }
 
-    @Override
-    public boolean equals(Object other) {
-        Question q = (Question) other;
-        if (q == null)
-            return false;
-        if (q == this)
-            return true;
-        if (!(q instanceof Question))
-            return false;
-        if (!Objects.equals(stem, q.getStem()))
-            return false;
-        if (choices != q.getChoices())
-            return false;
-
-        List<String> copy = new ArrayList<>(choices);
-        List<String> sourceList = new ArrayList<>(copy);
-        List<String> destinationList = new ArrayList<>(q.getChoices());
-        sourceList.removeAll(choices);
-        copy.removeAll(destinationList);
-
-        return sourceList.isEmpty() && copy.isEmpty();
+    public boolean isSame(Question question) {
+        return stem.isSame(question.stem) && number.equals(question.number);
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 1;
-        hash = hash * 17 + stem.hashCode();
-        hash = hash * 31 + choices.hashCode();
-        return hash;
-    }
-
 }
