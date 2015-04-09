@@ -1,5 +1,7 @@
 package com.lorack.astroquizz.domain.module;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+
 public class ModuleName {
 
     private final String name;
@@ -8,22 +10,8 @@ public class ModuleName {
         this.name = name;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        ModuleName that = (ModuleName) o;
-
-        return !(name != null ? !name.equals(that.name) : that.name != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        return name != null ? name.hashCode() : 0;
+    public boolean isSame(ModuleName moduleName) {
+        return EqualsBuilder.reflectionEquals(this, moduleName);
     }
 }
 
